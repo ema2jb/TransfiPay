@@ -1,0 +1,14 @@
+.teamPics img{
+    width:100%;
+    object-fit: fill;
+}
+
+.team{
+    padding:4rem 4rem;
+}
+
+@media (max-width:765px){
+    .team{
+        padding: 2rem 1rem;
+    }
+}

@@ -1,0 +1,41 @@
+.dynamicwallet{
+    text-align: center;
+    background-color: #F8FAFC;
+    padding-top: 2.5rem;
+    padding-bottom:0.2rem;
+}
+.dynamicwallet p{
+    width:43%;
+    margin: 0 auto;
+}
+
+.wallet p{
+    width:90%;
+    text-align: left;
+    margin: 0px;
+}
+
+.wallet h1{
+    text-align: left;
+}
+
+.firstRow{
+    margin-top: 7rem;
+}
+
+@media(max-width:765px){
+    .dynamicwallet p{
+        width:100%;
+        padding:0 1.2rem;
+    }
+    .firstRow{
+        margin: 3.5rem 0rem;
+    }
+    .wallet h1{
+        text-align: center;
+        margin-top: 2rem;
+    }
+    .wallet p{
+        width:89%;
+    }
+}

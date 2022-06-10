@@ -1,0 +1,38 @@
+.section2{
+    padding-top:5rem;
+    padding-bottom: 2rem;
+}
+
+.firstDiv{
+    display:flex;
+    justify-content: center;
+}
+
+.firstDiv img{
+    width:70%;
+}
+
+.secondDiv{
+    display:flex;
+    align-items: center;
+}
+
+.secondDiv > div{
+    width:85%;
+    margin-left: 1rem;
+}
+
+.imageRow img{
+    display:inline-block;
+    margin-right:0.7rem;
+}
+
+@media(max-width:765px){
+    .imageRow img{
+        width:21%;
+    }
+
+    .firstDiv{
+        margin-top: 2rem;
+    }
+}

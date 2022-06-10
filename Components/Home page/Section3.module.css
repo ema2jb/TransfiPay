@@ -1,0 +1,29 @@
+.section3{
+    background-color: #F8FAFC;
+    padding-top:5rem;
+    padding-bottom: 2rem;
+}
+
+.secondDiv img{
+    display: block;
+    width:70%;
+    margin: 0 auto;
+}
+
+.firstDiv{
+    display:flex;
+    align-items:center;
+}
+
+.firstDiv>div{
+    width: 70%;
+    margin:0 auto;
+}
+
+@media(max-width:768px){
+    .firstDiv>div{
+        width: 100%;
+       padding:0rem 1rem;
+    }
+}
+

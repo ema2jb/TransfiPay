@@ -1,0 +1,22 @@
+.ourPartners{
+    text-align: center;
+    padding-bottom: 4rem;
+}
+
+.ourPartners>h1{
+    margin-bottom: 4rem;
+}
+
+.partners{
+    padding: 0rem 4rem;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+@media(max-width:765px){
+    .partners img{
+        width:40%;
+        margin-right: 1rem;
+    }
+}
+

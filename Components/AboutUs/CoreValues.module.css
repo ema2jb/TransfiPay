@@ -1,0 +1,38 @@
+.coreValues{
+    text-align:center;
+    background-color: #F8FAFC;
+}
+
+.coreValues>p{
+    padding: 0 22rem;
+}
+
+.values{
+    display:flex;
+    text-align:left;
+    justify-content: space-evenly;
+    padding: 4rem;
+}
+
+.values>div{
+    background-color: #F1F5F9;
+    width:30%;
+    padding: 1.3rem;
+}
+
+
+@media (max-width:765px) {
+    .coreValues>p{
+        padding: 0 1rem;
+    }
+
+    .values{
+        flex-wrap: wrap;
+        padding:1rem
+    }
+
+    .values>div{
+        width:100%;
+        margin-bottom: 1.5rem;
+    }
+}

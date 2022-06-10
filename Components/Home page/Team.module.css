@@ -1,0 +1,62 @@
+.ourteam hr{
+    width:3%;
+    margin:0;
+    background-color: #0096C7;
+    font-size: 24px;
+    height: 0.2rem;
+}
+
+.ourteam{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    color: #0096C7;
+    font-size: 24px;
+}
+
+.ourteam span{
+    display:inline-block;
+    margin:0 1rem;
+}
+
+.serviceteam{
+    text-align:center;
+}
+
+.teammembers{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 5rem;
+    padding-left: 3rem;
+    padding-right: 3rem ;
+    flex-wrap: wrap;
+    padding-bottom: 4rem;
+}
+
+.teammembers p{
+    margin: 0;
+}
+
+.teammembers h3{
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size:24px;
+    color:#0F172A;
+}
+
+
+
+@media(max-width:765px){
+    .teammembers>div{
+        width:45%;
+        margin-right: 0.3rem;
+    }
+
+    .teammembers>div img{
+        width:100%;
+    }
+
+    .teammembers{
+        padding:2rem;
+    }
+}

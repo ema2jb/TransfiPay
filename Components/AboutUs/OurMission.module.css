@@ -1,0 +1,29 @@
+.ourMission{
+    padding: 0rem 6.2rem;
+    padding-top: 8rem;
+}
+
+.globeImage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8rem 8rem;
+    background-color:#023E8A;
+}
+
+
+@media (max-width:765px){
+    .ourMission{
+        padding: 2rem 1rem;
+        padding-top: 8rem;
+    }
+
+    .globeImage{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem 2rem;
+        background-color:#023E8A;
+    }
+    
+}
