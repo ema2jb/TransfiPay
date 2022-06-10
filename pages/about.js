@@ -1,7 +1,7 @@
 import OurMission from '../Components/AboutUs/OurMission'
 import CoreValues from '../Components/AboutUs/CoreValues'
 import Partners from '../Components/AboutUs/Partners'
-import Advisers from '../Components/AboutUs/advisers'
+import Advisers from '../Components/AboutUs/Advisers'
 import Team from '../Components/Home page/Team'
 import JoinWaitlist from "../Components/Home page/JoinWaitlist"
 
