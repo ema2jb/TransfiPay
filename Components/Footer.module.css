@@ -1,0 +1,10 @@
+.footerLogo{
+    width:27%
+}
+
+@media(max-width:765px){
+    .footerLogo{
+        width:70%;
+        margin-left:-80px;
+    }
+}

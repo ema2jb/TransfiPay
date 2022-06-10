@@ -4,6 +4,10 @@
    margin-top:20px;
 }
 
+.header img{
+    width:20%
+}
+
 .div{
     display:flex;
     justify-content: space-between;
@@ -37,6 +41,8 @@
     align-items: center;
     justify-content: space-between;
 }
+
+
 
 .NavIcon>p{
     height: 5px;
@@ -101,6 +107,16 @@
     margin-bottom:1rem;
 }
 
+.mobileNav img{
+    width:40%;
+    margin-left: -40px;
+}
+
 .mobileLogo img{
-    width:100%;
+    width:50%;
+    
+}
+
+.navLogo{
+    width:60%;
 }

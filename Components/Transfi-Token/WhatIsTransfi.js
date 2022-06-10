@@ -17,7 +17,7 @@ const WhatIsTransfi = ()=>{
                             Join the community
                         </button>
                         <button className="col-md-6 transparentBtn">
-                            <img src="/icon/outline/icon7.png" alt="icon" /> Download the whitepaper
+                            <img src="/icon/icon7.png" alt="icon" /> Download the whitepaper
                         </button>
                     </div>
                 </div>

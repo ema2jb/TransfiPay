@@ -19,7 +19,7 @@ export default function Home() {
     <div className="d-none d-md-block">
       <header className={classes.header} >
         <div className={classes.div}>
-            <div className="image">
+            <div className={`${classes.navLogo}`}>
               <img src="/logo.png" alt="logo"/>
             </div>
             <nav>

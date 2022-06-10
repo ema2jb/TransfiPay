@@ -1,4 +1,4 @@
-import classses from './Footer.module.css'
+import classes from './Footer.module.css'
 
 
 const Footer = ()=>{
@@ -6,10 +6,9 @@ const Footer = ()=>{
     <div className='footer-wrapper'>
         <div>
             <div className="footer row px-3 px-md-5">
-                <div className="image col-md-5">
+                <div className={`${classes.footerLogo} col-md-5`}>
                     <img src="/logo.png" alt="logo" />
                 </div>
-                
                 <div className='home px-4 col-md-2 mt-4'>
                     <p>Home</p>
                     <p>Mobile App</p>
