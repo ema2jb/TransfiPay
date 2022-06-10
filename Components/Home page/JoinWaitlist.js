@@ -24,7 +24,7 @@ const JoinWaitlist = () =>{
                     </div>
                 </div>
                 <div className={` ${classes.image} d-none d-md-block col-md-5`}>
-                    <img className="" src="/Icon/solid/mail.png" alt="image" />
+                    <img className="" src="/Icon/mail.png" alt="image" />
                 </div>
             </div>
         </>

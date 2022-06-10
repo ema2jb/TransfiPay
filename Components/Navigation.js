@@ -57,13 +57,13 @@ export default function Home() {
     <img  src="/logo.png" alt="logo"/>
     <nav>
         <ul>
-            <li>
+            <li onClick={toggle}>
               <Link href="/">Home</Link>
             </li>
-            <li>
+            <li onClick={toggle}>
               <Link href="/transfi-token">Transfi Token</Link>
             </li>
-            <li>
+            <li onClick={toggle}>
               <Link href="/about">About Us</Link>
             </li>
         </ul>

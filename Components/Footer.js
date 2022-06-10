@@ -1,5 +1,5 @@
 import classses from './Footer.module.css'
-import Vector from '../public/Icon/Vector.png'
+
 
 const Footer = ()=>{
     return<>
@@ -7,7 +7,7 @@ const Footer = ()=>{
         <div>
             <div className="footer row px-3 px-md-5">
                 <div className="image col-md-5">
-                    <img src="/logo1.png" alt="logo" />
+                    <img src="/logo.png" alt="logo" />
                 </div>
                 
                 <div className='home px-4 col-md-2 mt-4'>

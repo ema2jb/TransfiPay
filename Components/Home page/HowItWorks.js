@@ -12,7 +12,7 @@ const HowItWorks = ()=>{
             <div className={`${classes.explanation} `}>
                 <div>
                     <div>
-                        <img src="/icon/outline/user.png" alt="image" />
+                        <img src="/icon/user.png" alt="image" />
                     </div>
                     <div>
                         <h3>Create an account</h3>
@@ -21,7 +21,7 @@ const HowItWorks = ()=>{
                 </div>
                 <div>
                     <div>
-                        <img src="/icon/outline/document-text.png" alt="image" />
+                        <img src="/icon/document-text.png" alt="image" />
                     </div>
                     <div>
                         <h3>Complete KYC process</h3>
@@ -30,7 +30,7 @@ const HowItWorks = ()=>{
                 </div>
                 <div>
                     <div>
-                        <img src="/icon/outline/sparkles.png" alt="image" />
+                        <img src="/icon/sparkles.png" alt="image" />
                     </div>
                     <div>
                         <h3>You're good to go!</h3>
