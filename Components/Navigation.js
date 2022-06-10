@@ -53,7 +53,7 @@ export default function Home() {
     <>
     { 
     <div className={toggleNav? `${classes.mobileNav} ${classes.active}` : classes.mobileNav}>
-    <i onClick={toggle} class="fas fa-times closes"></i>
+    <i onClick={toggle} className="fas fa-times closes"></i>
     <img  src="/logo.png" alt="logo"/>
     <nav>
         <ul>

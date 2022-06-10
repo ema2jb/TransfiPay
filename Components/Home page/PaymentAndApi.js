@@ -12,7 +12,7 @@ const PaymentAndApi = () =>{
                         to move in between currencies 
                         in less than 2 mins. Crypto to 
                         crypto, crypto to fiat, fiat to 
-                        crypto. It's fast, efficient & secure.
+                        crypto. It's fast, efficient &apos secure.
                     </p>
                 </div>
             </div>

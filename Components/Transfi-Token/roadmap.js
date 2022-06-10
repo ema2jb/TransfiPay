@@ -11,8 +11,8 @@ const Roadmap =()=>{
                 <div className={`${classes.roadmap} row `}>
                     <div className={`${classes.roadmapDetails} ${classes.firstDiv} mt-5 py-4  sky-blue-background col-lg-6`}>
                             <h1>Q1</h1>
-                        {[1, 2, 3, 4].map((item)=> (
-                            <div className={`${classes.roadmapItem} mb-3`}>
+                        {[1, 2, 3, 4].map((item, i)=> (
+                            <div className={`${classes.roadmapItem} mb-3`} key={i}>
                                 <div>
                                     <img src="/icon/outline/marked.png" />
                                 </div>
@@ -24,8 +24,8 @@ const Roadmap =()=>{
                     </div>
                     <div className={`${classes.roadmapDetails} mb-md-5 py-4  sky-blue-background col-lg-6`}>
                         <h1>Q2</h1>
-                        {[1, 2, 3, 4].map((item)=> (
-                            <div className={`${classes.roadmapItem} mb-3`}>
+                        {[1, 2, 3, 4].map((item, i)=> (
+                            <div className={`${classes.roadmapItem} mb-3`} key={i}>
                                 <div>
                                     <img src="/icon/outline/unmark.png" />
                                 </div>
@@ -39,8 +39,8 @@ const Roadmap =()=>{
                 <div className={`${classes.roadmap} row `}>
                     <div className={`${classes.roadmapDetails} ${classes.firstDiv} py-4 mt-md-5 sky-blue-background col-lg-6`}>
                         <h1>Q3</h1>
-                        {[1, 2, 3, 4].map((item)=> (
-                            <div className={`${classes.roadmapItem} mb-3`}>
+                        {[1, 2, 3, 4].map((item, i)=> (
+                            <div className={`${classes.roadmapItem} mb-3`} key={i}>
                                 <div>
                                     <img src="/icon/outline/marked.png" />
                                 </div>
@@ -52,8 +52,8 @@ const Roadmap =()=>{
                     </div>
                     <div className={`${classes.roadmapDetails} py-4 mb-md-5  sky-blue-background col-lg-6`}>
                         <h1>Q4</h1>
-                        {[1, 2, 3, 4].map((item)=> (
-                            <div className={`${classes.roadmapItem} mb-3`}>
+                        {[1, 2, 3, 4].map((item, i)=> (
+                            <div className={`${classes.roadmapItem} mb-3`} key={i}>
                                 <div>
                                     <img src="/icon/outline/unmark.png" />
                                 </div>

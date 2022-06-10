@@ -7,12 +7,12 @@ const HowItWorks = ()=>{
             <h1><span>HOW IT</span> WORKS</h1>
             <p>Getting started with TransFi can't be any easier. With only 3-step 
                 process, you get fully onboarded to receive or pay with crypto. 
-                It's simple, fast & secure.
+                It's simple, fast &apos secure.
             </p>
             <div className={`${classes.explanation} `}>
                 <div>
                     <div>
-                        <img src="/icon/outline/user.png" />
+                        <img src="/icon/outline/user.png" alt="image" />
                     </div>
                     <div>
                         <h3>Create an account</h3>
@@ -21,7 +21,7 @@ const HowItWorks = ()=>{
                 </div>
                 <div>
                     <div>
-                        <img src="/icon/outline/document-text.png" />
+                        <img src="/icon/outline/document-text.png" alt="image" />
                     </div>
                     <div>
                         <h3>Complete KYC process</h3>
@@ -30,7 +30,7 @@ const HowItWorks = ()=>{
                 </div>
                 <div>
                     <div>
-                        <img src="/icon/outline/sparkles.png" />
+                        <img src="/icon/outline/sparkles.png" alt="image" />
                     </div>
                     <div>
                         <h3>You're good to go!</h3>
