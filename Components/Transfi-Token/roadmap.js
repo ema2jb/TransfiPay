@@ -14,7 +14,7 @@ const Roadmap =()=>{
                         {[1, 2, 3, 4].map((item, i)=> (
                             <div className={`${classes.roadmapItem} mb-3`} key={i}>
                                 <div>
-                                    <img src="/icon/outline/marked.png" />
+                                    <img src="/Icon/marked.png" />
                                 </div>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit cras 
                                     turpis felis pretium est. 
@@ -27,7 +27,7 @@ const Roadmap =()=>{
                         {[1, 2, 3, 4].map((item, i)=> (
                             <div className={`${classes.roadmapItem} mb-3`} key={i}>
                                 <div>
-                                    <img src="/icon/outline/unmark.png" />
+                                    <img src="/Icon/unmark.png" />
                                 </div>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit cras 
                                     turpis felis pretium est. 
@@ -42,7 +42,7 @@ const Roadmap =()=>{
                         {[1, 2, 3, 4].map((item, i)=> (
                             <div className={`${classes.roadmapItem} mb-3`} key={i}>
                                 <div>
-                                    <img src="/icon/outline/marked.png" />
+                                    <img src="/Icon/marked.png" />
                                 </div>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit cras 
                                     turpis felis pretium est. 
@@ -55,7 +55,7 @@ const Roadmap =()=>{
                         {[1, 2, 3, 4].map((item, i)=> (
                             <div className={`${classes.roadmapItem} mb-3`} key={i}>
                                 <div>
-                                    <img src="/icon/outline/unmark.png" />
+                                    <img src="/Icon/unmark.png" />
                                 </div>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit cras 
                                     turpis felis pretium est. 
