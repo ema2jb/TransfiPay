@@ -15,14 +15,18 @@ export default function Home() {
 
   return (
     <>
-    <Header />
     <div className="d-none d-md-block">
       <header className={classes.header} >
         <div className={classes.div}>
             <div className={`${classes.navLogo}`}>
               <img src="/logo.png" alt="logo"/>
             </div>
-            <nav>
+            <nav style={{
+              "background-image":"url('./bluebckg.png')",
+              "background-position": "bottom",
+              "background-size": "cover",
+              "background-repeat": "no-repeat",
+            }}>
                 <ul>
                     <li>
                       <Link href="/">Home</Link>

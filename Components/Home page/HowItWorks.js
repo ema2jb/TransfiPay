@@ -3,14 +3,28 @@ import classes from "./HowItWorks.module.css"
 
 const HowItWorks = ()=>{
     return<>
-        <div className={`${classes.howitworks}`}>
-            <h1><span>HOW IT</span> WORKS</h1>
-            <p>Getting started with TransFi can't be any easier. With only 3-step 
+        <section className={`${classes.howitworks}`}>
+            <h1
+                data-aos="fade-down" 
+                data-aos-easing="ease-in"
+                data-aos-duration="1000"
+                data-aos-once = "true"
+            ><span>HOW IT</span> WORKS</h1>
+            <p
+                data-aos="fade-down" 
+                data-aos-easing="ease-in"
+                data-aos-duration="1000"
+                data-aos-once = "true"
+            >Getting started with TransFi can't be any easier. With only 3-step 
                 process, you get fully onboarded to receive or pay with crypto. 
                 It's simple, fast &apos secure.
             </p>
             <div className={`${classes.explanation} `}>
-                <div>
+                <div
+                    data-aos="fade" 
+                    data-aos-easing="ease-in"
+                    data-aos-duration="1000"
+                >
                     <div>
                         <img src="/Icon/user.png" alt="image" />
                     </div>
@@ -19,7 +33,12 @@ const HowItWorks = ()=>{
                         <p>Signup your business in less than 15 minutes.</p>
                     </div>
                 </div>
-                <div>
+                <div
+                    data-aos="fade" 
+                    data-aos-easing="ease-in"
+                    data-aos-duration="1000"
+                    data-aos-once = "true"
+                >
                     <div>
                         <img src="/Icon/document-text.png" alt="image" />
                     </div>
@@ -28,7 +47,12 @@ const HowItWorks = ()=>{
                         <p>Fill in required information to fulfill KYC requirements.</p>
                     </div>
                 </div>
-                <div>
+                <div
+                    data-aos="fade" 
+                    data-aos-easing="ease-in"
+                    data-aos-duration="1000"
+                    data-aos-once = "true"
+                >
                     <div>
                         <img src="/Icon/sparkles.png" alt="image" />
                     </div>
@@ -38,7 +62,7 @@ const HowItWorks = ()=>{
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     </>
 }
 

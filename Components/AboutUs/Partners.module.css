@@ -13,6 +13,10 @@
     justify-content: space-evenly;
 }
 
+.partners img{
+    width:20%;
+}
+
 @media(max-width:765px){
     .partners img{
         width:40%;

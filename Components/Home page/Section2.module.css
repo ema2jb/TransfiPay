@@ -1,7 +1,4 @@
-.section2{
-    padding-top:5rem;
-    padding-bottom: 2rem;
-}
+
 
 .firstDiv{
     display:flex;
@@ -25,6 +22,7 @@
 .imageRow img{
     display:inline-block;
     margin-right:0.7rem;
+    width:20%;
 }
 
 @media(max-width:765px){

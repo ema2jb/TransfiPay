@@ -28,9 +28,7 @@
     justify-content: space-around;
     padding-top: 5rem;
     padding-left: 3rem;
-    padding-right: 3rem ;
-    flex-wrap: wrap;
-    padding-bottom: 4rem;
+    padding-right: 3rem;
 }
 
 .teammembers p{
@@ -42,6 +40,14 @@
     font-family: 'DM Sans', sans-serif;
     font-size:24px;
     color:#0F172A;
+}
+
+.teammembers div{
+    width:33%;
+}
+
+.teammembers img{
+    width:100%;
 }
 
 
@@ -58,5 +64,6 @@
 
     .teammembers{
         padding:2rem;
+        flex-wrap:wrap;
     }
 }

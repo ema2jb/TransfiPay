@@ -1,6 +1,5 @@
 .howitworks{
     text-align: center;
-    padding-top:3rem;
 }
 
 .howitworks>p{
@@ -11,10 +10,10 @@
 .explanation{
     display:flex;
     justify-content: center;
-    padding-top: 2rem;
+    padding-top: 6rem;
     padding-left: 4rem;
     padding-right: 4rem;
-    padding-bottom: 2rem;
+
 }
 
 .explanation>div{

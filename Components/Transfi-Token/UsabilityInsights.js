@@ -4,13 +4,21 @@ const UsabilityInsights = ()=>{
     return<>
         <section className={`${classes.section} sky-blue-background`}>
             <div className={`${classes.usabilityInsights}`}>
-                <h1><span>USABILITY</span>  INSIGHTS</h1>
-                <p>Benefit of all that the utility token of 
+                <h1 data-aos="fade-down" 
+                    data-aos-easing="ease-in"
+                    data-aos-duration="1000"
+                    data-aos-once = "true"><span>USABILITY</span>  INSIGHTS</h1>
+                <p
+                data-aos="fade-down" 
+                data-aos-easing="ease-in"
+                data-aos-duration="1000"
+                data-aos-once = "true"
+                >Benefit of all that the utility token of 
                     TransFi payment system and ecosystem brings. Accepting, owning, 
                     holding or staking it confers innate benefits as well as reward benefits.
                 </p>
             </div>
-            <div className={`${classes.explainUsability} row px-md-5 py-md-5 `}>
+            <div className={`${classes.explainUsability} row px-md-5 pt-md-5 `}>
                 <div className={`${classes.card} col-md-3 mx-md-5 my-3 my-md-4`}>
                     <div className={`mb-3`}>
                         <img src="/Icon/Icon1.png" />

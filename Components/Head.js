@@ -20,6 +20,7 @@ const Header = ()=>{
             crossOrigin="anonymous"
             referrerpolicy="no-referrer"
         />
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     </Head> 
     </>
 }

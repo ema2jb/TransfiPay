@@ -55,10 +55,11 @@ p{
   font-family:'DM Sans', sans-serif;
   font-size:20px;
   margin-bottom:1rem;
+  line-height: 28px;
 }
 
 section{
-  padding-top: 5rem;
+  padding: 7rem 0rem;
 }
 
 section .image{
@@ -114,6 +115,7 @@ h3{
   font-size:24px;
   color:#0F172A;
   margin-bottom:1rem;
+  font-weight:300
 }
 
 h4{
@@ -134,7 +136,7 @@ h4{
 
 .defaultBtn {
   background: #023E8A;
-  padding: 1.5rem 0rem;
+  padding: 1rem 0rem;
   text-align: center;
   color: #ffff !important;
   border:0px;
@@ -146,13 +148,13 @@ h4{
 
 .transparentBtn {
   background: transparent;
-  padding: 1.5rem 0rem;
+  padding: 1rem 0rem;
   text-align: center;
   color: #00ADE6;
   border-radius: 10px;
   font-family: 'Inter', sans-serif;
   font-size: 18px;
-  border:0px;
+  border:2px solid #00ADE6;
 }
 
 .border{
@@ -177,14 +179,12 @@ h4{
     }
 
     p{
-      font-size:18px;
+      font-size:16px;
+      line-height:24px;
     }
 
     h3{
-      font-size:20px;
-    }
-    section{
-      padding-top: 2rem;
+      font-size:18px;
     }
 
     .row{

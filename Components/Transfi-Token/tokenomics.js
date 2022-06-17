@@ -24,7 +24,7 @@ const Tokenommics =()=>{
                                 <p><span className={classes.span6}></span>  10% Lorem ipsum monesterea</p>
                             </div>
                             <div className="col-lg-6 mb-4 mb-md-0 order-1 order-md-2 ">
-                                <img src="./Token-chart-3.png" alt="token-chart" />
+                                <img src="./Token-chart-1.png" alt="token-chart" />
                             </div>
                         </div>
                     </div>
@@ -42,7 +42,7 @@ const Tokenommics =()=>{
                                 <p><span className={classes.span6}></span>  10% Lorem ipsum monesterea</p>
                             </div>
                             <div className="col-lg-6 mb-4 mb-md-0 order-1 order-md-2">
-                                <img src="./Token-chart-3.png" alt="token-chart" />
+                                <img src="./Token-chart-1.png" alt="token-chart" />
                             </div>
                         </div>
                     </div>

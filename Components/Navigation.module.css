@@ -1,7 +1,7 @@
 .header{
    width:100%;
    position:fixed;
-   margin-top:20px;
+   z-index:1;
 }
 
 .header img{
@@ -12,13 +12,15 @@
     display:flex;
     justify-content: space-between;
     align-items: center;
-    width:90%;
-    margin: 0 auto;
+    width:100%;
+    
 }
 
 
 .header nav{
-   width:37%;
+   width:41.5%;
+   padding: 1rem 0rem;
+   padding-right:4rem;
 }
 
 .header ul{ 
@@ -40,6 +42,8 @@
     padding: 0.7rem;
     align-items: center;
     justify-content: space-between;
+    position:fixed;
+    background-color: #ffffff;
 }
 
 
@@ -118,5 +122,8 @@
 }
 
 .navLogo{
-    width:60%;
+    width:58.5%;
+    background: #F8FAFC;
+    padding: 0.5rem 0rem;
+    padding-left: 4rem;
 }

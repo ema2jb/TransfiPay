@@ -7,8 +7,20 @@ const Section1 = ()=>{
           <div className={`${classes.firstCol} col-md-7`}>
             <img src="/ellipse1.png" alt="ellipse" />
             <div className={`${classes.title}`}>
-              <h1><span>ENABLING</span> LMITLESS<br/> <span> MOVEMENTS WITH</span><br /> FRICTIONLESS <span>PAYMENTS</span></h1>
-              <p>Enjoy unmatched payment speed, gain new customer base, 
+              <h1 
+              data-aos="fade-right" 
+              data-aos-easing="ease-in"
+              data-aos-duration="1000"
+              data-aos-once = "true"
+              >
+                <span>ENABLING</span> LMITLESS<br/> <span> MOVEMENTS WITH</span><br /> FRICTIONLESS <span>PAYMENTS</span></h1>
+              <p 
+              data-aos="fade-right" 
+              data-aos-easing="ease-in"
+              data-aos-duration="1500"
+              data-aos-once = "true"
+              >
+                Enjoy unmatched payment speed, gain new customer base, 
                 tackle charge backs, avoid ridiculously high-fees. Commuters,
                 goods & services move faster when you accept Crypto.
               </p>
