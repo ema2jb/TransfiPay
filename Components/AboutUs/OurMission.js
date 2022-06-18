@@ -19,6 +19,9 @@ const OurMission = ()=>{
                         businesses and individuals experience limitless potentials with 
                         frictionless and borderless crypto payment solutions.
                     </p>
+                    <button className="px-4 mt-3 mb-3 mb-md-0 defaultBtn">
+                            Get Started Today
+                    </button>
                 </div>
                 <div className={`${classes.globeImage} col-md-5 `}>
                     <img src="/Vector (9).png" alt="logo" />

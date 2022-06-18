@@ -64,6 +64,11 @@ const Team =()=>{
                     <h3>John Doe</h3>
                 </div>
             </div>
+            <div className={classes.btn}>
+                <button className="px-4 mt-3 mb-3 mb-md-0 defaultBtn">
+                    Learn more about us
+                </button>
+            </div>
         </section>
     </>
 }

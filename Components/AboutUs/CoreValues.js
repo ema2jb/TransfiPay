@@ -2,7 +2,10 @@ import classes from './CoreValues.module.css'
 
 const CoreValues = ()=>{
     return<>
-        <section className={classes.coreValues}>
+        <div className={classes.coreValues}>
+            <div className={classes.bckg2}>
+                <img src="/bckg2.png" alt="ellipse" />
+            </div>
             <h1 
                  data-aos="fade-down" 
                  data-aos-easing="ease-in"
@@ -54,8 +57,10 @@ const CoreValues = ()=>{
                     </p>
                 </div>
             </div>
-        </section>
-
+            <div className={classes.bckg1}>
+                <img src="/bckg1.png" alt="ellipse" /> 
+            </div>
+        </div>
     </>
 }
 

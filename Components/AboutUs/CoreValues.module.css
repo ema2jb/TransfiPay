@@ -7,6 +7,19 @@
     padding: 0 22rem;
 }
 
+.coreValues img{
+    width:300px;
+}
+
+.coreValues .bckg2{
+    text-align: left;
+}
+
+.coreValues .bckg1{
+    text-align: right;
+    margin-top: 2rem;
+}
+
 .values{
     display:flex;
     text-align:left;
@@ -34,5 +47,10 @@
     .values>div{
         width:100%;
         margin-bottom: 1.5rem;
+    }
+
+    .coreValues .bckg2{
+        width:150px;
+        margin-bottom: 4rem;
     }
 }

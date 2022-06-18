@@ -76,6 +76,9 @@ const Advisers = ()=>{
                     </div>
                 </div>
             </div>
+            <div className={classes.bckg3}>
+                <img src="/bckg3.png" alt="ellipse" />
+            </div>
         </section>
     </>
 }

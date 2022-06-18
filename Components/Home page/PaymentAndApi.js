@@ -11,7 +11,7 @@ const PaymentAndApi = () =>{
                         data-aos-easing="ease-in"
                         data-aos-duration="1000"
                         data-aos-once = "true"
-                    ><span>Flexible</span> payment bridge</h2>
+                    ><span>Flexible</span> Payment Bridge</h2>
                     <p
                         data-aos="fade-right" 
                         data-aos-easing="ease-in"

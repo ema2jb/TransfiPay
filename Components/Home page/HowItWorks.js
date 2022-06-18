@@ -26,9 +26,11 @@ const HowItWorks = ()=>{
                     data-aos-duration="1000"
                 >
                     <div>
-                        <img src="/Icon/user.png" alt="image" />
+                        <div className={classes.image}>
+                            <img src="/Icon/user.png" alt="image" />
+                        </div>
                     </div>
-                    <div>
+                    <div >
                         <h3>Create an account</h3>
                         <p>Signup your business in less than 15 minutes.</p>
                     </div>
@@ -40,7 +42,9 @@ const HowItWorks = ()=>{
                     data-aos-once = "true"
                 >
                     <div>
-                        <img src="/Icon/document-text.png" alt="image" />
+                        <div className={classes.image}>
+                            <img src="/Icon/document-text.png" alt="image" />
+                        </div>
                     </div>
                     <div>
                         <h3>Complete KYC process</h3>
@@ -54,7 +58,9 @@ const HowItWorks = ()=>{
                     data-aos-once = "true"
                 >
                     <div>
-                        <img src="/Icon/sparkles.png" alt="image" />
+                        <div className={classes.image}>
+                            <img src="/Icon/sparkles.png" alt="image" />
+                        </div>
                     </div>
                     <div>
                         <h3>You're good to go!</h3>

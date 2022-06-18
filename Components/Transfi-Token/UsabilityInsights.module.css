@@ -7,6 +7,10 @@
     font-size:18px !important;
 }
 
+.explainUsability img{
+    width:50px;
+}
+
 .card{
     background-color: #F1F5F9;
     border-radius: 8px;

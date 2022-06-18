@@ -13,15 +13,9 @@
 @media (max-width:765px){
     .ourMission{
         padding: 2rem 1rem;
-        padding-top: 4rem;
+        padding-top: 8rem;
     }
 
-    .globeImage{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 2rem 2rem;
-        background-color:#023E8A;
-    }
+    
     
 }

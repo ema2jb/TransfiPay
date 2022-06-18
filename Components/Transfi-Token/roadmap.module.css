@@ -15,7 +15,7 @@
     background-color: #D8F5FF;
     padding: 0.5rem;
     margin: 1rem;
-    
+    width:50px;
 }
 
 .roadmap p{
@@ -62,5 +62,9 @@
 
     .roadmap{
         margin:1.3rem 1.3rem;
+    }
+
+    .roadmapItem img{
+        width:70px;
     }
 }

@@ -3,7 +3,6 @@ import classes from './WhatIsTransfi.module.css'
 
 const WhatIsTransfi = ()=>{
     return<>
-        <section className="">
             <div className={`${classes.whatIsTransfi} row`}>
                 <div className={`${classes.transfidefinition} col-md-8`}>
                     <h1 
@@ -23,7 +22,7 @@ const WhatIsTransfi = ()=>{
                         also as a driver of TransFi vision.
                     </p>
                     <div className={`${classes.buttons} row mt-5`}>
-                        <button className="col-md-5 mx-2 defaultBtn">
+                        <button className="col-md-5 mx-2 mb-3 mb-md-0 defaultBtn">
                             Join the community
                         </button>
                         <button className="col-md-5 mx-2 transparentBtn">
@@ -35,7 +34,6 @@ const WhatIsTransfi = ()=>{
                     <img className={classes.image} src='./hand-transfi-coin.png' alt="transfi-coin" />
                 </div>
             </div>
-        </section>
     </>
 }
 

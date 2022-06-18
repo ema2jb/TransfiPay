@@ -19,16 +19,20 @@
 .explanation>div{
     display:flex;
     text-align: left;
-    
+}
+
+.explanation .image{
+    width:64px;
+    margin-left: 2rem;
+    margin-right: 1rem;
 }
 
 .explanation>div img{
     background-color: #D8F5FF;
-    display: inline-block;
+    display: block;
     padding: 0.5rem;
     border-radius: 0.4rem;
-    margin-right: 1rem;
-    margin-left: 2.5rem;
+    width:100%;
 }
 
 
@@ -41,6 +45,9 @@
         width:100%;
         padding:0rem 1.5rem;
         margin-bottom:2rem;
+    }
+    .explanation .image{
+        margin-left: 0rem;
     }
     .explanation>div img{
         margin-left: 0;

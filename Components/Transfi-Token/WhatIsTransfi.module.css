@@ -1,5 +1,5 @@
 .whatIsTransfi{
-    padding-top: 5rem;   
+    padding-top: 9rem;   
 }
 
 .whatIsTransfi .image{
@@ -22,5 +22,13 @@
     .transfidefinition{
         padding:0px 2rem;
         padding-bottom:2rem;
+    }
+
+    .transfidefinition p{
+        padding-right: 0rem;
+    }
+    
+    .buttons{
+       padding-right: 0rem; 
     }
 }
