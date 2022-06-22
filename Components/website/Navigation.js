@@ -29,7 +29,7 @@ export default function Home() {
             }}>
                 <ul>
                     <li>
-                      <Link href="/">Home</Link>
+                      <Link style={{textDecoration:"underline"}} href="/">Home</Link>
                     </li>
                     <li>
                       <Link href="/transfi-token">Transfi Token</Link>

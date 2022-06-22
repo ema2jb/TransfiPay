@@ -1,18 +1,21 @@
-import OurMission from '../Components/AboutUs/OurMission'
-import CoreValues from '../Components/AboutUs/CoreValues'
-import Partners from '../Components/AboutUs/Partners'
-import Advisers from '../Components/AboutUs/Advisers'
-import Team from '../Components/Home page/Team'
-import JoinWaitlist from "../Components/Home page/JoinWaitlist"
+import OurMission from '../Components/website/AboutUs/OurMission'
+import CoreValues from '../Components/website/AboutUs/CoreValues'
+import Partners from '../Components/website/AboutUs/Partners'
+import Advisers from '../Components/website/AboutUs/Advisers'
+import Team from '../Components/website/Home page/Team'
+import JoinWaitlist from "../Components/website/Home page/JoinWaitlist"
+import Layout from "../Components/website/Layout";
 
 const AboutUsPage = ()=>{
     return<>
-        <OurMission />
-        <CoreValues />
-        <Partners />
-        <Advisers />
-        <Team />
-        <JoinWaitlist />
+        <Layout>
+            <OurMission />
+            <CoreValues />
+            <Partners />
+            <Advisers />
+            <Team />
+            <JoinWaitlist />
+        </Layout>
     </>
 }
 

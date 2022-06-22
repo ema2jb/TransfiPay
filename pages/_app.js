@@ -1,12 +1,10 @@
 import '../styles/globals.css'
-import Layout from "../Components/Layout";
-
+import '../styles/website.scss'
+import '../styles/dashboard.scss'
 
 function MyApp({ Component, pageProps }) {
   return <>
-      <Layout>
     <Component {...pageProps} />
-    </Layout>
   </>
 }
 

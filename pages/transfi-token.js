@@ -1,14 +1,17 @@
-import WhatIsTransfi from "../Components/Transfi-Token/WhatIsTransfi"
-import UsabilityInsights from "../Components/Transfi-Token/UsabilityInsights"
-import Tokenommics from "../Components/Transfi-Token/tokenomics"
-import Roadmap from "../Components/Transfi-Token/roadmap"
+import WhatIsTransfi from "../Components/website/Transfi-Token/WhatIsTransfi"
+import UsabilityInsights from "../Components/website/Transfi-Token/UsabilityInsights"
+import Tokenommics from "../Components/website/Transfi-Token/tokenomics"
+import Roadmap from "../Components/website/Transfi-Token/roadmap"
+import Layout from "../Components/website/Layout";
 
 const TransfiTokenPage = ()=>{
     return<>
+    <Layout>
         <WhatIsTransfi />
         <UsabilityInsights />
         <Tokenommics />
         <Roadmap />
+    </Layout>
     </>
 }
 
