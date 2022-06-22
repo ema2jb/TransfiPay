@@ -2,8 +2,8 @@ import { useState } from "react"
 
 
 import AuthSlider from "../../Components/dashboard/auth/AuthSlider"
-import Signup from "../../Components/dashboard/auth/signup"
-import Login from "../../Components/dashboard/auth/login"
+import Signup from "../../Components/dashboard/auth/Signup"
+import Login from "../../Components/dashboard/auth/Login"
 import Kyc from "../../Components/dashboard/auth/Kyc"
 
 
