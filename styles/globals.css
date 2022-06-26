@@ -215,3 +215,10 @@ input:focus{
 
 
 
+@media (max-width:765px){
+  .space-between{
+    flex-wrap:wrap;
+  }
+}
+
+

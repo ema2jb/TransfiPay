@@ -8,8 +8,8 @@ const Roadmap =()=>{
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit cras turpis felis 
                     pretium est facilisi posuere congue. Nulla lectus quisque pellentesque imperdiet mi nisi, 
                 </p>
-                <div className={`${classes.roadmap} row `}>
-                    <div className={`${classes.roadmapDetails} ${classes.firstDiv} mt-5 py-4  sky-blue-background col-lg-6`}>
+                <div className={`${classes.roadmap} space-between `}>
+                    <div className={`${classes.roadmapDetails} ${classes.firstDiv} mt-5 py-4  sky-blue-background px-4 `}>
                             <h1>Q1</h1>
                         {[1, 2, 3, 4].map((item, i)=> (
                             <div className={`${classes.roadmapItem} mb-3`} key={i}>
@@ -22,7 +22,7 @@ const Roadmap =()=>{
                             </div>
                         ))}
                     </div>
-                    <div className={`${classes.roadmapDetails} mb-md-5 py-4  sky-blue-background col-lg-6`}>
+                    <div className={`${classes.roadmapDetails} mb-md-5 py-4  sky-blue-background px-4 `}>
                         <h1>Q2</h1>
                         {[1, 2, 3, 4].map((item, i)=> (
                             <div className={`${classes.roadmapItem} mb-3`} key={i}>
@@ -36,8 +36,8 @@ const Roadmap =()=>{
                         ))}
                     </div>
                 </div>
-                <div className={`${classes.roadmap} row `}>
-                    <div className={`${classes.roadmapDetails} ${classes.firstDiv} py-4 mt-md-5 sky-blue-background col-lg-6`}>
+                <div className={`${classes.roadmap} space-between `}>
+                    <div className={`${classes.roadmapDetails} ${classes.firstDiv} py-4 mt-md-5 sky-blue-background px-4 `}>
                         <h1>Q3</h1>
                         {[1, 2, 3, 4].map((item, i)=> (
                             <div className={`${classes.roadmapItem} mb-3`} key={i}>
@@ -50,7 +50,7 @@ const Roadmap =()=>{
                             </div>
                         ))}
                     </div>
-                    <div className={`${classes.roadmapDetails} py-4 mb-md-5  sky-blue-background col-lg-6`}>
+                    <div className={`${classes.roadmapDetails} py-4 mb-md-5  sky-blue-background px-4`}>
                         <h1>Q4</h1>
                         {[1, 2, 3, 4].map((item, i)=> (
                             <div className={`${classes.roadmapItem} mb-3`} key={i}>

@@ -65,11 +65,13 @@
 .tokenInformation{
     margin:6rem 0rem;
     padding:2rem 3rem;
+
 }
 
 .titleDetails{
     text-align: left;
-    width:45.5%; /*set to 50% for mobile*/
+    width:48.5%; /*set to 50% for mobile*/
+    padding:0rem 1.5rem;
 }
 
 .titleDetails>div{
@@ -77,10 +79,6 @@
     margin-bottom: 0.5rem;
     margin-top: 0.5rem;
     padding:1rem 2rem;
-}
-
-.tokenInformation>.firstDiv{
-    margin-right: 5%;
 }
 
 .title{

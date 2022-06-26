@@ -48,8 +48,8 @@ const Tokenommics =()=>{
                     </div>
                 </div>
             </div>
-            <div className={`${classes.tokenInformation} row `}>
-                <div className={`${classes.titleDetails} ${classes.firstDiv} py-4  sky-blue-background col-lg-6`}>
+            <div className={`${classes.tokenInformation} space-between `}>
+                <div className={`${classes.titleDetails} ${classes.firstDiv} py-4  sky-blue-background `}>
                     <div  className="">
                         <p className={classes.title}>Token name</p>
                         <p className={classes.details}>Transfi Token</p>
@@ -67,7 +67,7 @@ const Tokenommics =()=>{
                         <p className={classes.details}>Q1 2022</p>
                     </div>
                 </div>
-                <div className={`${classes.titleDetails} py-4  sky-blue-background col-lg-6`}>
+                <div className={`${classes.titleDetails} py-4  sky-blue-background `}>
                     <div>
                         <p className={classes.title}>Token type</p>
                         <p className={classes.details}>ERC20(Polygon)</p>
