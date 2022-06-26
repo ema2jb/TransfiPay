@@ -15,7 +15,7 @@ export default function Home() {
 
   return (
     <>
-    <div className="d-none d-md-block">
+    <div className="d-none d-md-block ">
       <header className={classes.header} >
         <div className={classes.div}>
             <div className={`${classes.navLogo}`}>
