@@ -22,3 +22,192 @@ a {
 ::-webkit-scrollbar {
   display: none;
 }
+
+.btn-default{
+  padding:12px 16px;
+  background: #023E8A;
+  border-radius: 4px;
+  color: #fff;
+  border: none;
+  cursor:pointer
+}
+
+.btn-default:focus{
+  outline:none;
+}
+
+.btn-transparent{
+  padding:12px 16px;
+  background: transparent;
+  border-radius: 4px;
+  color: #00ADE6;
+  border: none;
+  cursor:pointer
+}
+
+.btn-transparent:focus{
+  outline:none;
+}
+
+.btn-delete{
+  padding:12px 16px;
+  background: transparent;
+  border-radius: 4px;
+  color: #DC2626;
+  border: none;
+  cursor:pointer
+}
+
+.btn-delete:focus{
+  outline:none;
+}
+
+.fs-14{
+  font-size:14px;
+  line-height:21px;
+}
+
+.fs-16{
+  font-size:16px;
+  line-height:24px;
+}
+
+.fs-18{
+  font-size:18px;
+  line-height:27px;
+}
+
+.fs-20{
+  font-size:20px;
+  line-height:30px;
+}
+
+.fs-22{
+  font-size:22px;
+  line-height:33px;
+}
+
+.fs-24{
+  font-size:24px;
+  line-height:36px;
+}
+
+.fs-28{
+  font-size:28px;
+  line-height:39px;
+}
+
+.fs-36{
+  font-size:36px;
+  line-height:54px;
+}
+
+.fw-400{
+  font-weight:400
+}
+
+.fw-600{
+  font-weight:600
+}
+
+.fw-700{
+  font-weight:700
+}
+
+.fw-500{
+  font-weight:500
+}
+
+.centralize{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.space-between{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.space-between-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+}
+
+.justify-right{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+}
+
+.primary-color{
+  color:#023E8A;
+}
+
+.secondary-color{
+  color:#64748B;
+}
+
+.tetiary-color{
+  color:#0F172A;
+}
+
+.bckg1{
+  background-color:#023E8A;
+}
+
+.bckg2{
+  background-color:#F1F5F9;
+}
+
+.bckg3{
+  background-color:#00ADE6;
+}
+
+.bckg4{
+  background-color:#F8FAFC
+}
+
+.text-color-1{
+    color:#0096C7;
+}
+
+.text-color-2{
+  color:#00ADE6;
+}
+
+.success-color{
+  color:#10B981;
+}
+
+.vAlign{
+  text-align:center
+}
+
+input{
+  border:none;
+  background: transparent;
+}
+
+input:focus{
+  border:none;
+  outline:none
+}
+
+.m-25{
+  margin:2.5rem;
+}
+
+.br-4{
+  border-radius: 4px;
+}
+
+.br-8{
+  border-radius: 8px;
+}
+
+.border{
+  border:1px solid red;
+}

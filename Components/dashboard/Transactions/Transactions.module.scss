@@ -1,0 +1,58 @@
+.transactions{
+    margin:2.5rem;
+
+    .header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom:0.8rem;
+
+        h1{
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 28px;
+        }
+
+        p{
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 28px;
+        }
+    }
+
+   
+}
+
+.table{
+    width:100%;
+    
+
+    thead{
+        background-color: #F1F5F9;
+        border-radius: 8px 0px 0px 0px;
+        border-bottom: 1px solid #CBD5E1;
+    }
+
+    th,td{
+        padding: 0.8rem;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        color:#64748B;
+        border-right: 1px solid #CBD5E1 ;
+    }
+
+    td{
+        font-weight: 400;
+        background-color: #F8FAFC;
+    }
+
+    .previewLink{
+        display: flex;
+        justify-content: space-between;
+        border-right: none;
+        text-decoration: underline;
+        color: #0096C7;
+        cursor: pointer;
+    }
+}

@@ -1,10 +1,10 @@
 import { useState } from "react"
 
 
-import AuthSlider from "../../Components/dashboard/auth/AuthSlider"
-import Signup from "../../Components/dashboard/auth/Signup"
-import Login from "../../Components/dashboard/auth/Login"
-import Kyc from "../../Components/dashboard/auth/Kyc"
+import AuthSlider from "../Components/dashboard/auth/AuthSlider"
+import Signup from "../Components/dashboard/auth/Signup"
+import Login from "../Components/dashboard/auth/Login"
+import Kyc from "../Components/dashboard/auth/Kyc"
 
 
 const Dashboard =()=>{

@@ -1,0 +1,126 @@
+.wallet-row{
+    display: flex;
+    margin: 2.5rem;
+
+    div{
+        width:49%;
+        background: #F1F5F9;
+        box-shadow: 0px 4px 6px -2px #F1F5F9;
+        border-radius: 8px;
+       
+    }
+
+    .wallet{
+        margin-right: 2%;
+
+        .wallet-balance{
+            padding: 1rem;
+            p{
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 24px;
+            }
+
+            h1{
+                font-weight: 700;
+                font-size: 36px;
+                line-height: 40px;
+                position: relative;
+
+                span{
+                    position:absolute;
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 28px;
+                    left:80%;
+                }
+            }
+        }
+
+        .last-div{
+            background-color: #023E8A;
+            width:100%;
+            padding: 1rem;
+
+            p{
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 24px;
+                color: #FFFFFF;
+            }
+        }
+    }
+
+    .sell-product{
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        padding: 1rem;
+
+        background-image: url('/dashboard/bckgrnd1.png');
+        background-repeat: no-repeat;
+        background-size: 34%;
+        background-position: right;
+
+        
+        .sell{
+            p:nth-child(1){
+                font-weight: 500;
+                font-size: 24px;
+            }
+            p:nth-child(2){
+                font-weight: 400;
+                font-size: 16px;
+            }
+        }
+      
+        
+        i{
+            display: block;
+            margin-right: 70px;
+            margin-top: 20px;
+        }
+    
+    }
+}
+
+
+.link-row{
+    margin: 2.5rem;
+    height:180px;
+    
+
+    background-image: url('/dashboard/bckgrnd2.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    
+
+    .create-link{
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        height:100%;
+        width: 100%;
+        padding: 3.2rem;
+
+        div{
+            p:nth-child(1){
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 24px;
+                color:#034EAE;
+            }
+            p:nth-child(2){
+                font-weight: 500;
+                font-size: 24px;
+                color:#ffff;
+                line-height: 1.5;
+                padding-right: 35%;
+            }
+
+        }
+    }
+    
+}
