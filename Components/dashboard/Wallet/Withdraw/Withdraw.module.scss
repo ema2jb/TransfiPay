@@ -1,0 +1,109 @@
+.header{
+    border-bottom:1px solid #E2E8F0;
+    padding-bottom: 1.5rem;
+
+    .step-indicator{
+        border: 1px solid #00ADE6;
+        border-radius: 4px;
+        padding:8px;
+
+        span{
+            color:#00ADE6;
+        }
+    }
+}
+
+.withdraw-option{
+    background: #ECFAFF;
+    border: 1px solid #B1ECFF;
+    border-radius: 8px;
+    padding:2rem;
+    margin-top: 1rem;
+    cursor:pointer;
+}
+
+.deposit-coin, .amount-coin{
+    border: 1px solid #CBD5E1;
+    border-radius: 6px;
+    padding: 10px;
+
+    input{
+        width:65%;
+    }
+
+    ::-webkit-input-placeholder{
+        font-size:16px;
+        font-family: 'Inter';
+        font-weight: 400;
+      }
+      
+      ::-ms-input-placeholder{
+        font-size:16px;
+        font-family: 'Inter';
+        font-weight: 400;
+      }
+      
+      ::placeholder{
+        font-size:16px;
+        font-family: 'Inter';
+        font-weight: 400;
+      }
+}
+
+.amount-coin{
+
+    input{
+        border-right:1px solid #E2E8F0;
+    }
+    
+}
+
+.crypto-step3{
+    
+        .recieve{
+            padding: 19px 14px;
+            text-align: center;
+            background: #ECFAFF;
+            border: 1px solid #C5F1FF;
+            border-radius: 8px;
+            width:100%;
+        }
+}
+
+.finalStep{
+    padding: 2rem;
+    .order-approved{
+        text-align:center;
+        .image{
+            img{
+                width:100px;
+            }
+        }
+    }
+}
+
+.account-holder{
+    background: #E2E8F0;
+    border: 1px solid #CBD5E1;
+    border-radius: 4px;
+}
+
+.authentication-pin{
+    background: #F8FAFC;
+    border-radius: 8px;
+    display:flex;
+    justify-content: space-evenly;
+    padding:2rem 1rem;
+    margin-top: 2rem;
+
+    input{
+        display:block;
+        background-color: #fff;
+        width:100px;
+        height:100px;
+        text-align: center;
+        font-size:32px;
+    }
+}
+
+

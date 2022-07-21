@@ -1,0 +1,113 @@
+.header{
+    border-bottom:1px solid #E2E8F0;
+    padding-bottom: 1.5rem;
+
+    .step-indicator{
+        border: 1px solid #00ADE6;
+        border-radius: 4px;
+        padding:8px;
+
+        span{
+            color:#00ADE6;
+        }
+    }
+}
+
+.step1{
+
+    .deposit-coin, .amount-coin{
+        border: 1px solid #CBD5E1;
+        border-radius: 6px;
+        padding: 10px;
+
+        input{
+            width:65%;
+        }
+    }
+
+    .amount-coin{
+
+        input{
+            border-right:1px solid #E2E8F0;
+        }
+        
+    }
+
+    .deposit-coin{
+        border: 1px solid #CBD5E1;
+        border-radius: 6px;
+        padding: 10px;
+    }
+}
+
+.step2{
+
+    .deposit-options{
+        padding:1rem 0rem;
+
+        .active{
+            background: #00ADE6;
+            color:#fff;
+            padding:8px;
+            border-radius: 4px;
+        }
+        span{
+            display: inline-block;
+            width:14.28%;
+            font-weight:600;
+            font-size:16px;
+            text-align: center;
+            color:#94A3B8;
+        }
+    }
+
+    .barcode{
+        display:flex;
+        padding:1rem;
+        background: #F8FAFC;
+        border-radius: 8px;
+
+        .image{
+            width:70%;
+            margin: 1rem;
+            margin-right: 2rem;
+
+            img{
+                width:100%;
+            }
+        }
+
+        .instruction{
+            width:fit-content;
+            background: #F1F5F9;
+            border-radius: 8px;
+            padding:1.5rem;
+
+            i{
+                background: #FEF3C7;
+                color:#F59E0B;
+                font-size:24px;
+                border-radius:50%;
+                width:40px;
+                height:40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
+
+.step3{
+    
+    .recieve{
+        padding: 19px 14px;
+        text-align: center;
+        background: #ECFAFF;
+        border: 1px solid #C5F1FF;
+        border-radius: 8px;
+        width:100%;
+    }
+}
+

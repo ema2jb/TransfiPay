@@ -209,7 +209,7 @@
   
   .modal-overlay {
     position: fixed;
-    top: 10vh;
+    top: 8vh;
     left: 25%;
     width:50%;
     right: 25%;
@@ -222,6 +222,18 @@
     animation: slide-down 300ms ease-out forwards;
     max-height:80vh;
     overflow-y: scroll;
+
+    .finalStep{
+        padding: 2rem;
+        .order-approved{
+            text-align:center;
+            .image{
+                img{
+                    width:200px;
+                }
+            }
+        }
+    }
 
     .close-icon{
         position: relative;
@@ -245,9 +257,7 @@
         cursor: pointer;
     }
 
-    span{
-       color: #00ADE6
-    }
+    
 
     .link-sent{
         font-size: 20px;

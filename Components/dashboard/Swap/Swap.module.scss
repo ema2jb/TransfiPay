@@ -1,0 +1,55 @@
+.swap{
+    margin:0rem 2.5rem;
+
+    .sub-header{
+        border-bottom:1px solid #E2E8F0;
+    }
+
+    .swap-token{
+        margin-top: 1rem;
+        padding:2.5rem 7rem;
+        background: #F8FAFC;
+        border-radius: 12px;
+
+        .image{
+            width:30px;
+
+            img{
+                width:100%;
+            }
+        }
+    }
+
+    .swap-icon{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        hr{
+            color: black;
+            height: 1px;
+            width:4.7%;
+            transform:rotate(90deg);
+            border:none;
+            border-top:1px dashed #64748B;
+        }
+    }
+
+    .swap-coins{
+        background: #F1F5F9;
+        border-radius: 6px;
+    }
+
+    .switch{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width:45px;
+        height:45px;
+        border-radius: 50%;
+        background: #023E8A;
+        color:#fff;
+        font-size: 20px;
+    }
+}

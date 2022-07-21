@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from 'next/link'
 import {useRouter} from 'next/router'
 
@@ -22,6 +22,21 @@ const SideBar = ()=>{
         }
         return false
     }
+
+
+    useEffect(()=>{
+        if(
+            isActive('/dashboard/biz-tools/sell')
+            ||
+            isActive('/dashboard/biz-tools/customers')
+            ||
+            isActive('/dashboard/biz-tools/invoice')
+            ||
+            isActive('/dashboard/biz-tools/api-key')
+        ){
+            setShowBuisTools(true) 
+        }
+    }, [router.pathname])
 
     return<>
         <div className="sidebar-content">
@@ -65,7 +80,7 @@ const SideBar = ()=>{
                     </div>
                     <div className={`nav-item ${isActive('/dashboard/biz-tools/invoice') && "active"}`}>
                         <i><FiDatabase /></i>
-                        <Link href="/dashboard/biiz-tools/invoice"><p>Invoice</p></Link>
+                        <Link href="/dashboard/biz-tools/invoice"><p>Invoice</p></Link>
                     </div>
                     <div className={`nav-item ${isActive('/dashboard/biz-tools/api-key') && "active"}`}>
                         <i><BiCube /></i>
@@ -74,9 +89,9 @@ const SideBar = ()=>{
                 </div>
 
                 <div className="nav-bottom">
-                    <div className="nav-item">
+                    <div className={`nav-item ${isActive('/dashboard/settings') && "active"}`}>
                         <i><BiCog /></i>
-                        <Link href="/dashboard"><p>Settings</p></Link>
+                        <Link href="/dashboard/settings"><p>Settings</p></Link>
                     </div>
                     <div className="nav-item">
                         <i><BiLogOut/></i>

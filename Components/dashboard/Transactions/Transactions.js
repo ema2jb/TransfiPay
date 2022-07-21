@@ -38,7 +38,7 @@ const Transactions = ()=>{
             <tbody>
                 {
                     [0, 1, 2, 3].map((num, i)=>( 
-                        <tr key={i} className='isClickable'>
+                        <tr key={i} >
                                 <td >{transaction.productName}</td>
                                 <td >{transaction.Amount}</td>
                                 <td >{transaction.Status}</td>

@@ -1,0 +1,129 @@
+.payment-interface{
+
+    .body{
+        background-color: #F8FAFC;
+    }
+
+    .title{
+        width:fit-content;
+        margin: 0rem auto;
+        display: flex;
+        justify-content:center;
+        align-items: center;
+        flex-direction: column;
+
+        h1:nth-child(1){
+            width:70px;
+            height:70px;
+            border-radius:50%;
+        }
+    }
+
+    .steps{
+        width:50%;
+        margin: 0 auto;
+        background: #FFFFFF;
+        box-shadow: 0px 20px 25px -5px rgba(219, 233, 251, 0.48), 0px 10px 10px -5px rgba(0, 0, 0, 0.04);
+        border-radius: 8px;
+        padding: 32px 32px 16px;
+        overflow: hidden;
+
+       
+
+        .step-indicator{
+            border: 1px solid #00ADE6;
+            border-radius: 4px;
+            padding:8px;
+            width:7rem;
+    
+            span{
+                color:#00ADE6;
+            }
+        }
+
+        .search-input{
+            border: 1px solid #E2E8F0;
+            border-radius: 4px;
+            padding: 8px 32px;
+        }
+
+        hr{
+            height: 1px;
+        }
+
+        .payment-options{
+            height:50vh;
+            overflow-y: scroll;
+
+
+            .payment-option{
+                background: #F8FAFC;
+                border-radius: 8px;
+                padding: 32px 32px;
+    
+                img{
+                    width:40px;
+                }
+            }   
+        }
+
+
+        .input{
+            border: 1px solid #CBD5E1;
+            border-radius: 6px;
+            padding: 10px;
+        
+            input{
+                width:65%;
+            }
+        
+            ::-webkit-input-placeholder{
+                font-size:16px;
+                font-family: 'Inter';
+                font-weight: 400;
+              }
+              
+              ::-ms-input-placeholder{
+                font-size:16px;
+                font-family: 'Inter';
+                font-weight: 400;
+              }
+              
+              ::placeholder{
+                font-size:16px;
+                font-family: 'Inter';
+                font-weight: 400;
+              }
+        }
+        
+        .barcode{
+            display:flex;
+            padding:1rem;
+            background: #F8FAFC;
+            border-radius: 8px;
+    
+            .image{
+                width:40%;
+                margin: 1rem;
+                margin-right: 2rem;
+    
+                img{
+                    width:100%;
+                }
+            }
+
+            .countdown{
+                background-color: #fff;
+                width: 60%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+            }
+        }
+
+    }
+
+
+    
+}
