@@ -2,7 +2,7 @@ import {useState} from 'react'
 
 import classes from '../Settings.module.scss'
 import Security from './Security'
-import ChangePassword from './changPassword'
+import ChangePassword from './ChangePassword'
 import ChangePin from './ChangePin'
 import TwoFactorVerification from './TwoFactorVerification'
 

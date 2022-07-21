@@ -6,7 +6,7 @@ import {BiChevronsUp} from 'react-icons/bi'
 import {FiEyeOff, FiEye} from "react-icons/fi"
 import {BsChevronRight} from "react-icons/bs"
 import SubHeader from "../SubHeader"
-import WalletActions from './walletActions'
+import WalletActions from './WalletActions'
 import WalletPortfolio from './WalletPortfolio'
 
 
