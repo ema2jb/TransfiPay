@@ -7,7 +7,7 @@ import ChangePin from './ChangePin'
 import TwoFactorVerification from './TwoFactorVerification'
 
 
-const SecurityIndex = ({securityDetailsHandler}) =>{
+const SecurityIndex = ({showSecurityDetails, securityDetailsHandler}) =>{
 
     const [show, setShow] = useState('')
 
@@ -15,7 +15,7 @@ const SecurityIndex = ({securityDetailsHandler}) =>{
 
     return <>
         <div className={classes.security}>
-            <div className={show && 'd-none'}>
+            <div className={showSecurityDetails && 'd-none'}>
                 <Security securityDetailsHandler={securityDetailsHandler} showHandler={showHandler} />
             </div>
             <div className={show !== 'changePassword'? 'd-none' : "fade-in"}>

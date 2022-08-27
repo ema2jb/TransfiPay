@@ -4,9 +4,14 @@ import '../styles/dashboard-auth.scss'
 import '../styles/dashboard-layout.scss'
 import '../styles/dashboard-body.scss'
 
+import {Provider} from 'react-redux'
+import store from '../Store/'
+
 function MyApp({ Component, pageProps }) {
   return <>
-    <Component {...pageProps} />
+    <Provider store={store}>
+        <Component {...pageProps} />
+    </Provider>
   </>
 }
 

@@ -11,8 +11,8 @@ const authSlider = ()=>{
                 <div className="carousel-item first-item active">
                 <img className="d-block w-100" src="/dashboard/authSliderImage1.png" alt="First slide" />
                 <div className="">
-                    <h1>Send and Receive From Over 10+ Crypto & Stablecoin</h1>
-                    <p>
+                    <h1 className="fw-600 fs-24 primary-color">Send and Receive From Over 10+ Crypto & Stablecoin</h1>
+                    <p className="fs-16 fw-400 secondary-color">
                         Whether you’re a trader, merchant, developer, or 
                         someone that loves crypto
                     </p>
@@ -27,8 +27,8 @@ const authSlider = ()=>{
                 <div className="carousel-item second-item">
                 <img className="d-block w-100" src="/dashboard/authSliderImage2.png" alt="Second slide" />
                 <div className="">
-                    <h1>Enabling Limitless Movements With Frictionless Payments</h1>
-                    <p> 
+                    <h1 className="fw-600 fs-24 primary-color">Enabling Limitless Movements With Frictionless Payments</h1>
+                    <p className="fs-16 fw-400 secondary-color"> 
                         Whether you’re a trader, merchant, developer, or 
                         someone that loves crypto
                     </p>

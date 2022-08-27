@@ -6,25 +6,35 @@ const PersonalInformation = ()=>{
         <div className={classes['form-wrapper']}>
             <div className={classes.form}>
                 <form>
-                    <div className={classes['form-group']}>
-                        <label className='fs-16 fw-500 text-color-3'>Full Name</label>
-                        <div className={classes.input}>
-                            <input type="text" placeholder='first name, last name' />
+                    <div className="centralize-10">
+                        <div className={`w-50 ${classes['form-group']}`}>
+                            <label className='fs-16 fw-500 text-color-3'>Fist Name</label>
+                            <div className={classes.input}>
+                                <input type="text" placeholder='first name' />
+                            </div>
+                        </div>
+                        <div className={`w-50 ${classes['form-group']}`}>
+                            <label className='fs-16 fw-500 text-color-3'>Last Name</label>
+                            <div className={classes.input}>
+                                <input type="text" placeholder='last name' />
+                            </div>
                         </div>
                     </div>
-                    <div className={classes['form-group']}>
-                        <label className='fs-16 fw-500 text-color-3'>Email Address</label>
-                        <div className={classes.input}>
-                            <input type="text" placeholder='name@example.com' />
+                    <div className="centralize-10">
+                        <div className={`w-50 ${classes['form-group']}`}>
+                            <label className='fs-16 fw-500 text-color-3'>Email Address</label>
+                            <div className={classes.input}>
+                                <input type="text" placeholder='name@example.com' />
+                            </div>
+                        </div>
+                        <div className={`w-50 ${classes['form-group']}`}>
+                            <label className='fs-16 fw-500 text-color-3'>Country</label>
+                            <div className={classes.input}>
+                                <input className="fs-16 fw-400 secondary-color" type="text" placeholder='Country' />
+                            </div>
                         </div>
                     </div>
-                    <div className={classes['form-group']}>
-                        <label className='fs-16 fw-500 text-color-3'>Phone number</label>
-                        <div className={classes.input}>
-                            <input className="fs-16 fw-400 secondary-color" type="text" placeholder='Khalid' />
-                        </div>
-                    </div>
-                    <div className='justify-right mt-5 mb-2'>
+                    <div className='mt-2 mb-2'>
                         <div>
                             <button  className='btn-update'>Update Details</button>
                         </div>

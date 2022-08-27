@@ -2,7 +2,7 @@ import classes from '../Settings.module.scss'
 import Modal from '../../Modals'
 
 
-const Email2FA = ({twoFactorAuthHandler}) =>{
+const PhoneNumber2FA = ({twoFactorAuthHandler}) =>{
     return <>
         <Modal hideModal={()=>twoFactorAuthHandler('')}>
             <div className="mx-3">
@@ -13,13 +13,13 @@ const Email2FA = ({twoFactorAuthHandler}) =>{
                     </p>
                 </div>
                 <div className={classes['form-group']}>
-                    <label className='fs-16 fw-500 text-color-3'>Email Address</label>
+                    <label className='fs-16 fw-500 text-color-3'>Phone number</label>
                     <div className={` ${classes.input}`}>
-                        <input className="fs-16 fw-400 secondary-color" type="text" placeholder='e.g David@example.com' />
+                        <input className="fs-16 fw-400 secondary-color" type="text" placeholder='+234-' />
                     </div>
                 </div>
                 <div className={classes['form-group']}>
-                    <label className='fs-16 fw-500 text-color-3'>Email Address Verification Code</label>
+                    <label className='fs-16 fw-500 text-color-3'>Phone Number Verification Code</label>
                     <div className={`space-between ${classes.input}`}>
                         <input className="fs-16 fw-400 secondary-color" type="text" placeholder='Enter verification code' />
                         <p className="fs-16 fw-500 text-color-2">Request Code</p>
@@ -38,4 +38,4 @@ const Email2FA = ({twoFactorAuthHandler}) =>{
     </>
 }
 
-export default Email2FA
+export default PhoneNumber2FA

@@ -6,7 +6,8 @@ import {HiOutlineClipboardList, HiOutlineChevronRight} from "react-icons/hi"
 
 const SubHeader = ({
     mainTitle, 
-    subTitle, 
+    subTitle,
+    subTitle1, 
     swapToken,
     seeHistory,
     seeHistoryHandler,
@@ -14,20 +15,26 @@ const SubHeader = ({
     })=>{
     const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-    console.log(showIndexPage)
+    
 
     return <>
         <div className="sub-header">
             <div className="title">
                 <h4 
-                style={{color:`${subTitle ? "#64748B" : "#0F172A" }`}} 
+                style={{color:`${subTitle || subTitle1 ? "#64748B" : "#0F172A" }`}} 
                 className="main-title"
-                onClick={showIndexPage ? ()=>showIndexPage(true): ()=>{}}
+                onClick={showIndexPage ? ()=>showIndexPage(): ()=>{}}
                 >
                     {mainTitle}
                 </h4>
-                <i >{subTitle && <BsChevronRight />}</i>
-                <h3 className="sub-title fs-20 fw-600">{subTitle && `${subTitle}`}</h3>
+                <i 
+                style={{color:`${subTitle1 ? "#64748B" : "#0F172A" }`}}
+                >{subTitle && <BsChevronRight />}</i>
+                <h3 
+                style={{color:`${subTitle1 ? "#64748B" : "#0F172A" }`}}
+                className="sub-title fs-20 fw-600">{subTitle && `${subTitle}`}</h3>
+                <i >{subTitle1 && <BsChevronRight />}</i>
+                <h3 className="sub-title fs-20 fw-600">{subTitle1 && `${subTitle1}`}</h3>
             </div>
             {
                 isLoggedIn && !swapToken && 

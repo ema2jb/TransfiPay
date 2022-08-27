@@ -9,7 +9,7 @@ const Header = ({activeHeader, activeHeaderHandler}) =>{
                 <h1>Personal Information</h1>
             </div>
             <div onClick={()=>activeHeaderHandler('KV')} className={ `${classes['header-item']}  ${activeHeader==='KV' && `${classes.active}`}` }>
-                <h1>KYC Verification</h1>
+                <h1>Buisness Information</h1>
             </div>
             <div onClick={()=>activeHeaderHandler('AK')} className={ `${classes['header-item']}  ${activeHeader==='AK' && `${classes.active}`}` }>
                 <h1>API Key</h1>

@@ -6,12 +6,12 @@ import Layout from "../Components/website/Layout";
 
 const TransfiTokenPage = ()=>{
     return<>
-    <Layout>
-        <WhatIsTransfi />
-        <UsabilityInsights />
-        <Tokenommics />
-        <Roadmap />
-    </Layout>
+        <Layout>
+            <WhatIsTransfi />
+            <UsabilityInsights />
+            <Tokenommics />
+            <Roadmap />
+        </Layout>
     </>
 }
 

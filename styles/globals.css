@@ -53,6 +53,10 @@ body::-webkit-scrollbar {
   outline:none;
 }
 
+.btn-default:disabled{
+  opacity: 0.8;
+}
+
 .btn-transparent{
   padding:12px 16px;
   background: transparent;
@@ -66,6 +70,19 @@ body::-webkit-scrollbar {
   outline:none;
 }
 
+.btn-transparent1{
+  padding:12px 16px;
+  background: transparent;
+  border: 1px solid #023E8A;
+  border-radius: 4px;
+  color: #023E8A;
+  cursor:pointer
+}
+
+.btn-transparent1:focus{
+  outline:none;
+}
+
 .btn-delete{
   padding:12px 16px;
   background: transparent;
@@ -76,6 +93,19 @@ body::-webkit-scrollbar {
 }
 
 .btn-delete:focus{
+  outline:none;
+}
+
+.btn-delete-1{
+  padding:12px 16px;
+  background: transparent;
+  border-radius: 4px;
+  color: #DC2626;
+  border: 1px solid #DC2626;
+  cursor:pointer
+}
+
+.btn-delete-1:focus{
   outline:none;
 }
 
@@ -168,10 +198,24 @@ body::-webkit-scrollbar {
   gap:10px
 }
 
+.centralize-top-15{
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  gap:15px
+}
+
 .space-between{
   display:flex;
   justify-content:space-between;
   align-items:center;
+}
+
+.space-between-10{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
 }
 
 .space-between-top{
@@ -214,6 +258,10 @@ body::-webkit-scrollbar {
   background-color:#F8FAFC;
 }
 
+.bckg5{
+  background: linear-gradient(138.9deg, #00ADE6 -31.79%, #023E8A 84.99%);
+}
+
 .bckg-white{
   background-color:#F8FAFC;
 }
@@ -237,6 +285,14 @@ body::-webkit-scrollbar {
 
 .text-color-5{
   color:#0F172A;
+}
+
+.text-color-6{
+  color:#1A7DFB;
+}
+
+.text-color-7{
+  color:#F1F5F9;
 }
 
 .text-is-white{
@@ -297,6 +353,38 @@ input:focus{
   animation: slide-in 300ms ease-out forwards;
 }
 
+.w-35{
+  width:50%;
+}
+
+.w-60{
+  width:60%;
+}
+
+.w-70{
+  width:70%;
+}
+
+.w-80{
+  width:80%;
+}
+
+.w-90{
+  width:90%;
+}
+
+.mt-10{
+  margin-top: 100px;
+}
+
+.mt-20{
+  margin-top: 200px;
+}
+
+.mt-30{
+  margin-top: 300px;
+}
+
 @keyframes slide-out {
   from {
     opacity: 1;
@@ -334,11 +422,32 @@ input:focus{
   }
 }
 
+.loader{
+  width:6rem;
+  height: 6rem;
+
+  border:0.3rem solid #fff;
+  border-top-color: #023E8A;
+  border-bottom-color:#023E8A;
+  border-radius:50%;
+  animation: loader 0.7s linear infinite;
+}
+
+@keyframes loader {
+  from {
+    transform:rotate(0deg);
+  }
+  to {
+    transform:rotate(360deg);
+  }
+}
+
 
 @media (max-width:765px){
   .space-between{
     flex-wrap:wrap;
   }
 }
+
 
 

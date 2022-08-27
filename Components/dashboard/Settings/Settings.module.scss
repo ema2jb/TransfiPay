@@ -1,9 +1,83 @@
 .settings{
     margin:2.5rem;
 
+    .bizInfo{
+
+        .kycStatus{
+            
+            .tier{
+                background: #22C55E;
+                border-radius: 4px;
+                padding: 10px 19px;
+            }
+
+            .complete-kyc{
+                background: #E2E8F0;
+                border-radius: 4px;
+                padding: 4px 19px;
+            }
+        }
+
+
+        .image-upload{
+            border-radius: 4.15909px;
+            width:60%;
+    
+            .image-upload-border{
+                border: 1.1295px dashed #CBD5E1;
+                border-radius: 3.79922px;
+                text-align: center;
+                height:100%;
+                
+
+                .image{
+                    position: relative;
+                    img{
+                        width: 100%;
+                    }
+
+                    i{
+                        position: absolute;
+                        right: 25px;
+                        top:5px;
+                        color:#fff;
+                        background: rgba(0, 0, 0, 0.32);
+                        width:30px;
+                        height: 30px;
+                        border-radius: 50%;
+                        cursor: pointer;
+                        padding: 3px;
+                    }
+                }
+    
+                i{
+                    font-size: 100px;
+                    font-weight: 700;
+                    color:#64748B;
+                }
+            }
+        }
+    
+        .user-role{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #E2E8F0;
+            border-radius: 4px;
+    
+            i{
+                font-size: 120px;
+                font-weight: 700;
+                color:#CBD5E1;
+            }
+        }
+
+    }
+
+    
+
     .tips{
         text-align:center;
-        background: #ECFAFF;
         border: 1.5px solid #D8F5FF;
         border-radius: 8px;
         padding: 16px;
@@ -33,24 +107,44 @@
         padding:2rem; 
         border-radius: 12px; 
         margin-top:1rem;
+
+        .toggleButton{
+            width:44px;
+            height:24px;
+            position:relative;
+            border-radius: 12px;
+            padding:2px;
+
+            span{
+                position: absolute;
+               width:20px;
+               height:20px;
+               background: #FFFFFF;
+               border-radius:50%; 
+            }
+        }
+
+        .icons{
+            border:1px solid #023E8A;
+            width:40px;
+            height:40px;
+            border-radius: 50%;
+
+
+        }
     }
     
 
     .form-wrapper{
-        background-color: #F1F5F9;
-        margin-top:1rem;
-        border-radius: 12px; 
-        padding: 6rem 0rem;
-
-
+        margin-top:2rem;
         
 
         .form{
-            width:50%;
-            margin:0 auto;
-            padding: 32px;
-            border: 1px solid #CBD5E1;
-            border-radius: 8px;
+            
+           
+            .form-group{
+                
+            }
 
             .file-upload{
                 position:relative;

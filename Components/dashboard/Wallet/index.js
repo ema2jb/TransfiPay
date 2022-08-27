@@ -18,7 +18,7 @@ const WalletIndex = ()=>{
             <WalletHome showHistoryHandler={showHistoryHandler} />
         </div>
         <div className={showHistory && "d-none"}>
-            <WalletHistory showHistoryHandler={showHistoryHandler} />
+            <WalletHistory showHistoryHandler={()=>showHistoryHandler(true)} />
         </div>
 
     </>

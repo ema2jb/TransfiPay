@@ -1,5 +1,6 @@
 import {AiFillEye, AiFillEyeInvisible} from 'react-icons/ai'
 import classes from '../Settings.module.scss'
+import Modal from '../../Modals'
 
 const ChangePin = ({securityDetailsHandler, showHandler}) =>{
 
@@ -9,15 +10,13 @@ const ChangePin = ({securityDetailsHandler, showHandler}) =>{
     }
 
     return <>
-        <div className="border-bottom pb-3">
-            <h1 className="fs-24 fw-500 primary-color">Change Pin</h1>
-        </div>
-        <div className={classes['form-wrapper']}>
+        <Modal hideModal={()=>showHandler('')} >
+        <div className={` ${classes['form-wrapper']}`}>
             <div className={classes.form}>
-                <div className={`mb-3 ${classes.tips}`}>
-                    <h1 className="fs-18 fw-600 primary-color">Tips:</h1>
-                    <p  className="fs-14 fw-600 secondary-color">
-                        Your Pin is a 4 digit used to authenticate sensitive actions you might want to perform. keep it safe
+                <div className={`mb-3 bckg5 ${classes.tips}`}>
+                    <h1 className="fs-18 fw-600 text-color-7">Change Pin</h1>
+                    <p  className="fs-14 fw-600 text-color-7">
+                        Your Password is your privacy,  you might want to perform. keep it safe
                     </p>
                 </div>
                 <div>
@@ -47,12 +46,13 @@ const ChangePin = ({securityDetailsHandler, showHandler}) =>{
                             <button onClick={()=>goBack()}  className='btn-transparent'>Back to previous page</button>
                         </div>
                         <div>
-                            <button  className='btn-default'>save</button>
+                            <button  className='btn-default'>Change Pin</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        </Modal>
     </>
 }
 

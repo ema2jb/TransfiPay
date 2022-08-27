@@ -1,5 +1,6 @@
 import {AiFillEye, AiFillEyeInvisible} from 'react-icons/ai'
 import classes from '../Settings.module.scss'
+import Modal from '../../Modals'
 
 const ChangePassword = ({securityDetailsHandler, showHandler}) =>{
 
@@ -9,14 +10,13 @@ const ChangePassword = ({securityDetailsHandler, showHandler}) =>{
     }
 
     return <>
-        <div className="border-bottom pb-3">
-            <h1 className="fs-24 fw-500 primary-color">Change Password</h1>
-        </div>
+        <Modal hideModal={()=>showHandler('')} >
         <div className={classes['form-wrapper']}>
             <div className={classes.form}>
-                <div className={`mb-3 ${classes.tips}`}>
-                    <p  className="fs-14 fw-600 secondary-color">
-                    Your Password is your privacy,  you might want to perform. keep it safe
+                <div className={`mb-3 bckg5 ${classes.tips}`}>
+                    <h1 className="fs-18 fw-600 text-color-7">Change Password</h1>
+                    <p  className="fs-14 fw-600 text-color-7">
+                        Your Password is your privacy,  you might want to perform. keep it safe
                     </p>
                 </div>
                 <div>
@@ -46,12 +46,13 @@ const ChangePassword = ({securityDetailsHandler, showHandler}) =>{
                             <button onClick={()=>goBack()}  className='btn-transparent'>Back to previous page</button>
                         </div>
                         <div>
-                            <button  className='btn-default'>save</button>
+                            <button  className='btn-default'>change Password</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        </Modal>
     </>
 }
 

@@ -17,28 +17,28 @@ const ApiKey = ({activeHeader})=>{
     return <>
         <div className={classes['form-wrapper']}>
             <div className={classes.form}>
-                <div>
-                    <div className={`mb-3 ${classes.tips}`}>
-                        <p  className="fs-14 fw-600 secondary-color">
-                            Creating an API private key provides access to  transfi services  
-                            via a third-party site or application.
-                        </p>
-                        <p className="mt-4 fs-14 fw-600 secondary-color">Please <span className="success-color">complete KYC</span> before creating API.</p> 
-                    </div>
-                    <div className={classes['form-group']}>
+                <div className="centralize-top-15">
+                    <div className={`w-90 ${classes['form-group']}`}>
                         <label className='fs-16 fw-500 text-color-3'>Your API secret key</label>
                         <div className={`space-between ${classes.input}`}>
                             <input className="fs-16 fw-400 secondary-color" type="text" value='************************' />
                             <AiFillEye />
                         </div>
+                        <div className='justify-right mt-5 mb-2'>
+                            <div>
+                                <button  className='btn-transparent '>API Documentation</button>
+                            </div>
+                            <div>
+                                <button onClick={()=>setNewKey("show")}  className='btn-default'>Generate new secret key</button>
+                            </div>
+                        </div>
                     </div>
-                    <div className='justify-right mt-5 mb-2'>
-                        <div>
-                            <button  className='btn-transparent'>API Documentation</button>
-                        </div>
-                        <div>
-                            <button onClick={()=>setNewKey("show")}  className='btn-default'>Generate new secret key</button>
-                        </div>
+                    <div className={`mx-5 w-35 bckg5 text-color-7 h-100  ${classes.tips}`}>
+                        <p  className="fs-14 fw-600 ">
+                            Creating an API private key provides access to  transfi services  
+                            via a third-party site or application.
+                        </p>
+                        <p className="mt-4 fs-14 fw-600 ">Please <span className="success-color">complete KYC</span> before creating API.</p> 
                     </div>
                 </div>
             </div>
@@ -46,10 +46,10 @@ const ApiKey = ({activeHeader})=>{
         <div className={newKey === 'hide' && activeHeader !== 'Ak' && 'd-none'}>
             <Modal hideModal={()=>setNewKey('hide')}>
                 <div className="mx-3">
-                    <div className={`mb-3 mt-3 ${classes.tips}`}>
+                    <div className={`mb-3 mt-3 bckg5 ${classes.tips}`}>
                         <div className="centralize mb-2"><i className={classes.forbidline}><RiForbidLine /></i></div>
-                        <h1 className="fs-20 fw-600 primary-color">Hold that thought !</h1>
-                        <p  className="fs-14 fw-600 secondary-color">
+                        <h1 className="fs-20 fw-600 text-color-7">Hold that thought !</h1>
+                        <p  className="fs-14 fw-600 text-color-7">
                             This action will cause existing secret keys to expire. 
                             Update your existing website and servers with the new keys to continue transcations 
                         </p>
