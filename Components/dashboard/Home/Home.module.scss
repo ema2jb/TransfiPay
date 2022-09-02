@@ -124,3 +124,53 @@
     }
     
 }
+
+
+.back-arrow{
+    display: inline-flex;
+    width:25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.invites-notification{
+    border: 1px solid #94A3B8;
+    padding: 8px 16px;
+    border-radius:4px;
+    position: relative;
+
+    .bell{
+        position:absolute;
+        left:10px;
+    }
+}
+
+.user-initial{
+    width:64px;
+    height: 64px;
+    border-radius:50%
+}
+
+.see-invites{
+    width:fit-content;
+    position:relative;
+
+    .mail{
+        position:absolute;
+        left:5px;
+       
+    }
+}
+
+.input{
+    border: 1px solid #CBD5E1;
+    border-radius: 4px;
+    padding: 8px 12px 8px 10px;
+    margin-bottom: 1.3rem;
+}
+
+.biz-table{
+    border-spacing:0rem 0.8rem;
+    border-collapse: separate;
+    
+}

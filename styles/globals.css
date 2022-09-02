@@ -198,6 +198,13 @@ body::-webkit-scrollbar {
   gap:10px
 }
 
+.centralize-start-start-10{
+  display: flex;
+  justify-content: flex-start;
+  align-items:flex-start;
+  gap:10px
+}
+
 .centralize-top-15{
   display:flex;
   justify-content:center;
@@ -216,6 +223,12 @@ body::-webkit-scrollbar {
   justify-content:space-between;
   align-items:center;
   gap:10px;
+}
+
+.space-evenly{
+ display:flex;
+ justify-content: space-evenly;
+ align-items: center;
 }
 
 .space-between-top{
@@ -262,9 +275,35 @@ body::-webkit-scrollbar {
   background: linear-gradient(138.9deg, #00ADE6 -31.79%, #023E8A 84.99%);
 }
 
-.bckg-white{
+.bckg6{
+  background-color: #00ADE6;
+}
+
+.bckg7{
   background-color:#F8FAFC;
 }
+
+.bckg8{
+  background: #BBF7D0;
+}
+
+.bckg9{
+  background-color: #E2E8F0;
+}
+
+.bckg10{
+  background-color: #16A34A;;
+}
+
+.bckg11{
+  background-color:#881337;
+}
+
+.bckg-white{
+  background-color:#FFF;
+}
+
+
 
 .text-color-1{
     color:#0096C7;
@@ -295,6 +334,26 @@ body::-webkit-scrollbar {
   color:#F1F5F9;
 }
 
+.text-color-8{
+  color:#F8FAFC
+}
+
+.text-color-9{
+  color:#E2E8F0;
+}
+
+.text-color-10{
+  color:#CBD5E1;
+}
+
+.text-color-11{
+  color:#EAB308;
+}
+
+.text-color-12{
+  color: #16A34A;
+}
+
 .text-is-white{
   color:#fff;
 }
@@ -321,12 +380,24 @@ input:focus{
   margin:2.5rem;
 }
 
+.p-25{
+  padding: 2.5rem;
+}
+
 .br-4{
   border-radius: 4px;
 }
 
 .br-8{
   border-radius: 8px;
+}
+
+.br-12{
+  border-radius:12px
+}
+
+.br-32{
+  border-radius: 32px;
 }
 
 .border{
@@ -383,6 +454,16 @@ input:focus{
 
 .mt-30{
   margin-top: 300px;
+}
+
+.step-indicator{
+  border: 1px solid #00ADE6;
+  border-radius: 4px;
+  padding:8px;
+}
+
+.step-indicator span{
+  color:#00ADE6;
 }
 
 @keyframes slide-out {

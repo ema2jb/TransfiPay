@@ -1,0 +1,58 @@
+import {HiArrowLeft, HiOutlineBell, HiChevronRight, HiOutlineMail} from 'react-icons/hi'
+
+import Modal from '../Modals'
+import classes from './Home.module.scss'
+
+
+const ChooseAccount = ({hideModal}) =>{
+
+    return <>
+        <Modal hideModal={hideModal}>
+            <div>
+                <div className='space-between mt-2 mb-5'>
+                    <div>
+                        <p><span className={`bckg6 text-is-white align-items-center justify-content-center cp mr-2 ${classes['back-arrow']}`}><HiArrowLeft /></span> <span className="fw-500 fs-14 text-color-2 d-inline-block">Go Back</span></p>
+                    </div>
+                    <div className={classes['invites-notification']}>
+                        <div><span className={`fs-24  mr-1 text-color-5 ${classes.bell}`}><HiOutlineBell/></span><span className="fs-16 ml-4 fw-500 secondary-color">You have</span> <span className="fs-16 fw-500 secondary-color">4 new invites</span></div>
+                    </div>
+                </div>
+            </div>
+            <div className="space-between mt-4 mb-4">
+                <div className='centralize'>
+                    <p className={`bckg5 centralize text-is-white fw-600 fs-18 mr-4 ${classes['user-initial']}`}>N</p>
+                    <div>
+                        <p className="fs-20 fw-500 text-color-5">Nwaokoro David Emeka</p>
+                        <p className="fs-16 fw-500 secondary-color">Owner</p>
+                    </div>
+                </div>
+                <div>
+                    <p className="fs-28 fw-500 text-color-5"><HiChevronRight /></p>
+                </div>
+            </div>
+            <hr></hr>
+            <div className="space-between mt-4  mb-5">
+                <div className='centralize'>
+                    <p className={`bckg5 centralize text-is-white fw-600 fs-18 mr-4 ${classes['user-initial']}`}>K</p>
+                    <div>
+                        <p className="fs-20 fw-500 text-color-5">Khalid  Usman</p>
+                        <p className="fs-16 fw-500 secondary-color">Administrator</p>
+                    </div>
+                </div>
+                <div>
+                    <p className="fs-28 fw-500 text-color-5"><HiChevronRight /></p>
+                </div>
+            </div>
+            <div>
+                <div className={`primary-color fs-16 fw-600 centralize`} >
+                    <div className={`cp px-4 ${classes['see-invites']}`}>
+                        <span className={` fs-24 ${classes.mail}`}><HiOutlineMail  /></span> <span className="ml-2 d-inline-block" style={{textDecoration:"underline"}}>See all Invites</span>
+                    </div>
+                </div>
+            </div>
+        </Modal>
+    </>
+
+}
+
+export default ChooseAccount

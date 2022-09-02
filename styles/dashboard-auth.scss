@@ -45,7 +45,7 @@
     .signup, .login, .kyc{
         padding: 70px;
         text-align: center;
-        color:#94A3B8;
+        
         transition: all 5s ease;
         transition-delay: 1s;
 
@@ -179,8 +179,6 @@
   .modal-overlay {
     position: fixed;
     top: 8vh;
-    left: 30%;
-    width:40%;
     height: auto;
     background-color: white;
     padding: 1rem;

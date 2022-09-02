@@ -21,7 +21,8 @@ const Signup = ()=>{
     const [seeConfirmPassword, setSeeConfirmPassword] = useState(false)
     const [passwordCheck, setPasswordCheck] = useState({
         firstCheck:false,
-        secondCheck:false
+        secondCheck:false,
+        thirdCheck:false
     })
     const [requestSent, setRequestSent] = useState(false)
 
@@ -48,16 +49,23 @@ const Signup = ()=>{
     const validatePassword = (value)=>{
         setSignupDetails(prev=>({...prev, password:value}))
         const specialRegex = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/g;
+        const alphaRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z])[a-zA-Z0-9`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]+$/g;
         if(Boolean(value.match(specialRegex)) === true){
             setPasswordCheck(prev=>({...prev, ['firstCheck']:true}))
         }else{
             setPasswordCheck(prev=>({...prev, ['firstCheck']:false}))
+        }
+        if(Boolean(value.match(alphaRegex)) === true){
+            setPasswordCheck(prev=>({...prev, ['thirdCheck']:true}))
+        }else{
+            setPasswordCheck(prev=>({...prev, ['thirdCheck']:false}))
         }
         if(value.length >= 8){
             setPasswordCheck(prev=>({...prev, ['secondCheck']:true}))
         }else{
             setPasswordCheck(prev=>({...prev, ['secondCheck']:false}))
         }
+
     }
 
     const submitHandler = (event)=>{
@@ -65,9 +73,13 @@ const Signup = ()=>{
         SignupSchema.validate(signupDetails)
         .then((valid)=>{
             if(valid){
-                const specialRegex = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/g;
-                if(signupDetails.password.match(specialRegex) === null){
+                if(!passwordCheck.firstCheck){
                     return cogoToast.error('password must contain special characters', {
+                        position: 'top-center',
+                      });
+                }
+                if(!passwordCheck.thirdCheck){
+                    return cogoToast.error('password must be alphanumeric with at least on uppercase', {
                         position: 'top-center',
                       });
                 }
@@ -92,13 +104,14 @@ const Signup = ()=>{
                 }).catch(err=>{
                    console.log(err)
                    dispatch(authActions.changeAuthRequestState({loading:false}))
+                   cogoToast.error('Network Error', { position: 'top-center' })
                 })
                 
             }
         })
         .catch((err) => {
-			console.log(err);
-			cogoToast.error('something Went Wrong', { position: 'top-center' });
+			console.log(err.errors[0]);
+			cogoToast.error(err.errors[0], { position: 'top-center' });
 		  });
     }
 
@@ -109,11 +122,11 @@ const Signup = ()=>{
             <h1 className="fs-24 fw-600 primary-color">Sign up to create account</h1>
             <form onSubmit={submitHandler}>
                 <div className="form-group">
-                    <label>First Name *</label>
+                    <label className='tertiary-color'>First Name *</label>
                     <input
                         onChange={({target:{value}})=>setSignupDetails(prev=>({...prev, firstName:value}))}  
                         type="text" 
-                        placeholder="Surname Firstname"
+                        placeholder="First Name"
                         value={signupDetails.firstName}
                     />
                 </div>
@@ -122,7 +135,7 @@ const Signup = ()=>{
                     <input 
                         onChange={({target:{value}})=>setSignupDetails(prev=>({...prev, lastName:value}))}  
                         type="text" 
-                        placeholder="Surname Firstname"
+                        placeholder="Last Name"
                         value={signupDetails.lastName}
                     />
                 </div>
@@ -165,6 +178,9 @@ const Signup = ()=>{
                 </div>
                 <div className="form-group radio-input">
                     <input type="radio" checked={passwordCheck.firstCheck} readOnly/><span >Include Special characters</span>
+                </div>
+                <div className="form-group radio-input">
+                    <input type="radio" checked={passwordCheck.thirdCheck} readOnly/><span >Must be alphanumeric and include at least one uppercase</span>
                 </div>
                 <div>
                     <button disabled={loading} className='w-80 mt-5 btn-default fs-16 fw-600' type="submit">

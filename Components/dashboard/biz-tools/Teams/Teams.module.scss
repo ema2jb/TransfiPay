@@ -1,0 +1,107 @@
+.teams{
+   
+
+    .user{
+        display:block;
+        width:30px;
+        height:30px;
+        border-radius:50%;
+        background-color: #023ea0;
+    }
+}
+
+.tooltip{
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    overflow-y: visible;
+
+    .tooltiptext {
+        visibility: hidden;
+        width: 205px;
+        height: 142px;
+        color: #64748B;;
+        text-align: center;
+        padding: 5px 0;
+        background: #E8F2FF;
+        border-radius: 8px;
+      
+        /* Position the tooltip text */
+        position: absolute;
+        z-index: 1;
+        top: 125%;
+        right: 5%;
+        margin-left: -60px;
+        
+        
+      
+        /* Fade in tooltip */
+        opacity: 0;
+        transition: opacity 0.3s;
+
+        &::before {
+            content: "";
+            position: absolute;
+            bottom: 100%;
+            right: 15%;
+            margin-left: -5px;
+            border-width: 10px;
+            border-style: solid;
+            border-color:  transparent transparent  #E8F2FF;
+          }
+      }
+
+      &:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+      }
+}
+
+.input{
+    border: 1px solid #CBD5E1;
+    border-radius: 4px;
+    padding: 8px 12px 8px 10px;
+    margin-bottom: 1.3rem;
+}
+
+.radio{
+    width:20px;
+    height: 20px;
+    border:2px solid #0F172A;
+    border-radius: 50%;
+    padding: 0.6rem;
+
+    input{
+        accent-color: #0F172A;
+    }
+}
+
+.textarea{
+    width:100%;
+}
+
+.option{
+    border:1px solid #E2E8F0;
+    padding: 0.5rem;
+}
+
+.remove{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:25px;
+
+    .unfollowIcon{
+        width:150px;
+        height:150px;
+        border-radius: 50%;
+        background-color:#F1F5F9;
+        font-size: 48px;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+

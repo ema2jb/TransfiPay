@@ -28,12 +28,13 @@ const SubHeader = ({
                     {mainTitle}
                 </h4>
                 <i 
+                className="px-2"
                 style={{color:`${subTitle1 ? "#64748B" : "#0F172A" }`}}
                 >{subTitle && <BsChevronRight />}</i>
                 <h3 
                 style={{color:`${subTitle1 ? "#64748B" : "#0F172A" }`}}
                 className="sub-title fs-20 fw-600">{subTitle && `${subTitle}`}</h3>
-                <i >{subTitle1 && <BsChevronRight />}</i>
+                <i className="px-2" >{subTitle1 && <BsChevronRight />}</i>
                 <h3 className="sub-title fs-20 fw-600">{subTitle1 && `${subTitle1}`}</h3>
             </div>
             {

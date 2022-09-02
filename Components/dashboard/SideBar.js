@@ -4,7 +4,7 @@ import {useRouter} from 'next/router'
 
 import {BsChevronRight} from "react-icons/bs"
 import {AiOutlineHome, AiOutlinePlus, AiOutlineShopping} from "react-icons/ai"
-import { HiOutlineColorSwatch, HiOutlineRefresh } from "react-icons/hi";
+import { HiOutlineColorSwatch, HiOutlineRefresh, HiOutlineUserGroup } from "react-icons/hi";
 import { FiLink, FiUsers, FiDatabase } from "react-icons/fi";
 import { BiCube, BiCog, BiLogOut } from "react-icons/bi"
 
@@ -32,7 +32,7 @@ const SideBar = ()=>{
             ||
             isActive('/dashboard/biz-tools/invoice')
             ||
-            isActive('/dashboard/biz-tools/api-key')
+            isActive('/dashboard/biz-tools/teams')
         ){
             setShowBuisTools(true) 
         }
@@ -82,9 +82,9 @@ const SideBar = ()=>{
                         <i><FiDatabase /></i>
                         <Link href="/dashboard/biz-tools/invoice"><p>Invoice</p></Link>
                     </div>
-                    <div className={`nav-item ${isActive('/dashboard/biz-tools/api-key') && "active"}`}>
-                        <i><BiCube /></i>
-                        <Link href="/dashboard/biz-tools/api-key"><p>Api Key</p></Link>
+                    <div className={`nav-item ${isActive('/dashboard/biz-tools/teams') && "active"}`}>
+                        <i><HiOutlineUserGroup /></i>
+                        <Link href="/dashboard/biz-tools/teams"><p>Teams</p></Link>
                     </div>
                 </div>
 

@@ -144,13 +144,6 @@
             padding:1.21rem 2.5rem;
             
 
-            p{
-                font-size:18px;
-                font-weight: 500;
-                color:#E2E8F0;
-                line-height: 28px;
-            }
-
             .currency{
                 display: flex;
                 align-items: center;
@@ -186,7 +179,32 @@
             .test-mode{
                 display:flex;
                 align-items: center;
+                justify-content: space-evenly;
                 gap:10px;
+                position:relative;
+                width:200px;
+
+
+                .buisnesses{
+                    position:absolute;
+                    top:45px;
+                    z-index:100;
+                    border-radius:8px;
+                    display: none;
+                    
+                    transition: max-height 0.4s ease-out;
+
+                    .button{
+                        padding: 12px;
+                        border-radius: 8px;
+                    }
+                }
+
+                .buisnesses.show{
+                    display:block;
+                    overflow: hidden;
+                    transition: max-height 0.4s ease-out;
+                }
                
 
                 .initials{
@@ -213,15 +231,6 @@
                         bottom: 0;
                         right: 0;
                     }
-                }
-
-                .mode{
-                    font-size: 16px;
-                    font-weight: 500;
-                }
-
-                i{
-                    color:#64748B
                 }
 
             }

@@ -5,8 +5,8 @@ const Backdrop = props => {
 }
 
 const ModalOverlay = props =>{
-    return <div className="modal-overlay">
-        <i className='close-icon' onClick={props.hideModal}><AiOutlineClose style={{fontSize:"16px"}} /></i>
+    return <div style={{width:props.width?props.width:"40%", left:props.left?props.left:"30%"}} className="modal-overlay">
+        {!props.alert && <i className='close-icon' onClick={props.hideModal}><AiOutlineClose style={{fontSize:"16px"}} /></i>}
         <div>{props.children}</div>
     </div>
 }
@@ -14,7 +14,7 @@ const ModalOverlay = props =>{
 const Modal =(props)=>{
     return <>
         <Backdrop />
-        <ModalOverlay hideModal={props.hideModal}>{props.children}</ModalOverlay>
+        <ModalOverlay alert={props.alert} left={props.left} width={props.width} hideModal={props.hideModal}>{props.children}</ModalOverlay>
     </>
 }
 
