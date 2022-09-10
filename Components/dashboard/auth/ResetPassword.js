@@ -19,7 +19,8 @@ const ResetPassword = ({otpCode, otpId, userId})=>{
             value:"",
             validated:{
                 firstCheck:false,
-                secondCheck:false
+                secondCheck:false,
+                thirdCheck:false
             },
             visible:false
         },
@@ -34,12 +35,18 @@ const ResetPassword = ({otpCode, otpId, userId})=>{
     const validatePassword = (value)=>{
         setResetPasswordDetails(prev=>({...prev, newPassword:{...prev.newPassword, value}}))
         const specialRegex = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/g;
+        const alphaRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z])[a-zA-Z0-9`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]+$/g;
         console.log(Boolean(value.match(specialRegex)))
         if(Boolean(value.match(specialRegex)) === true){
             console.log(true)
             setResetPasswordDetails(prev=>({...prev, newPassword:{...prev.newPassword, validated:{...prev.newPassword.validated, ['firstCheck']:true}}}))
         }else{
             setResetPasswordDetails(prev=>({...prev, newPassword:{...prev.newPassword, validated:{...prev.newPassword.validated, ['firstCheck']:false}}}))
+        }
+        if(Boolean(value.match(alphaRegex)) === true){
+            setResetPasswordDetails(prev=>({...prev, newPassword:{...prev.newPassword, validated:{...prev.newPassword.validated, ['thirdCheck']:true}}}))
+        }else{
+            setResetPasswordDetails(prev=>({...prev, newPassword:{...prev.newPassword, validated:{...prev.newPassword.validated, ['thirdCheck']:false}}}))
         }
         if(value.length >= 8){
             setResetPasswordDetails(prev=>({...prev, newPassword:{...prev.newPassword, validated:{...prev.newPassword.validated, ['secondCheck']:true}}}))
@@ -70,14 +77,19 @@ const ResetPassword = ({otpCode, otpId, userId})=>{
             newPassword:resetPasswordDetails.newPassword.value,
             confirmPassword:resetPasswordDetails.confirmPassword.value
         }
-        resetPasswordRequest(resetPasswordPayload).then(({data:{meta:{statusCode}}})=>{
-            if(statusCode === 200){
+        resetPasswordRequest(resetPasswordPayload).then(({data:{meta}})=>{
+            if(meta.error){
+                return cogoToast.error(meta.message, { position: 'top-center' })
+            }
+            if(meta.statusCode === 200){
                 dispatch(authActions.changeAuthRequestState({loading:false}))
+                dispatch(authActions.changeAuthAppState('showLoginPage'))
                 router.push('/auth')
             }
         }).catch(err=>{
         console.log(err)
         dispatch(authActions.changeAuthRequestState({loading:false}))
+        cogoToast.error(err.response.data.meta.message, { position: 'top-center' })
         })
     }
 
@@ -123,6 +135,9 @@ const ResetPassword = ({otpCode, otpId, userId})=>{
                 </div>
                 <div className="form-group radio-input">
                     <input type="radio" checked={resetPasswordDetails.newPassword.validated.firstCheck} readOnly/><span >Include Special characters</span>
+                </div>
+                <div className="form-group radio-input">
+                    <input type="radio" checked={resetPasswordDetails.newPassword.validated.thirdCheck} readOnly/><span >Must be alphanumeric and include at least one uppercase</span>
                 </div>
                 <div>
                     <button  disabled={loading} className='w-80 mt-4 btn-default fs-16 fw-600' type="submit">

@@ -1,11 +1,28 @@
+import { useEffect } from "react"
+import { useSelector } from "react-redux"
+import {useRouter} from 'next/router'
+
 import SideBar from "./SideBar"
 import MainHeader from "./MainHeader"
 
 
-
-
 const Layout = (props)=>{
+    const {authRequestState} =useSelector(state=>state.auth)
+
+    const router = useRouter()
+
+    if(typeof(window) !== 'undefined'){
+        if(Boolean(authRequestState.isAuthenticated) === false){
+            router.push('/auth')
+        }
+    }
+
+    useEffect(()=>{
+        
+    }, [])
+
     return<>
+    { Boolean(authRequestState.isAuthenticated) &&
         <div className="dashboard-layout">
             <div className="sidebar">
                 <SideBar />
@@ -15,6 +32,7 @@ const Layout = (props)=>{
                 {props.children}
             </div>
         </div>
+    }
     </>
 }
 

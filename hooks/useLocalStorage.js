@@ -28,6 +28,7 @@ const useLocalStorage = (value) => {
       return JSON.parse(localStorage.getItem(key));
     }
   };
+  
   const setItem = (key, value) => {
     const data = typeof value === 'string' ? value : JSON.stringify(value);
     localStorage.setItem(key, data);

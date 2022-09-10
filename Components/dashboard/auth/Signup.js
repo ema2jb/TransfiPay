@@ -8,7 +8,7 @@ import { authActions } from '../../../Store/auth-slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { SignupSchema } from '../../../FormValidations/auth.validate';
 import { signupRequest } from '../../../requests/auth';
-import useLocalStorage from '../../../hooks/useLocalStorage'
+//import useLocalStorage from '../../../hooks/useLocalStorage'
 import RequestSent from '../Modals/RequestSent'
 
 
@@ -93,8 +93,11 @@ const Signup = ()=>{
                 delete userDetails.lastName
                 console.log(userDetails)
                 dispatch(authActions.changeAuthRequestState({loading:true}))
-                signupRequest(userDetails).then(({data:{data}})=>{
+                signupRequest(userDetails).then(({data:{data, meta}})=>{
                     console.log(data)
+                    if(meta.error){
+                       return cogoToast.error(meta.message, { position: 'top-center' })
+                    }
                     dispatch(authActions.changeAuthRequestState({loading:false}))
                     setRequestSent(true)
                     setTimeout(()=>{
@@ -104,7 +107,7 @@ const Signup = ()=>{
                 }).catch(err=>{
                    console.log(err)
                    dispatch(authActions.changeAuthRequestState({loading:false}))
-                   cogoToast.error('Network Error', { position: 'top-center' })
+                   cogoToast.error(err.response.data.meta.message, { position: 'top-center' })
                 })
                 
             }

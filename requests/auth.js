@@ -8,7 +8,13 @@ confirmOtp,
 resendOtp
 } from './endpoints'
 
-const token = ""
+import useLocalStorage from '../hooks/useLocalStorage';
+
+const {getItem} = useLocalStorage()
+
+const accessToken = getItem('accessToken')
+
+const token = accessToken.token
 
 axios.interceptors.request.use((config) => {
     config.headers['Authorization'] = `Bearer ${token}`;

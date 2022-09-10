@@ -1,13 +1,14 @@
-import {useDispatch}  from 'react-redux'
+import {useDispatch, useSelector}  from 'react-redux'
 
 
 import Modal from '../../Modals'
 import classes from '../Home.module.scss'
 import { UIActions } from '../../../../Store/ui-slice'
+import { bizActions } from '../../../../Store/biz-slice'
 
 const Step1 =()=>{
 
-
+    const {createBiz} = useSelector(state=>state.biz)
     const dispatch = useDispatch()
 
 
@@ -23,32 +24,58 @@ const Step1 =()=>{
             <div className="mt-4">
                 <p className="fs-16 fw-500 mb-2 tertiary-color">Business name</p>
                 <div className={classes.input}>
-                    <input type="text" placeholder="Enter as written on official documents" />
+                    <input 
+                     type="text"
+                     className="w-100" 
+                     placeholder="Enter as written on official documents"
+                     value={createBiz.bizName} 
+                     onChange={({target:{value}})=>dispatch(bizActions.changeBizDetailsState({bizName:value}))}
+                     />
                 </div>
             </div>
             <div>
                 <p className="fs-16 fw-500 mb-2 tertiary-color"> Business Email Address</p>
                 <div className={classes.input}>
-                    <input type="text" placeholder="name@example.com" />
+                    <input 
+                    type="text" 
+                    placeholder="name@example.com" 
+                    value={createBiz.bizEmail} 
+                    onChange={({target:{value}})=>dispatch(bizActions.changeBizDetailsState({bizEmail:value}))}
+                    />
                 </div>
             </div>
             <div>
                 <p className="fs-16 fw-500 mb-2 tertiary-color">Business Phone Number</p>
                 <div className={classes.input}>
-                    <span className="fs-20 fw-500 tertiary-color">+234  </span>
-                    <input type="text" placeholder="---- ----- -----" />
+                    <span className="fs-18 fw-500 tertiary-color">+234  </span>
+                    <input 
+                        type="text" 
+                        placeholder="---- ----- -----" 
+                        value={createBiz.bizPhone} 
+                        onChange={({target:{value}})=>dispatch(bizActions.changeBizDetailsState({bizPhone:value}))}
+                    />
                 </div>
             </div>
             <div>
                 <p className="fs-16 fw-500 mb-2 tertiary-color">Country</p>
                 <div className={classes.input}>
-                    <input type="text" placeholder="Select a country" />
+                    <input 
+                    type="text" 
+                    placeholder="Enter a Country name" 
+                    value={createBiz.bizCountry} 
+                    onChange={({target:{value}})=>dispatch(bizActions.changeBizDetailsState({bizCountry:value}))}
+                    />
                 </div>
             </div>
             <div>
                 <p className="fs-16 fw-500 mb-2 tertiary-color">Business Address</p>
                 <div className={classes.input}>
-                    <input type="text" placeholder="Enter a business Address" />
+                    <input 
+                    type="text" 
+                    placeholder="Enter a business Address" 
+                    value={createBiz.bizAddress} 
+                    onChange={({target:{value}})=>dispatch(bizActions.changeBizDetailsState({bizAddress:value}))}
+                    />
                 </div>
             </div>
             <div className=" mt-2 justify-right">

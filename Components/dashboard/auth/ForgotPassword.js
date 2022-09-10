@@ -5,6 +5,7 @@ import {useRouter} from 'next/router'
 import { authActions } from '../../../Store/auth-slice';
 import { forgotPasswordRequest } from '../../../requests/auth';
 import RequestSent from '../Modals/RequestSent'
+import cogoToast from 'cogo-toast'
 
 
 const ForgotPassword = ()=>{
@@ -19,7 +20,10 @@ const ForgotPassword = ()=>{
     const submitHandler = (event) =>{
         event.preventDefault()
         dispatch(authActions.changeAuthRequestState({loading:true}))
-        forgotPasswordRequest({email}).then(({data:{data}})=>{
+        forgotPasswordRequest({email}).then(({data:{data, meta}})=>{
+            if(meta.error){
+                return cogoToast.error(meta.message, { position: 'top-center' })
+            }
             console.log(data)
             dispatch(authActions.changeAuthRequestState({loading:false}))
             setRequestSent(true)
@@ -30,6 +34,7 @@ const ForgotPassword = ()=>{
         }).catch(err=>{
             console.log(err)
             dispatch(authActions.changeAuthRequestState({loading:false}))
+            cogoToast.error(err.response.data.meta.message, { position: 'top-center' })
         })
     }
 

@@ -37,23 +37,28 @@ const Login = ()=>{
         .then((valid)=>{
             if(valid){
                 dispatch(authActions.changeAuthRequestState({loading:true}))
-                loginRequest(loginDetails).then(({data:{data, meta:{token}}})=>{
+                loginRequest(loginDetails).then(({data:{data, meta}})=>{
                     console.log(data)
+                    if(meta.error){
+                        return cogoToast.error(meta.message, { position: 'top-center' })
+                     }
                     dispatch(authActions.changeAuthRequestState({loading:false}))
                     dispatch(authActions.storeUserDetails(data))
                     setItem('userDetails', data)
-                    setItem('accessToken', {token})
-                router.push('/dashboard')
+                    setItem('accessToken', {token:meta.token})
+                    dispatch(authActions.changeAuthRequestState({isAuthenticated:true}))
+                    router.push('/dashboard')
                 }).catch(err=>{
-                   console.log(err)
                    dispatch(authActions.changeAuthRequestState({loading:false}))
+                   //console.log(err.response.data.meta.message)
+                   cogoToast.error(err.response.data.meta.message, { position: 'top-center' })
                 })
                 
             }
         })
         .catch((err) => {
-			console.log(err);
 			cogoToast.error('something Went Wrong', { position: 'top-center' });
+            cogoToast.error(err.errors[0], { position: 'top-center' })
 		  });
     }
 

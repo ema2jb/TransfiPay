@@ -1,16 +1,24 @@
 
 
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 
 
 import classes from './Teams.module.scss'
 import SubHeader from "../../SubHeader"
 import { UIActions } from '../../../../Store/ui-slice'
+import { bizActions } from '../../../../Store/biz-slice'
+import { inviteUserFunc } from '../../../../requests/bizRequests'
 
 
 const Invite = ()=>{
 
     const dispatch = useDispatch()
+    const inviteeDetails = useSelector(state=>state.biz.bizInviteeDetails)
+    const bizId = useSelector(state=>state.biz.activeBiz.id)
+
+    const submitHandler = ()=>{
+        inviteUserFunc(dispatch, bizActions, inviteeDetails, bizId)
+    }
 
     return  <>
         <div>
@@ -28,7 +36,9 @@ const Invite = ()=>{
                     <div className='mb-4'>
                         <p className="fs-16 fw-500 mb-2 tertiary-color">Email Address</p>
                         <div className={classes.input}>
-                            <input type="text" placeholder="name@example.com" />
+                            <input
+                                onChange={({target:{value}})=>dispatch(bizActions.changeBizInviteeDetailsState({email:value}))} 
+                                type="text" placeholder="name@example.com" />
                         </div>
                     </div>
                     <div className="space-between">
@@ -37,35 +47,46 @@ const Invite = ()=>{
                     </div>
                     <div className="border p-3">
                         <div className="centralize-start-start-10 mb-3">
-                            <div className={` centralize ${classes.radio}`} ><input type="radio" /></div>
+                            <div className={` centralize ${classes.radio}`} >
+                                <input onChange={({target:{value}})=>dispatch(bizActions.changeBizInviteeDetailsState({role:'owner'}))} name="role" type="radio" /></div>
                             <div >
                                 <p classsName="fs-18 fw-500 tertiary-color">Owner</p>
                                 <p className="fs-14 fw-400 tertiary-color">Full access: team management, can delete and add team members, reassign roles and delete business.</p>
                             </div>
                         </div>
                         <div className="centralize-start-start-10 mb-3">
-                            <div className={` centralize ${classes.radio}`} ><input type="radio" /></div>
+                            <div className={` centralize ${classes.radio}`} >
+                                <input onChange={({target:{value}})=>dispatch(bizActions.changeBizInviteeDetailsState({role:'administrator'}))} name="role" type="radio" /></div>
                             <div>
                                 <p classsName="fs-18 fw-500 tertiary-color">Administrator</p>
                                 <p className="fs-14 fw-400 tertiary-color">Full access: team management, can add team members, reassign roles and delete business.</p>
                             </div>
                         </div>
                         <div className="centralize-start-start-10 mb-3">
-                            <div className={` centralize ${classes.radio}`} ><input type="radio" /></div>
+                            <div className={` centralize ${classes.radio}`} >
+                                <input
+                                    onChange={({target:{value}})=>dispatch(bizActions.changeBizInviteeDetailsState({role:'Operation role'}))}
+                                    name="role" type="radio" /></div>
                             <div>
                                 <p classsName="fs-18 fw-500 tertiary-color">Operation role</p>
                                 <p className="fs-14 fw-400 tertiary-color">Access to read permissions.</p>
                             </div>
                         </div>
                         <div className="centralize-start-start-10 mb-3">
-                            <div className={` centralize ${classes.radio}`} ><input type="radio" /></div>
+                            <div className={` centralize ${classes.radio}`} >
+                                <input 
+                                    onChange={({target:{value}})=>dispatch(bizActions.changeBizInviteeDetailsState({role:'Customer support'}))}
+                                    name="role" type="radio" /></div>
                             <div>
                                 <p classsName="fs-18 fw-500 tertiary-color">Customer support</p>
                                 <p className="fs-14 fw-400 tertiary-color">Access to read permission and create refunds.</p>
                             </div>
                         </div>
                         <div className="centralize-start-start-10 mb-3">
-                            <div className={` centralize ${classes.radio}`} ><input type="radio" /></div>
+                            <div className={` centralize ${classes.radio}`} >
+                                <input 
+                                    onChange={({target:{value}})=>dispatch(bizActions.changeBizInviteeDetailsState({role:'Basic user'}))}
+                                    name="role" type="radio" /></div>
                             <div>
                                 <p classsName="fs-18 fw-500 tertiary-color">Basic User</p>
                                 <p className="fs-14 fw-400 tertiary-color">Read access only</p>
@@ -74,12 +95,17 @@ const Invite = ()=>{
                     </div>
                         <div className="mt-4">
                             <p className="fs-16 fw-500 mb-2 tertiary-color">(Optional) Customise a message to send with your invite</p>
-                            <textarea className={`bckg7 ${classes.textarea}`} rows="7" cols="50">
-                               (300)
+                            <textarea 
+                                onChange={({target:{value}})=>dispatch(bizActions.changeBizInviteeDetailsState({message:value}))}
+                                placeholder="Send Invite with a message" 
+                                className={`bckg7 ${classes.textarea}`} 
+                                rows="7" 
+                                cols="50"
+                            >
                             </textarea>
                         </div>
                         <div className="mt-3">
-                            <button className="text-is-white btn-default">Send invite</button>
+                            <button disable={true} onClick={submitHandler} className="text-is-white btn-default">Send invite</button>
                         </div>
                 </div>
             </div>

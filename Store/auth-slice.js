@@ -6,11 +6,13 @@ const {getItem} = useLocalStorage()
 
 const userDetails = getItem('userDetails')
 
+const accessToken = getItem('accessToken')
+
 const initialAuthState = {
     authRequestState:{
       error:false,
       loading:false,
-      isAuthenticated: false,
+      isAuthenticated: Boolean(accessToken),
     },
     authAppState:{
       showKycPage:false,

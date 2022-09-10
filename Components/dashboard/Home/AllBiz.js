@@ -1,15 +1,23 @@
+import {useEffect} from 'react'
 import {HiOutlineBell, HiOutlineMail} from 'react-icons/hi'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import classes from "./Home.module.scss"
 import Modal from "../Modals"
 import { UIActions } from '../../../Store/ui-slice'
+import { bizActions } from '../../../Store/biz-slice'
+import { getAllMyBizFunc } from '../../../requests/bizRequests'
 
 
 
 const AllBiz = () =>{
 
     const dispatch =useDispatch()
+    const allMyBiz = useSelector(state=>state.biz.allMyBiz)
+
+    useEffect(()=>{
+        getAllMyBizFunc(dispatch, bizActions, 1, 5)
+    }, [])
 
     return <>
     <Modal width={"60%"} left={"20%"} hideModal={()=>dispatch(UIActions.changeBizUiState('none'))}>
@@ -47,27 +55,17 @@ const AllBiz = () =>{
                         <td>Operations</td>
                         <td className='text-color-1 p-2'>Switch Account</td> 
                     </tr>
-                    <tr className="bckg2 secondary-color fs-16 py-3 mb-2 fw-400">
-                        <td className="py-3 pl-3">GIG logistics</td>
-                        <td>TR123578</td>
-                        <td>GIGlogistics@gmail.com</td>
-                        <td>Support</td>
-                        <td className='text-color-1 p-2'>Switch Account</td> 
-                    </tr>
-                    <tr className="bckg2 secondary-color fs-16 py-3 mb-2 fw-400">
-                        <td className="py-3 pl-3">GIG logistics</td>
-                        <td>TR123578</td>
-                        <td>GIGlogistics@gmail.com</td>
-                        <td>Basic User</td>
-                        <td  className='text-color-1 p-2'>Switch Account</td> 
-                    </tr>
-                    <tr className="bckg2 secondary-color fs-16 py-3 mb-2 fw-400">
-                        <td className="py-3 pl-3">GIG logistics</td>
-                        <td>TR123578</td>
-                        <td>GIGlogistics@gmail.com</td>
-                        <td>Role</td>
-                        <td className='text-color-1 p-2'>Switch Account</td> 
-                    </tr>
+                    {
+                        allMyBiz && allMyBiz.map(biz=>(
+                            <tr className="bckg2 secondary-color fs-16 py-3 mb-2 fw-400">
+                                <td className="py-3 pl-3">{biz.business.name}</td>
+                                <td>TR123578</td>
+                                <td>{biz.business.email}</td>
+                                <td>{biz.role}</td>
+                                <td className='text-color-1 p-2'>Switch Account</td> 
+                            </tr>
+                        ))
+                    }
                 </tbody>
         </table>
         <div className={` mt-5 fs-16 fw-600 justify-right`} >

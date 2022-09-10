@@ -13,3 +13,43 @@ export const forgotPassword = `${BASE_URL}auth/login/forgot-password`
 
 export const resetPassword = `${BASE_URL}auth/login/forgot-password/otp`
 
+
+
+
+//Business
+
+export const createBiz = `${BASE_URL}business/create`
+
+export const updateBizImage = (bizId) => `${BASE_URL}business/${bizId}/image` // put request
+
+export const getBizInfo = (bizId)  => `${BASE_URL}business/${bizId}`
+
+export const updateBizInfo =(bizId)  => `${BASE_URL}business/${bizId}` // put request
+
+export const getBizUsers = (bizId) => `${BASE_URL}business/${bizId}/users`
+
+export const getAllMyBiz =(page, limit)=> `${BASE_URL}business/all-businesses?page=${page}&limit=${limit}`
+
+export const inviteUserToBiz = (bizId) => `${BASE_URL}business/${bizId}/invite-user` //post request
+
+export const reAssignRole = (bizId) => `${BASE_URL}business/${bizId}/role/assignment` //put request
+
+export const deleteUserFromBiz = (bizId, userId) => `${BASE_URL}business/${bizId}/user/${userId}`
+
+export const getUserPendingInvites = (bizId) => `${BASE_URL}business/${bizId}/pending-invites`
+
+export const acceptBizInvitation = (invitationId) => `${BASE_URL}business/user/invitation/${invitationId}/accept`
+
+export const rejectBizInvitation = (invitationId) => `${BASE_URL}business/user/invitation/${invitationId}/reject`
+
+export const uploadDocFront = (bizId, docType) => `${BASE_URL}business/${bizId}/kyc/upload/document/${docType}/front`  //put request
+
+export const uploadDocBack = (bizId, docType) => `${BASE_URL}business/${bizId}/kyc/upload/document/${docType}/front`    //put request
+
+export const uploadAddressProof = (bizId) => `${BASE_URL}business/${bizId}/kyc/upload/proof-of-address` //put request
+
+
+
+
+
+

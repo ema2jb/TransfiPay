@@ -1,10 +1,13 @@
+import { useEffect } from 'react'
 import {HiOutlineUserAdd, HiOutlineUser } from 'react-icons/hi'
-import { useDispatch } from 'react-redux'
+import { useDispatch,useSelector } from 'react-redux'
 import {useState} from 'react'
 
 import classes from './Teams.module.scss'
 import SubHeader from "../../SubHeader"
 import { UIActions } from '../../../../Store/ui-slice'
+import { bizActions } from '../../../../Store/biz-slice'
+import { getBizUsersFunc } from '../../../../requests/bizRequests'
 import ReAssign from './reassign'
 import Remove from './remove'
 
@@ -16,9 +19,15 @@ const Collaborate = ()=>{
 
     const [toggleModal, setToggleModal] = useState('')
 
+    const {activeBiz, activeBizUsers} = useSelector(state=>state.biz)
+
     const handleToggleModal =(value)=>{
         setToggleModal(value)
     }
+
+    useEffect(()=>{
+        activeBiz && activeBiz.id && getBizUsersFunc(activeBiz.id)
+    }, [])
 
     return <>
         <SubHeader mainTitle={"Teams"} />
@@ -47,7 +56,7 @@ const Collaborate = ()=>{
                 <tr className="fs-16 text-center fw-500 secondary-color">
                     <td className="py-3 d-flex align-items-center justify-content-center"><span className={`${classes.user} mx-2 d-flex align-items-center justify-content-center text-is-white`}><HiOutlineUser /></span><span>David Khalid</span></td>
                     <td>n.davmek@gmail.com</td>
-                    <td><span className="bckg10 text-is-white p-3 br-4">Owner</span></td>
+                    <td><span className="bckg10 text-is-white p-2 br-4">Owner</span></td>
                     <td  className="text-color-1">
                         <span onClick={()=>handleToggleModal('reassign')} className={`mr-5 ${classes.tooltip}`}>Reassign
                             <span className={classes.tooltiptext}>Only members who are owners or administrators can reassign team roles</span>
@@ -60,7 +69,7 @@ const Collaborate = ()=>{
                 <tr className="fs-16 text-center fw-500 secondary-color">
                     <td className="py-3 d-flex align-items-center justify-content-center"><span className={`${classes.user} mx-2 d-flex align-items-center justify-content-center text-is-white`}><HiOutlineUser /></span><span>David Khalid</span></td>
                     <td>n.davmek@gmail.com</td>
-                    <td><span className="bckg10 text-is-white p-3 br-4">Owner</span></td>
+                    <td><span className="bckg10 text-is-white p-2 br-4">Owner</span></td>
                     <td  className="text-color-1">
                         <span onClick={()=>handleToggleModal('reassign')} className={`mr-5 ${classes.tooltip}`}>Reassign
                             <span className={classes.tooltiptext}>Only members who are owners or administrators can reassign team roles</span>
@@ -70,6 +79,28 @@ const Collaborate = ()=>{
                         </span>
                     </td>
                 </tr>
+                {
+                    activeBizUsers && activeBizUsers.map(user=>(
+                        <tr className="fs-16 text-center fw-500 secondary-color">
+                            <td className="py-3 d-flex align-items-center justify-content-center">
+                                <span className={`${classes.user} mx-2 d-flex align-items-center justify-content-center text-is-white`}>
+                                    <HiOutlineUser />
+                                </span>
+                                <span>{user.profile.fullName}</span>
+                            </td>
+                            <td>{user.profile.email}</td>
+                            <td><span className="bckg10 text-is-white p-2 br-4">{user.role}</span></td>
+                            <td  className="text-color-1">
+                                <span onClick={()=>handleToggleModal('reassign')} className={`mr-5 ${classes.tooltip}`}>Reassign
+                                    <span className={classes.tooltiptext}>Only members who are owners or administrators can reassign team roles</span>
+                                </span>
+                                <span onClick={()=>handleToggleModal('remove')} className={classes.tooltip}>Remove
+                                    <span className={classes.tooltiptext}>Only members who are owners or administrators can reassign team roles.</span>
+                                </span>
+                            </td>
+                        </tr>
+                    ))
+                }
             </tbody>
         </table> 
         </div>
