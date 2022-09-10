@@ -23,7 +23,11 @@ import {
 
     const accessToken = getItem('accessToken')
 
-    const token = accessToken && accessToken.token
+    let token=""
+    
+    if(Boolean(accessToken)){
+        token =  accessToken.token
+    }
 
     console.log(token)
 
