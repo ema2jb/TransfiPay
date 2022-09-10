@@ -8,18 +8,7 @@ confirmOtp,
 resendOtp
 } from './endpoints'
 
-import useLocalStorage from '../hooks/useLocalStorage';
 
-const {getItem} = useLocalStorage()
-
-const accessToken = getItem('accessToken')
-
-const token = accessToken.token
-
-axios.interceptors.request.use((config) => {
-    config.headers['Authorization'] = `Bearer ${token}`;
-    return config;
-  });
 
 
 export const signupRequest = async(_data) =>{

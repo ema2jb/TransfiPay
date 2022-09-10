@@ -29,7 +29,7 @@ const Dashboard =()=>{
 
     const dispatch = useDispatch()
     const {setItem} = useLocalStorage()
-
+    
     if (Boolean(auth) === true){
         if(action ===   've'){
             confirmOtpRequest({otpCode, otpId, userId}).then(({data:{data, meta:{token}}})=>{
