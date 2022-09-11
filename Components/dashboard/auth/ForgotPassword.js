@@ -45,8 +45,9 @@ const ForgotPassword = ()=>{
             <p className="fs-16 fw-500 secondary-color">Enter an email to receive reset link</p>
             <form onSubmit={submitHandler}>
                 <div className="form-group mb-3">
-                    <label className="fs-16 fw-500 secondary-color">Email Address *</label>
+                    <label className="fs-16 fw-500 tertiary-color">Email Address *</label>
                     <input 
+                    classsName="fs-14"
                     value={email}
                     onChange={({target:{value}})=>setEmail(value)}
                     type="email" 

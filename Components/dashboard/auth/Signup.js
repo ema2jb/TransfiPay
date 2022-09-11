@@ -125,8 +125,9 @@ const Signup = ()=>{
             <h1 className="fs-24 fw-600 primary-color">Sign up to create account</h1>
             <form onSubmit={submitHandler}>
                 <div className="form-group">
-                    <label className='tertiary-color'>First Name *</label>
+                    <label className='fs-16 fw-500 tertiary-color'>First Name *</label>
                     <input
+                        className="fs-14 secondary-color"
                         onChange={({target:{value}})=>setSignupDetails(prev=>({...prev, firstName:value}))}  
                         type="text" 
                         placeholder="First Name"
@@ -134,8 +135,9 @@ const Signup = ()=>{
                     />
                 </div>
                 <div className="form-group">
-                    <label>last Name *</label>
+                    <label  className='fs-16 fw-500 tertiary-color'>last Name *</label>
                     <input 
+                        className="fs-14"
                         onChange={({target:{value}})=>setSignupDetails(prev=>({...prev, lastName:value}))}  
                         type="text" 
                         placeholder="Last Name"
@@ -143,8 +145,9 @@ const Signup = ()=>{
                     />
                 </div>
                 <div className="form-group">
-                    <label>Email Address *</label>
+                    <label  className='fs-16 fw-500 tertiary-color'>Email Address *</label>
                     <input 
+                        className="fs-14"
                         onChange={({target:{value}})=>setSignupDetails(prev=>({...prev, email:value}))}
                         type="email" 
                         placeholder="Enter email address"
@@ -152,9 +155,10 @@ const Signup = ()=>{
                     />
                 </div>
                 <div className="form-group">
-                    <label>Password *</label>
+                    <label  className='fs-16 fw-500 tertiary-color'>Password *</label>
                     <div className="password">
                         <input 
+                            className="fs-14"
                             onChange={({target:{value}})=>validatePassword(value)}
                             type={seePassword?"text":"password"} 
                             placeholder="Enter password"
@@ -165,9 +169,10 @@ const Signup = ()=>{
                     </div>
                 </div>
                 <div className="form-group">
-                    <label>Re-type Password *</label>
+                    <label   className='fs-16 fw-500 tertiary-color'>Re-type Password *</label>
                     <div className="password">
                         <input
+                            className="fs-14"
                             onChange={({target:{value}})=>setSignupDetails(prev=>({...prev, confirmPassword:value}))} 
                             type={seeConfirmPassword ?"text":"password"} 
                             placeholder="Re-type password"

@@ -70,8 +70,9 @@ const Login = ()=>{
             <h1 className="fs-24 fw-600 primary-color">Login into Account</h1>
             <form onSubmit={submitHandler}>
                 <div className="form-group">
-                    <label className="fs-16 fw-400 secondary-color">Email Address *</label>
+                    <label className="fs-16 fw-400 tertiary-color">Email Address *</label>
                     <input
+                        className="fs-14"
                         onChange={({target:{value}})=>setLoginDetails(prev=>({...prev, email:value}))}
                         type="email" 
                         placeholder="Enter email address"
@@ -79,9 +80,10 @@ const Login = ()=>{
                     />
                 </div>
                 <div className="form-group">
-                    <label className="fs-16 fw-400 secondary-color">Password *</label>
+                    <label className="fs-16 fw-400 tertiary-color">Password *</label>
                     <div className="password">
                         <input 
+                            className="fs-14"
                             onChange={({target:{value}})=>setLoginDetails(prev=>({...prev, password:value}))}
                             type={seePassword?"text":"password"} 
                             placeholder="Enter password"
