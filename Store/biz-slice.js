@@ -6,12 +6,12 @@ const initialState = {
       loading:false
     },
     createBiz:{
-        bizName:"",
-        bizEmail:"",
-        bizPhone:"",
-        bizCountry:"",
-        bizAddress:"",
-        bizDescription:"",
+        name:"",
+        email:"",
+        phoneNumber:"",
+        country:"",
+        address:"",
+        description:"",
     },
     bizSocials:{
         instagram:"",

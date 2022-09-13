@@ -27,8 +27,8 @@ const Step2 =()=>{
             <div className="mt-4">
                 <p className="fs-16 fw-500 mb-2 tertiary-color">Business Description</p>
                 <textarea 
-                value={createBiz.bizDescription}
-                onChange={({target:{value}})=>dispatch(bizActions.changeBizDetailsState({bizDescription:value}))}
+                value={createBiz.description}
+                onChange={({target:{value}})=>dispatch(bizActions.changeBizDetailsState({description:value}))}
                 placeholder="Tell us more about your business" 
                 rows="5" 
                 cols="50" />
@@ -76,12 +76,14 @@ const Step2 =()=>{
                 <input 
                 onChange={({target:{value}})=>dispatch(bizActions.changeTransactionCharge({bizOwner:value}))} 
                 type="radio" 
+                name="transaction"
                 value={transactionCharge.bizOwner} /><span className='fs-14 mx-2 fw-400 secondary-color'>Business Owner</span>
             </div>
             <div>
                 <input 
                     onChange={({target:{value}})=>dispatch(bizActions.changeTransactionCharge({customer:value}))}
-                    type="radio" 
+                    type="radio"
+                    name="transaction" 
                     value={transactionCharge.customer}/><span className="fs-14 mx-2 fw-400 secondary-color">Customer</span>
             </div>
             <div className=" mt-2 justify-right">

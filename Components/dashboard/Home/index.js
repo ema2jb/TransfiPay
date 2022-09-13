@@ -57,19 +57,19 @@ const Home =()=>{
                 </div>
             </div>
         </div>
-        <div className={!selectAccount && 'd-none'}>
+        <div className={!selectAccount ? 'd-none' :''}>
             <ChooseAccount hideModal={()=>setSelectAccount(false)} />
         </div>
-        <div className={!bizUI.step1 && 'd-none'}>
+        <div className={!bizUI.step1 ? 'd-none' :''}>
             <Step1 />
         </div>
-        <div className={!bizUI.step2 && 'd-none'}>
+        <div className={!bizUI.step2 ? 'd-none' :''}>
             <Step2 />
         </div>
-        <div className={!bizUI.allBiz && 'd-none'}>
+        <div className={!bizUI.allBiz ? 'd-none' :''}>
             <AllBiz/>
         </div>
-        <div className={!bizUI.invites && 'd-none'}>
+        <div className={!bizUI.invites ? 'd-none' :''}>
             <AllInvites />
         </div>
     </>

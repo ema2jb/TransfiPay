@@ -1,24 +1,24 @@
 import * as yup from "yup";
 
 export const createBizSchema = yup.object().shape({
-    bizName: yup
+    name: yup
         .string()
         .required("Business name is required"),
-    bizEmail: yup
+    email: yup
         .string()
         .email("Enter a valid email")
         .required("Email is required"),
-    bizPhone: yup
+    phoneNumber: yup
         .number()
         .min(8, "Password should be of minimum 8 characters length")
         .required("phone number is required"),
-    bizCountry: yup
+    country: yup
         .string()
         .required("country is required"),
-    bizAddress: yup
+    address: yup
         .string()
         .required("we would love to know where your business is located"),
-    bizDescription:yup
+    description:yup
         .string()
         .required("please give your business a description"),   
 })

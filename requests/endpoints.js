@@ -18,7 +18,7 @@ export const resetPassword = `${BASE_URL}auth/login/forgot-password/otp`
 
 //Business
 
-export const createBiz = `${BASE_URL}business/create`
+export const createBiz = `${BASE_URL}business`
 
 export const updateBizImage = (bizId) => `${BASE_URL}business/${bizId}/image` // put request
 

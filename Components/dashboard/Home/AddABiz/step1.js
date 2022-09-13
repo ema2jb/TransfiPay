@@ -28,8 +28,8 @@ const Step1 =()=>{
                      type="text"
                      className="w-100" 
                      placeholder="Enter as written on official documents"
-                     value={createBiz.bizName} 
-                     onChange={({target:{value}})=>dispatch(bizActions.changeBizDetailsState({bizName:value}))}
+                     value={createBiz.name} 
+                     onChange={({target:{value}})=>dispatch(bizActions.changeBizDetailsState({name:value}))}
                      />
                 </div>
             </div>
@@ -39,8 +39,8 @@ const Step1 =()=>{
                     <input 
                     type="text" 
                     placeholder="name@example.com" 
-                    value={createBiz.bizEmail} 
-                    onChange={({target:{value}})=>dispatch(bizActions.changeBizDetailsState({bizEmail:value}))}
+                    value={createBiz.email} 
+                    onChange={({target:{value}})=>dispatch(bizActions.changeBizDetailsState({email:value}))}
                     />
                 </div>
             </div>
@@ -51,8 +51,8 @@ const Step1 =()=>{
                     <input 
                         type="text" 
                         placeholder="---- ----- -----" 
-                        value={createBiz.bizPhone} 
-                        onChange={({target:{value}})=>dispatch(bizActions.changeBizDetailsState({bizPhone:value}))}
+                        value={createBiz.phoneNumber} 
+                        onChange={({target:{value}})=>dispatch(bizActions.changeBizDetailsState({phoneNumber:value}))}
                     />
                 </div>
             </div>
@@ -62,8 +62,8 @@ const Step1 =()=>{
                     <input 
                     type="text" 
                     placeholder="Enter a Country name" 
-                    value={createBiz.bizCountry} 
-                    onChange={({target:{value}})=>dispatch(bizActions.changeBizDetailsState({bizCountry:value}))}
+                    value={createBiz.country} 
+                    onChange={({target:{value}})=>dispatch(bizActions.changeBizDetailsState({country:value}))}
                     />
                 </div>
             </div>
@@ -73,8 +73,8 @@ const Step1 =()=>{
                     <input 
                     type="text" 
                     placeholder="Enter a business Address" 
-                    value={createBiz.bizAddress} 
-                    onChange={({target:{value}})=>dispatch(bizActions.changeBizDetailsState({bizAddress:value}))}
+                    value={createBiz.address} 
+                    onChange={({target:{value}})=>dispatch(bizActions.changeBizDetailsState({address:value}))}
                     />
                 </div>
             </div>

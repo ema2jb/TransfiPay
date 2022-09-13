@@ -11,17 +11,20 @@ const Layout = (props)=>{
 
     const router = useRouter()
 
+    /*
     if(typeof(window) !== 'undefined'){
+        
+    }
+    */
+
+    useEffect(()=>{
         if(Boolean(authRequestState.isAuthenticated) === false){
             router.push('/auth')
         }
-    }
-
-    useEffect(()=>{
-        
     }, [])
 
     return<>
+    <div>
     { Boolean(authRequestState.isAuthenticated) &&
         <div className="dashboard-layout">
             <div className="sidebar">
@@ -33,6 +36,7 @@ const Layout = (props)=>{
             </div>
         </div>
     }
+    </div>
     </>
 }
 

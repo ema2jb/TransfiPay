@@ -2,6 +2,7 @@ import {useEffect} from 'react'
 import {HiArrowLeft, HiOutlineBell, HiChevronRight, HiOutlineMail} from 'react-icons/hi'
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllMyBizFunc, setActiveBizFunc } from '../../../requests/bizRequests'
+import { bizActions } from '../../../Store/biz-slice'
 
 import Modal from '../Modals'
 import classes from './Home.module.scss'
