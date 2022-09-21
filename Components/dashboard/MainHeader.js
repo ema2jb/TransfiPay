@@ -1,16 +1,21 @@
 import {useState} from 'react'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 
 import {BiChevronDown} from "react-icons/bi"
 import {HiChevronRight} from 'react-icons/hi'
 import {RiAddFill} from 'react-icons/ri'
 import { UIActions } from '../../Store/ui-slice'
+import Step1 from './Home/AddABiz/step1'
+import Step2 from './Home/AddABiz/step2'
+import AllBiz from "./Home//AllBiz"
+import AllInvites from "./Home/AllInvites"
 
 const MainHeader = ()=>{
 
     const [showBiz, setShowBiz] = useState(false)
 
     const dispatch = useDispatch()
+    const {bizUI} =useSelector(state=>state.UI)
 
     const addBiz=()=>{
         setShowBiz(prev=>!prev)
@@ -51,6 +56,18 @@ const MainHeader = ()=>{
                     <p onClick={()=>addBiz()} className="button cp btn-default text-is-white fs-14 fw-600"><span><RiAddFill /></span> Add Add Business</p>
                 </div>
             </div>
+        </div>
+        <div className={!bizUI.step1 ? 'd-none' :''}>
+            <Step1 />
+        </div>
+        <div className={!bizUI.step2 ? 'd-none' :''}>
+            <Step2 />
+        </div>
+        <div className={!bizUI.allBiz ? 'd-none' :''}>
+            <AllBiz/>
+        </div>
+        <div className={!bizUI.invites ? 'd-none' :''}>
+            <AllInvites />
         </div>
     </>
 }

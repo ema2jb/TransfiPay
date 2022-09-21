@@ -1,23 +1,30 @@
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import Modal from "../../Modals"
 import {RiUserUnfollowLine} from 'react-icons/ri'
 import classes from './Teams.module.scss'
+import { deleteUserFromBizFunc } from '../../../../requests/bizRequests'
+import { bizActions } from '../../../../Store/biz-slice'
 
 
 
 
-const Remove = ({handleToggleModal, toggleModal}) =>{
+const Remove = ({handleToggleModal, toggleModal, userId}) =>{
 
     const [successful, setSuccessful] = useState(false)
+    const {activeBiz, bizRequestState} = useSelector(state=>state.biz)
+    const  loading = bizRequestState.loading
+    const dispatch = useDispatch()
 
     const handleSave=()=>{
+        deleteUserFromBizFunc(dispatch, bizActions, activeBiz.id, userId)
+        /*
         setSuccessful(true)
         handleToggleModal("")
-
         setTimeout(()=>{
             setSuccessful(false)
-        }, 1000)
+        }, 1000)*/
     }
 
     return <>
@@ -38,7 +45,7 @@ const Remove = ({handleToggleModal, toggleModal}) =>{
                     </div>
                     <div className='justify-right mt-5 mb-2'>
                         <div>
-                            <button onClick={()=>handleSave()} className="btn-delete">Delete Team Member</button>
+                            <button disabled={loading} onClick={()=>handleSave()} className="btn-delete">{loading?"loading":"Delete Team Member"}</button>
                         </div>
                         <div>
                             <button onClick={()=>handleToggleModal('')}  className='btn-default'>No Cancel </button>

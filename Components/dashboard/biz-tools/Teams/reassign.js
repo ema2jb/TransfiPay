@@ -16,20 +16,21 @@ const ReAssign = ({handleToggleModal, toggleModal}) =>{
         email:"",
         role:""
     })
+    
+    const dispatch = useDispatch()
+    const bizId = useSelector(state=>state.biz.activeBiz.id)
+    const loading = useSelector(state=>state.biz.bizRequestState.loading)
 
-    const handleSave=()=>{
-        setSuccessful(true)
+    const submitHandler = ()=>{
+       reAssignRoleFunc(dispatch, bizActions, bizId, teamMemberDetails)
+       /*
+       setSuccessful(true)
         handleToggleModal("")
 
         setTimeout(()=>{
             setSuccessful(false)
         }, 1000)
-    }
-    const dispatch = useDispatch()
-    const bizId = useSelector(state=>state.biz.activeBiz.id)
-
-    const submitHandler = ()=>{
-       reAssignRoleFunc(dispatch, bizActions, bizId, teamMemberDetails)
+        */
     }
 
     return <>
@@ -66,7 +67,7 @@ const ReAssign = ({handleToggleModal, toggleModal}) =>{
                         <button onClick={handleToggleModal} className="btn-transparent">Cancel</button>
                     </div>
                     <div>
-                        <button disable={true} onClick={()=>submitHandler()}  className='btn-default'>Save</button>
+                        <button disabled={loading} onClick={()=>submitHandler()}  className='btn-default'>{loading?'loading':"save"}</button>
                     </div>
                 </div>
             </div>

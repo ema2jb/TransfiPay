@@ -17,8 +17,8 @@ const ChooseAccount = ({hideModal}) =>{
         getAllMyBizFunc(dispatch, bizActions, 1, 5)
     }, [])
 
-    const chooseAccount = (bizId)=>{
-        setActiveBizFunc(dispatch, bizActions, bizId)
+    const chooseAccount = (bizId, role)=>{
+        setActiveBizFunc(dispatch, bizActions, bizId, role)
         hideModal()
     }
 
@@ -47,23 +47,12 @@ const ChooseAccount = ({hideModal}) =>{
                 </div>
             </div>
             <hr></hr>
-            <div className="space-between mt-4  mb-5">
-                <div className='centralize'>
-                    <p className={`bckg5 centralize text-is-white fw-600 fs-18 mr-4 ${classes['user-initial']}`}>K</p>
-                    <div>
-                        <p className="fs-20 fw-500 text-color-5">Khalid  Usman</p>
-                        <p className="fs-16 fw-500 secondary-color">Administrator</p>
-                    </div>
-                </div>
-                <div>
-                    <p className="fs-28 fw-500 text-color-5"><HiChevronRight /></p>
-                </div>
-            </div>
             {
                 allMyBiz && allMyBiz.map(biz=>(
-                    <div onClick={()=>chooseAccount(biz.business.id)} className="space-between mt-4  mb-5">
+                    <>
+                    <div onClick={()=>chooseAccount(biz.business.id, biz.role)} className="space-between mt-4 cp mb-5">
                         <div className='centralize'>
-                            <p className={`bckg5 centralize text-is-white fw-600 fs-18 mr-4 ${classes['user-initial']}`}>K</p>
+                            <p className={`bckg5 centralize text-is-white fw-600 fs-18 mr-4 ${classes['user-initial']}`}>{biz.business.name[0]}</p>
                             <div>
                                 <p className="fs-20 fw-500 text-color-5">{biz.business.name}</p>
                                 <p className="fs-16 fw-500 secondary-color">{biz.role}</p>
@@ -73,6 +62,8 @@ const ChooseAccount = ({hideModal}) =>{
                             <p className="fs-28 fw-500 text-color-5"><HiChevronRight /></p>
                         </div>
                     </div>
+                     <hr></hr>
+                     </>
                 ))
             }
             <div>

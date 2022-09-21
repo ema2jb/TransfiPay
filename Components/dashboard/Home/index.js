@@ -9,10 +9,7 @@ import {BsChevronRight} from "react-icons/bs"
 import classes from "./Home.module.scss"
 import SubHeader from "../SubHeader"
 import ChooseAccount from "./chooseAccount"
-import Step1 from "./AddABiz/step1"
-import Step2 from "./AddABiz/step2"
-import AllBiz from "./AllBiz"
-import AllInvites from "./AllInvites"
+
 
 
 
@@ -59,18 +56,6 @@ const Home =()=>{
         </div>
         <div className={!selectAccount ? 'd-none' :''}>
             <ChooseAccount hideModal={()=>setSelectAccount(false)} />
-        </div>
-        <div className={!bizUI.step1 ? 'd-none' :''}>
-            <Step1 />
-        </div>
-        <div className={!bizUI.step2 ? 'd-none' :''}>
-            <Step2 />
-        </div>
-        <div className={!bizUI.allBiz ? 'd-none' :''}>
-            <AllBiz/>
-        </div>
-        <div className={!bizUI.invites ? 'd-none' :''}>
-            <AllInvites />
         </div>
     </>
 }

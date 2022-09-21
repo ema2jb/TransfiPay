@@ -114,10 +114,10 @@ import {
         return response
     }
 
-    export const getUserPendingInvitesRequest = async(bizId) =>{
+    export const getUserPendingInvitesRequest = async(page, limit) =>{
         const response = await  axios({
               method: "get",
-              url: getUserPendingInvites(bizId)
+              url: getUserPendingInvites(page, limit)
           })
         return response
     }

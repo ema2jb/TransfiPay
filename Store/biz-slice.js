@@ -1,8 +1,13 @@
 import {createSlice} from '@reduxjs/toolkit'
+import useLocalStorage from '../hooks/useLocalStorage'
+
+const {getItem} = useLocalStorage()
+
+const storedActiveBiz = getItem('activeBiz')
 
 
 const initialState = {
-    bizRequestSate:{
+    bizRequestState:{
       loading:false
     },
     createBiz:{
@@ -12,24 +17,22 @@ const initialState = {
         country:"",
         address:"",
         description:"",
-    },
-    bizSocials:{
         instagram:"",
         facebook:"",
         twitter:"",
-    },
-    transactionCharge:{
-      bizOwner:"",
-      customer:""
+        ownerPaysTransactionCharge:false,
+        customerPaysTransactionCharge:false
     },
     allMyBiz:[],
-    activeBiz:{},
+    allMyInvites:[],
+    activeBiz:storedActiveBiz || {},
     activeBizUsers:[],
     bizInviteeDetails:{
       email:"",
       role:"",
       message:""
-    }   
+    },
+    updateBizInfo:storedActiveBiz || {}   
 }
 
 const bizSlice = createSlice({
@@ -46,36 +49,21 @@ const bizSlice = createSlice({
               ...state.bizInviteeDetails, ...action.payload
             }
           },
-        changeBizSocials(state, action){
-          state.bizSocials = {
-            ...state.bizSocials,
-            ...action.payload
-          }
-        },
-        changeTransactionCharge(state,action){
-          const item = Object.keys(action.payload)[0]
-          for (const option in state.authAppState){
-            if(item !== option){
-              state.transactionCharge = {...state.transactionCharge, [option]:false}
-            }
-          }
-          state.transactionCharge ={
-            ...state.transactionCharge,
-            ...action.payload
-          }
-        },
         changeBizRequestState(state,action){
-          state.bizRequestSate.loading = action.payload
+          state.bizRequestState.loading = action.payload
         },
         setAllMyBiz(state,action){
           state.allMyBiz = action.payload
+        },
+        setAllMyInvites(state,action){
+          state.allMyInvites = action.payload
         },
         setActiveBiz(state,action){
           state.activeBiz =action.payload
         },
         setActiveBizUsers(state, action){
           state.activeBizUsers = action.payload
-        }
+        },
         }
     
 })

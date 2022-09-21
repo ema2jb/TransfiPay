@@ -18,10 +18,12 @@ const Collaborate = ()=>{
     const dispatch = useDispatch()
 
     const [toggleModal, setToggleModal] = useState('')
+    const [userId, setUserId] = useState('')
 
     const {activeBiz, activeBizUsers} = useSelector(state=>state.biz)
 
-    const handleToggleModal =(value)=>{
+    const handleToggleModal =(value, id)=>{
+        setUserId(id)
         setToggleModal(value)
     }
 
@@ -54,7 +56,10 @@ const Collaborate = ()=>{
             </thead>
             <tbody >
                 <tr className="fs-16 text-center fw-500 secondary-color">
-                    <td className="py-3 d-flex align-items-center justify-content-center"><span className={`${classes.user} mx-2 d-flex align-items-center justify-content-center text-is-white`}><HiOutlineUser /></span><span>David Khalid</span></td>
+                    <td className="py-3 d-flex align-items-center justify-content-center">
+                        <span className={`${classes.user} mx-2 d-flex align-items-center justify-content-center text-is-white`}>
+                            <HiOutlineUser />
+                            </span><span>David Khalid</span></td>
                     <td>n.davmek@gmail.com</td>
                     <td><span className="bckg10 text-is-white p-2 br-4">Owner</span></td>
                     <td  className="text-color-1">
@@ -91,10 +96,10 @@ const Collaborate = ()=>{
                             <td>{user.profile.email}</td>
                             <td><span className="bckg10 text-is-white p-2 br-4">{user.role}</span></td>
                             <td  className="text-color-1">
-                                <span onClick={()=>handleToggleModal('reassign')} className={`mr-5 ${classes.tooltip}`}>Reassign
+                                <span onClick={()=>handleToggleModal('reassign', user.profile.id)} className={`mr-5 ${classes.tooltip}`}>Reassign
                                     <span className={classes.tooltiptext}>Only members who are owners or administrators can reassign team roles</span>
                                 </span>
-                                <span onClick={()=>handleToggleModal('remove')} className={classes.tooltip}>Remove
+                                <span onClick={()=>handleToggleModal('remove', user.profile.id)} className={classes.tooltip}>Remove
                                     <span className={classes.tooltiptext}>Only members who are owners or administrators can reassign team roles.</span>
                                 </span>
                             </td>
@@ -109,7 +114,7 @@ const Collaborate = ()=>{
             <ReAssign toggleModal={toggleModal} handleToggleModal={handleToggleModal} />
         </div>
         <div>
-            <Remove toggleModal={toggleModal} handleToggleModal={handleToggleModal} />
+            <Remove userId={userId} toggleModal={toggleModal} handleToggleModal={handleToggleModal} />
         </div>
     </>
 }

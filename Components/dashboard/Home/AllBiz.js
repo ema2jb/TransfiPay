@@ -6,7 +6,7 @@ import classes from "./Home.module.scss"
 import Modal from "../Modals"
 import { UIActions } from '../../../Store/ui-slice'
 import { bizActions } from '../../../Store/biz-slice'
-import { getAllMyBizFunc } from '../../../requests/bizRequests'
+import { getAllMyBizFunc, setActiveBizFunc } from '../../../requests/bizRequests'
 
 
 
@@ -14,6 +14,13 @@ const AllBiz = () =>{
 
     const dispatch =useDispatch()
     const allMyBiz = useSelector(state=>state.biz.allMyBiz)
+    const activeBiz = useSelector(state=>state.biz.activeBiz)
+
+    const switchAccount = (bizId)=>{
+        if(activeBiz.id !== bizId){
+            setActiveBizFunc(dispatch, bizActions, bizId)
+        }
+    }
 
     useEffect(()=>{
         getAllMyBizFunc(dispatch, bizActions, 1, 5)
@@ -53,7 +60,7 @@ const AllBiz = () =>{
                         <td>TR123578</td>
                         <td>GIGlogistics@gmail.com</td>
                         <td>Operations</td>
-                        <td className='text-color-1 p-2'>Switch Account</td> 
+                        <td  className='text-color-1 p-2'>Switch Account</td> 
                     </tr>
                     {
                         allMyBiz && allMyBiz.map(biz=>(
@@ -62,7 +69,7 @@ const AllBiz = () =>{
                                 <td>TR123578</td>
                                 <td>{biz.business.email}</td>
                                 <td>{biz.role}</td>
-                                <td className='text-color-1 p-2'>Switch Account</td> 
+                                <td onClick={()=>switchAccount(biz.business.id)}><span className={activeBiz.id === biz.business.id ? 'br-32 text-color-12 bckg8 p-2' : 'text-color-1 p-2'} >{activeBiz.id === biz.business.id ? 'Active' : 'Switch Account'}</span></td> 
                             </tr>
                         ))
                     }

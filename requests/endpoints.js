@@ -36,7 +36,7 @@ export const reAssignRole = (bizId) => `${BASE_URL}business/${bizId}/role/assign
 
 export const deleteUserFromBiz = (bizId, userId) => `${BASE_URL}business/${bizId}/user/${userId}`
 
-export const getUserPendingInvites = (bizId) => `${BASE_URL}business/${bizId}/pending-invites`
+export const getUserPendingInvites = (limit, page) => `${BASE_URL}business/pending-invites?limit=${limit}&page=${page}`
 
 export const acceptBizInvitation = (invitationId) => `${BASE_URL}business/user/invitation/${invitationId}/accept`
 

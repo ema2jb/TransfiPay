@@ -1,14 +1,17 @@
 import * as bizEndpoints from './biz'
 import { createBizSchema } from '../FormValidations/biz.validate'
 import cogoToast from 'cogo-toast'
+import useLocalStorage from '../hooks/useLocalStorage'
 import { bizActions } from '../Store/biz-slice'
+
+const {setItem} = useLocalStorage()
 
 export const getAllMyBizFunc = (dispatch, bizActions, page, limit)=>{
     dispatch(bizActions.changeBizRequestState(true))
     bizEndpoints.getAllMyBizRequest(page, limit).then(({data:{data, meta}})=>{
         console.log(data)
         dispatch(bizActions.setAllMyBiz(data.result))
-        //dispatch(bizActions.changeBizRequestState(false))
+        dispatch(bizActions.changeBizRequestState(false))
         //cogoToast.success(meta.message, { position: 'top-center' })
     }).catch(err=>{
         console.log(err)
@@ -17,13 +20,27 @@ export const getAllMyBizFunc = (dispatch, bizActions, page, limit)=>{
     })  
 }
 
-export const setActiveBizFunc = (dispatch, bizActions, bizId)=>{
+export const setActiveBizFunc = (dispatch, bizActions, bizId, role)=>{
     dispatch(bizActions.changeBizRequestState(true))
     bizEndpoints.getBizInfoRequest(bizId).then(({data:{data, meta}})=>{
         console.log(data)
-        dispatch(bizActions.setActiveBiz(data))
-        //dispatch(bizActions.changeBizRequestState(false))
+        dispatch(bizActions.setActiveBiz({...data, role}))
+        setItem('activeBiz', {...data, role})
+        dispatch(bizActions.changeBizRequestState(false))
         //cogoToast.success(meta.message, { position: 'top-center' })
+    }).catch(err=>{
+        console.log(err)
+        //dispatch(bizActions.changeBizRequestState(false))
+        //cogoToast.error(err.response.data.meta.message, { position: 'top-center' })
+    })  
+}
+
+export const acceptBizInvitationFunc = (inviteId)=>{
+    //dispatch(bizActions.changeBizRequestState(true))
+    bizEndpoints.acceptBizInvitationRequest(inviteId).then(({data:{data, meta}})=>{
+        console.log(data)
+        //dispatch(bizActions.changeBizRequestState(false))
+        cogoToast.success(meta.message, { position: 'top-center' })
     }).catch(err=>{
         console.log(err)
         //dispatch(bizActions.changeBizRequestState(false))
@@ -36,6 +53,20 @@ export const getBizUsersFunc = (dispatch, bizActions, bizId)=>{
     .then(({data:{data, meta}})=>{
         console.log(data)
         dispatch(bizActions.setActiveBizUsers(data.result))
+        //dispatch(bizActions.changeBizRequestState(false))
+        //cogoToast.success(meta.message, { position: 'top-center' })
+    }).catch(err=>{
+        console.log(err)
+        //dispatch(bizActions.changeBizRequestState(false))
+        //cogoToast.error(err.response.data.meta.message, { position: 'top-center' })
+    })  
+}
+
+export const getUserPendingInvitesFunc = (dispatch, bizActions, page, limit)=>{
+    bizEndpoints.getUserPendingInvitesRequest(page, limit)
+    .then(({data:{data, meta}})=>{
+        console.log(data)
+        dispatch(bizActions.setAllMyInvites(data.result))
         //dispatch(bizActions.changeBizRequestState(false))
         //cogoToast.success(meta.message, { position: 'top-center' })
     }).catch(err=>{
@@ -73,8 +104,23 @@ export const reAssignRoleFunc = (dispatch, bizActions, bizId, userDetails)=>{
     })
 }
 
+export const deleteUserFromBizFunc = (dispatch, bizActions, bizId, userId)=>{
+    dispatch(bizActions.changeBizRequestState(true))
+    bizEndpoints.deleteUserFromBizRequest(bizId, userId)
+    .then(({data:{data}})=>{
+        console.log(data)
+        dispatch(bizActions.changeBizRequestState(false))
+        cogoToast.success(meta.message, { position: 'top-center' })
+        }).catch(err=>{
+            console.log(err)
+            dispatch(bizActions.changeBizRequestState(false))
+            cogoToast.error(err.response.data.meta.message, { position: 'top-center' })
+        })
+}
+
 
 export const createBizFunc = (dispatch, bizActions, createBiz)=>{
+    dispatch(bizActions.changeBizRequestState(true))
     createBizSchema.validate(createBiz)
         .then((valid)=>{
             if(valid){

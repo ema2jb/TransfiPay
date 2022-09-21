@@ -15,9 +15,10 @@ const Invite = ()=>{
     const dispatch = useDispatch()
     const inviteeDetails = useSelector(state=>state.biz.bizInviteeDetails)
     const bizId = useSelector(state=>state.biz.activeBiz.id)
+    const loading = useSelector(state=>state.biz.bizRequestState.loading)
 
     const submitHandler = ()=>{
-        inviteUserFunc(dispatch, bizActions, inviteeDetails, bizId)
+        activeBiz && activeBiz.id && inviteUserFunc(dispatch, bizActions, inviteeDetails, bizId)
     }
 
     return  <>
@@ -105,7 +106,7 @@ const Invite = ()=>{
                             </textarea>
                         </div>
                         <div className="mt-3">
-                            <button disable={true} onClick={submitHandler} className="text-is-white btn-default">Send invite</button>
+                            <button disabled={loading} onClick={submitHandler} className="text-is-white btn-default">{loading?"loading":"Send invite"}</button>
                         </div>
                 </div>
             </div>

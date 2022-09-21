@@ -12,7 +12,7 @@ const TierModal = ({handleShowModal,tierHandler, showBizInfoTiersHandler}) =>{
 
 
     return <>
-        <Modal hideModal={()=>handleShowModal(false)}>
+        <Modal width={"60%"} left={"20%"} hideModal={()=>handleShowModal(false)}>
             <div>
                 <h1 className="fw-600 fs-20 primary-color">KYC ( Know Your Customer)</h1>
                 <p className="mb-3 fw-400 fs-16 secondary-color">This verification allows us verify your busienss details. You can pick any tier of verification </p>

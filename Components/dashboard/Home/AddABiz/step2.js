@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {useDispatch, useSelector}  from 'react-redux'
 
 import Modal from '../../Modals'
@@ -9,11 +10,24 @@ import { createBizFunc } from '../../../../requests/bizRequests'
 const Step2 =()=>{
 
     const dispatch = useDispatch()
-    const {createBiz, bizSocials, transactionCharge} = useSelector(state=>state.biz)
+    const {createBiz, bizRequestState} = useSelector(state=>state.biz)
     //const bizState = {...createBiz, bizSocials, transactionCharge}
+
     const submitHandler = ()=>{
-        createBizFunc(dispatch, bizActions, createBiz)
+        console.log(createBiz)
+        //createBizFunc(dispatch, bizActions, createBiz)
     }
+
+
+    const handleWhoPays = (name)=>{
+        console.log(name)
+       if(name==="ownerPaysTransactionCharge"){
+            dispatch(bizActions.changeBizDetailsState({ownerPaysTransactionCharge:true, customerPaysTransactionCharge:false}))
+       } else if(name==="customerPaysTransactionCharge"){
+        dispatch(bizActions.changeBizDetailsState({ownerPaysTransactionCharge:false, customerPaysTransactionCharge:true}))
+       }
+    }
+
 
     return<>
         <Modal hideModal={()=>dispatch(UIActions.changeBizUiState('none'))}>
@@ -43,8 +57,8 @@ const Step2 =()=>{
                     <input 
                         type="text" 
                         placeholder="@" 
-                        value={bizSocials.instagram} 
-                        onChange={({target:{value}})=>dispatch(bizActions.changeBizSocials({instagram:value}))}
+                        value={createBiz.instagram} 
+                        onChange={({target:{value}})=>dispatch(bizActions.changeBizDetailsState({instagram:value}))}
                         />
                 </div>
             </div>
@@ -54,8 +68,8 @@ const Step2 =()=>{
                     <input 
                         type="text" 
                         placeholder="name@example.com" 
-                        value={bizSocials.facebook} 
-                        onChange={({target:{value}})=>dispatch(bizActions.changeBizSocials({facebook:value}))}
+                        value={createBiz.facebook} 
+                        onChange={({target:{value}})=>dispatch(bizActions.changeBizDetailsState({facebook:value}))}
                     />
                 </div>
             </div>
@@ -65,30 +79,35 @@ const Step2 =()=>{
                     <input 
                         type="text" 
                         placeholder="@" 
-                        value={bizSocials.twitter} 
-                        onChange={({target:{value}})=>dispatch(bizActions.changeBizSocials({twitter:value}))}
+                        value={createBiz.twitter} 
+                        onChange={({target:{value}})=>dispatch(bizActions.changeBizDetailsState({twitter:value}))}
                     />
                 </div>
             </div>
             <p className="fs-16 fw-500 tertiary-color">Other Store Details</p>
             <p className="fs-14 fw-600 tertiary-color">Transaction charge: <span className="secondary-color">Chose who pays the transaction charge</span></p>
             <div>
-                <input 
-                onChange={({target:{value}})=>dispatch(bizActions.changeTransactionCharge({bizOwner:value}))} 
-                type="radio" 
-                name="transaction"
-                value={transactionCharge.bizOwner} /><span className='fs-14 mx-2 fw-400 secondary-color'>Business Owner</span>
+                <input
+                    onClick={()=>handleWhoPays('ownerPaysTransactionCharge')}
+                    type="radio" 
+                    name="transaction"
+                 /><span className='fs-14 mx-2 fw-400 secondary-color'>Business Owner</span>
             </div>
             <div>
                 <input 
-                    onChange={({target:{value}})=>dispatch(bizActions.changeTransactionCharge({customer:value}))}
+                    onClick={()=>handleWhoPays('customerPaysTransactionCharge')}
                     type="radio"
                     name="transaction" 
-                    value={transactionCharge.customer}/><span className="fs-14 mx-2 fw-400 secondary-color">Customer</span>
+                /><span className="fs-14 mx-2 fw-400 secondary-color">Customer</span>
             </div>
             <div className=" mt-2 justify-right">
                 <button onClick={()=>dispatch(UIActions.changeBizUiState('step1'))} className="btn-transparent fs-16 fw-600 px-4 primary-color"> Previous</button>
-                <button onClick={()=>submitHandler()} className="btn-default text-is-white fs-16 fw-500 px-4"> Add Business</button>
+                <button 
+                    disabled={bizRequestState.loading} 
+                    onClick={()=>submitHandler()} 
+                    className="btn-default text-is-white fs-16 fw-500 px-4"> 
+                    {bizRequestState.loading?"loading":"Add Business"}
+                </button>
             </div>
         </Modal>
     </>
