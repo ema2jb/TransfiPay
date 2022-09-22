@@ -3,13 +3,14 @@ import { useSelector, useDispatch } from 'react-redux'
 
 
 import {HiOutlineUsers} from 'react-icons/hi'
-import {AiFillCheckSquare} from 'react-icons/ai'
+import {AiOutlineCloudUpload} from  'react-icons/ai'
 import {BiTrash} from 'react-icons/bi'
 import {BsChevronRight} from 'react-icons/bs'
 
 import classes from '../Settings.module.scss'
 import TierModal from './TierModal'
 import { bizActions } from '../../../../Store/biz-slice'
+import { updateBizInfoFunc } from '../../../../requests/bizRequests'
 
 
 
@@ -17,7 +18,7 @@ import { bizActions } from '../../../../Store/biz-slice'
 const BuisnessInformation = ({tierHandler, showBizInfoTiersHandler})=>{
 
     const [showModal, setShowModal] = useState(false)
-    const {updateBizInfo, transactionCharge} = useSelector(state=>state.biz)
+    const {updateBizInfo, bizRequestState} = useSelector(state=>state.biz)
     const [avatar, setAvatar] = useState({ preview: null, raw: null });
     const dispatch = useDispatch()
 
@@ -38,15 +39,31 @@ const BuisnessInformation = ({tierHandler, showBizInfoTiersHandler})=>{
 			preview,
 			raw: e.target.files[0],
 		});
-		setData({ ...data, avatar_preview: file });
 	};
 
+    const handleWhoPays = (name)=>{
+        console.log(name)
+       if(name==="ownerPaysTransactionCharge"){
+            dispatch(bizActions.setUpdateBizInfo({ownerPaysTransactionCharge:true, customerPaysTransactionCharge:false}))
+       } else if(name==="customerPaysTransactionCharge"){
+        dispatch(bizActions.setUpdateBizInfo({ownerPaysTransactionCharge:false, customerPaysTransactionCharge:true}))
+       }
+    }
+
+    const handleSubmit = ()=>{
+        updateBizInfoFunc(dispatch, bizActions, updateBizInfo, avatar.raw)
+    }
 
     return <>
         <div className={`centralize-top-10 mt-5 ${classes.bizInfo}`}>
             <div className="pr-4 w-50">
                 <p className={`fs-14 fw-400 secondary-color ${classes.kycStatus}`}>KYC status: 
-                <span onClick={()=>setShowModal(true)} className={`cp fw-600 fs-14 secondary-color ${classes['complete-kyc']}`}>Complete KYC</span></p>
+                <span 
+                    onClick={()=>setShowModal(true)} 
+                    className={`cp fw-600 fs-14 secondary-color ${classes['complete-kyc']}`}>
+                        {updateBizInfo.tierVerification !== "null" ?updateBizInfo.tierVerification:"Complete KYC"}
+                </span>
+                </p>
                 <div className={`mt-3 w-100 ${classes['form-wrapper']}`}>
                     <div className={` ${classes.form}`}>
                         <div className={`mb-3 mt-3`}>
@@ -54,6 +71,7 @@ const BuisnessInformation = ({tierHandler, showBizInfoTiersHandler})=>{
                             <div className={`mb-0  ${classes.input}`}>
                                 <input 
                                     value={updateBizInfo.name}
+                                    onChange={({target:{value}})=>dispatch(bizActions.setUpdateBizInfo({name:value}))}
                                     className="w-100" 
                                     type="text" 
                                     placeholder='Enter as written on official documents' />
@@ -65,7 +83,8 @@ const BuisnessInformation = ({tierHandler, showBizInfoTiersHandler})=>{
                             <div className={` ${classes.input}`}>
                                 <input 
                                     value={updateBizInfo.email}
-                                    type="text" 
+                                    onChange={({target:{value}})=>dispatch(bizActions.setUpdateBizInfo({email:value}))}
+                                    type="email" 
                                     placeholder='name@example.com' 
                                 />
                             </div>
@@ -75,6 +94,7 @@ const BuisnessInformation = ({tierHandler, showBizInfoTiersHandler})=>{
                             <div className={classes.input}>
                                 <input 
                                     value={updateBizInfo.phoneNumber}
+                                    onChange={({target:{value}})=>dispatch(bizActions.setUpdateBizInfo({phoneNumber:value}))}
                                     type="text" 
                                     placeholder='+234 -----' />
                             </div>
@@ -84,6 +104,7 @@ const BuisnessInformation = ({tierHandler, showBizInfoTiersHandler})=>{
                             <div className={classes.input}>
                                 <input 
                                     value={updateBizInfo.country}
+                                    onChange={({target:{value}})=>dispatch(bizActions.setUpdateBizInfo({country:value}))}
                                     type="text" 
                                     placeholder='Select a country' />
                             </div>
@@ -94,6 +115,7 @@ const BuisnessInformation = ({tierHandler, showBizInfoTiersHandler})=>{
                                 <input 
                                     className="w-100"
                                     value={updateBizInfo.address}
+                                    onChange={({target:{value}})=>dispatch(bizActions.setUpdateBizInfo({address:value}))}
                                     type="text" 
                                     placeholder='Enter a business Address' />
                             </div>
@@ -102,7 +124,7 @@ const BuisnessInformation = ({tierHandler, showBizInfoTiersHandler})=>{
                             <p className="fs-16 fw-500 mb-2 tertiary-color">Business Description</p>
                             <textarea 
                             value={updateBizInfo.description}
-                            
+                            onChange={({target:{value}})=>dispatch(bizActions.setUpdateBizInfo({description:value}))}
                             placeholder="Tell us more about your business" 
                             rows="5" 
                             cols="45" />
@@ -114,19 +136,28 @@ const BuisnessInformation = ({tierHandler, showBizInfoTiersHandler})=>{
                         <div className=''>
                             <label className='fs-16 fw-500 tertiary-color'>Instagram</label>
                             <div className={classes.input}>
-                                <input type="text" placeholder='@' />
+                                <input
+                                    value={updateBizInfo.instagram}
+                                    onChange={({target:{value}})=>dispatch(bizActions.setUpdateBizInfo({instagram:value}))}
+                                    type="text" placeholder='@' />
                             </div>
                         </div> 
                         <div className='mt-4 mb-4'>
                             <label className='fs-16 fw-500 tertiary-color'>Facebook</label>
                             <div className={classes.input}>
-                                <input type="text" placeholder='@' />
+                                <input
+                                    value={updateBizInfo.facebook}
+                                    onChange={({target:{value}})=>dispatch(bizActions.setUpdateBizInfo({facebook:value}))} 
+                                    type="text" placeholder='@' />
                             </div>
                         </div> 
                         <div className=''>
                             <label className='fs-16 fw-500 tertiary-color'>Twitter</label>
                             <div className={classes.input}>
-                                <input type="text" placeholder='@' />
+                                <input 
+                                    value={updateBizInfo.twitter}
+                                    onChange={({target:{value}})=>dispatch(bizActions.setUpdateBizInfo({twitter:value}))}
+                                    type="text" placeholder='@' />
                             </div>
                         </div>
                         <div className="mt-5 mb-4">
@@ -135,21 +166,23 @@ const BuisnessInformation = ({tierHandler, showBizInfoTiersHandler})=>{
                         </div>
                         <div>
                             <input 
-                             
+                             checked={updateBizInfo.ownerPaysTransactionCharge}
+                             onClick={()=>handleWhoPays('ownerPaysTransactionCharge')}
                             type="radio" 
                             name="transaction"
                             /><span className='fs-14 mx-2 fw-400 secondary-color'>Business Owner</span>
                         </div>
                         <div>
                             <input 
-                                onChange={({target:{value}})=>dispatch(bizActions.changeTransactionCharge({customer:value}))}
+                                checked={updateBizInfo.customerPaysTransactionCharge}
+                                onClick={()=>handleWhoPays('customerPaysTransactionCharge')}
                                 type="radio"
                                 name="transaction" 
                                 /><span className="fs-14 mx-2 fw-400 secondary-color">Customer</span>
                         </div>
                         <div className='mt-3 mb-2'>
                         <div>
-                            <button  className='btn-update w-100'>Save Changes</button>
+                            <button disabled={bizRequestState.loading} onClick={handleSubmit}  className='btn-default  w-100'>{bizRequestState.loading ? "Loading":"Save Changes"}</button>
                         </div>
                     </div>
                     </div>
@@ -163,25 +196,31 @@ const BuisnessInformation = ({tierHandler, showBizInfoTiersHandler})=>{
                 <div>
                     <div className={`mt-3 ${classes['image-upload']}`}>
                         <div className={`p-2 ${classes['image-upload-border']}`}>
-                            <div className={classes.image}>
-                                <img src={avatar.preview ? avatar.preview : "/dashboard/productImage.png"} alt="image" />
-                                <i className="centralize"><BiTrash /></i>
+                        <label className="cp" htmlFor="upload-button">
+                            {
+                                !avatar.preview && 
+                                    <div className="bckg2 p-2">
+                                    <i ><AiOutlineCloudUpload /></i>
+                                    <p className="fs-18 fw-400">Image should have a size limit of 5MB</p>
                             </div>
-                        </div>
-                    </div> 
-                    <div>
-                        <label className="" htmlFor="upload-button">
-                            {!avatar.preview ? 'Upload Avatar': 'Change Avatar'}
+                            }
+                            {
+                                avatar.preview &&  
+                                    <div className={classes.image}>
+                                        <img src={avatar.preview ? avatar.preview : "/dashboard/productImage.png"} alt="image" />
+                                        <i className="centralize"><BiTrash /></i>
+                                    </div>
+                            }
                         </label>
                         <input type="file" id="upload-button" style={{ display: 'none' }} onChange={handleChange} />
+                        </div>
                     </div>
                 </div>
                 <div className={`px-3 mt-3  ${classes['user-role']}`}>
                     <div>
                         <p className="fw-400 fs-16 secondary-color">Account Role</p>
-                        <p className="fw-600 fs-16 tertiary-color">Buisness Owner</p>
-
-                        <p className="text-color-1 fs-16 fw-500 mt-4">Manage Permissions <BsChevronRight /></p>
+                        <p className="fw-600 fs-16 tertiary-color">{updateBizInfo.role}</p>
+                        {updateBizInfo.role === 'owner' && <p className="text-color-1 fs-16 fw-500 mt-4">Manage Permissions <BsChevronRight /></p>}
                     </div>
                     <div>
                         <i><HiOutlineUsers /></i>

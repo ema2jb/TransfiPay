@@ -64,6 +64,11 @@ const bizSlice = createSlice({
         setActiveBizUsers(state, action){
           state.activeBizUsers = action.payload
         },
+        setUpdateBizInfo(state, action){
+          state.updateBizInfo = {
+            ...state.updateBizInfo, ...action.payload
+          }
+        }
         }
     
 })

@@ -13,30 +13,32 @@ const Tier1 = ()=>{
                 <p className="fs-16 fw-600 tertiary-color">UPLOAD DOCUMENTS</p>
                 <p>Select  the type of document you want to upload. (supported file format-JPEG, JPG)</p>
                 <div className="mt-4">
-                    <input type="radio" />
+                    <input type="radio" name="id_card" />
                     <label className="px-2">National ID card</label>
                 </div>
                 <div className="">
-                    <input type="radio" />
+                    <input type="radio" name="id_card" />
                     <label className="px-2">International passport</label>
                 </div>
             </div>
-            <div className='d-flex w-70'>
-                <div className={`mt-4 ${classes['image-upload']}`}>
+            <div className='d-flex w-70 '>
+                <div className={`mt-4 mb-5  ${classes['image-upload']}`}>
                     <div className={`p-2 ${classes['image-upload-border']}`}>
                         <div className={classes.image}>
                             <img src="/dashboard/productImage.png" alt="image" />
                             <i className="centralize"><BiTrash /></i>
                         </div>
                     </div>
+                    <p className="secondary-color fs-16 text-center  mt-3  ">Front view of ID</p>
                 </div>
-                <div className={`mx-3 mt-4  ${classes['image-upload']}`}>
+                <div className={`mx-3 mt-4 mb-5 ${classes['image-upload']}`}>
                     <div className={`p-3 bckg2 h-100`}>
                         <div className={classes['image-upload-border']}>
                             <i ><AiOutlineCloudUpload /></i>
                             <p className="fs-18 fw-400">Image should have a size limit of 5MB</p>
                         </div>
                     </div>
+                    <p className="secondary-color fs-16 text-center mt-3">Back view of ID</p>
                 </div>
             </div>
         </div>

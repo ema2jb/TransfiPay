@@ -79,7 +79,7 @@ export const getUserPendingInvitesFunc = (dispatch, bizActions, page, limit)=>{
 export const inviteUserFunc = (dispatch, bizActions, inviteeDetails, bizId)=>{
     dispatch(bizActions.changeBizRequestState(true))
     bizEndpoints.inviteUserToBizRequest(bizId, {...inviteeDetails, invitedUserId:inviteeId})
-        .then(({data:{data}})=>{
+        .then(({data:{data, meta}})=>{
             console.log(data)
             dispatch(bizActions.changeBizRequestState(false))
             cogoToast.success(meta.message, { position: 'top-center' })
@@ -93,7 +93,7 @@ export const inviteUserFunc = (dispatch, bizActions, inviteeDetails, bizId)=>{
 export const reAssignRoleFunc = (dispatch, bizActions, bizId, userDetails)=>{
     dispatch(bizActions.changeBizRequestState(true))
     bizEndpoints.reAssignRoleRequest(bizId, userDetails)
-        .then(({data:{data}})=>{
+        .then(({data:{data, meta}})=>{
             console.log(data)
             dispatch(bizActions.changeBizRequestState(false))
             cogoToast.success(meta.message, { position: 'top-center' })
@@ -107,7 +107,7 @@ export const reAssignRoleFunc = (dispatch, bizActions, bizId, userDetails)=>{
 export const deleteUserFromBizFunc = (dispatch, bizActions, bizId, userId)=>{
     dispatch(bizActions.changeBizRequestState(true))
     bizEndpoints.deleteUserFromBizRequest(bizId, userId)
-    .then(({data:{data}})=>{
+    .then(({data:{data, meta}})=>{
         console.log(data)
         dispatch(bizActions.changeBizRequestState(false))
         cogoToast.success(meta.message, { position: 'top-center' })
@@ -117,6 +117,48 @@ export const deleteUserFromBizFunc = (dispatch, bizActions, bizId, userId)=>{
             cogoToast.error(err.response.data.meta.message, { position: 'top-center' })
         })
 }
+
+export const updateBizInfoFunc = (dispatch, bizActions, data, formData) =>{
+    dispatch(bizActions.changeBizRequestState(true))
+    const bizId = data.id
+    const {id, verified, tierVerification,createdAt, updatedAt, role, image, ...bizInfo} = data
+    bizEndpoints.updateBizInfoRequest(bizId, bizInfo)
+    .then(({data:{data, meta}})=>{
+        console.log(data)
+        //dispatch(bizActions.changeBizRequestState(false))
+        const bizInfoSuccess = meta.message
+        //cogoToast.success(meta.message, { position: 'top-center' })
+        if(formData){
+            bizEndpoints.updateBizImageRequest(bizId, formData)
+            .then(({data:{data,meta}})=>{
+                console.log(data)
+                dispatch(bizActions.changeBizRequestState(false))
+                cogoToast.success(bizInfoSuccess, { position: 'top-center' })
+                cogoToast.success(meta.message, { position: 'top-center' })
+            })
+            .catch(err=>{
+                console.log(err)
+                dispatch(bizActions.changeBizRequestState(false))
+                err.response && 
+                err.response.data &&
+                err.response.meta &&
+                cogoToast.error(err.response.data.meta.message, { position: 'top-center' })
+            })
+        }else{
+            dispatch(bizActions.changeBizRequestState(false))
+            cogoToast.success(bizInfoSuccess, { position: 'top-center' })
+        }
+    }).catch(err=>{
+        console.log(err)
+        dispatch(bizActions.changeBizRequestState(false))
+        err.response && 
+        err.response.data &&
+        err.response.meta &&
+        cogoToast.error(err.response.data.meta.message, { position: 'top-center' })
+    })
+}
+
+
 
 
 export const createBizFunc = (dispatch, bizActions, createBiz)=>{
