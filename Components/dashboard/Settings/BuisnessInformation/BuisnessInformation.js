@@ -10,7 +10,7 @@ import {BsChevronRight} from 'react-icons/bs'
 import classes from '../Settings.module.scss'
 import TierModal from './TierModal'
 import { bizActions } from '../../../../Store/biz-slice'
-import { updateBizInfoFunc } from '../../../../requests/bizRequests'
+import { updateBizInfoFunc, updateBizLogoFunc } from '../../../../requests/bizRequests'
 
 
 
@@ -19,12 +19,15 @@ const BuisnessInformation = ({tierHandler, showBizInfoTiersHandler})=>{
 
     const [showModal, setShowModal] = useState(false)
     const {updateBizInfo, bizRequestState} = useSelector(state=>state.biz)
-    const [avatar, setAvatar] = useState({ preview: null, raw: null });
+    const [avatar, setAvatar] = useState({ preview:updateBizInfo.imageUrl, raw: null });
+
     const dispatch = useDispatch()
 
     const handleShowModal = (value) =>{
         setShowModal(value)
     }
+
+
 
     const handleChange = (e) => {
 		const file = e.target.files[0];
@@ -39,6 +42,7 @@ const BuisnessInformation = ({tierHandler, showBizInfoTiersHandler})=>{
 			preview,
 			raw: e.target.files[0],
 		});
+        updateBizLogoFunc(dispatch, bizActions, updateBizInfo.id, e.target.files[0])
 	};
 
     const handleWhoPays = (name)=>{
@@ -51,7 +55,7 @@ const BuisnessInformation = ({tierHandler, showBizInfoTiersHandler})=>{
     }
 
     const handleSubmit = ()=>{
-        updateBizInfoFunc(dispatch, bizActions, updateBizInfo, avatar.raw)
+        updateBizInfoFunc(dispatch, bizActions, updateBizInfo)
     }
 
     return <>
@@ -68,10 +72,10 @@ const BuisnessInformation = ({tierHandler, showBizInfoTiersHandler})=>{
                     <div className={` ${classes.form}`}>
                         <div className={`mb-3 mt-3`}>
                             <label className='fs-16 fw-500 tertiary-color'>Business name</label>
-                            <div className={`mb-0  ${classes.input}`}>
+                            <div className={`mb-0 ${updateBizInfo.role !=="owner" && 'bckg2'}  ${classes.input}`}>
                                 <input 
                                     value={updateBizInfo.name}
-                                    onChange={({target:{value}})=>dispatch(bizActions.setUpdateBizInfo({name:value}))}
+                                    onChange={({target:{value}})=>updateBizInfo.role==="owner" && dispatch(bizActions.setUpdateBizInfo({name:value}))}
                                     className="w-100" 
                                     type="text" 
                                     placeholder='Enter as written on official documents' />
@@ -80,10 +84,10 @@ const BuisnessInformation = ({tierHandler, showBizInfoTiersHandler})=>{
                         </div> 
                         <div className=''>
                             <label className='fs-16 fw-500 tertiary-color'>Email Address</label>
-                            <div className={` ${classes.input}`}>
+                            <div className={`${updateBizInfo.role !=="owner" && 'bckg2'} ${classes.input}`}>
                                 <input 
                                     value={updateBizInfo.email}
-                                    onChange={({target:{value}})=>dispatch(bizActions.setUpdateBizInfo({email:value}))}
+                                    onChange={({target:{value}})=>updateBizInfo.role==="owner" && dispatch(bizActions.setUpdateBizInfo({email:value}))}
                                     type="email" 
                                     placeholder='name@example.com' 
                                 />
@@ -91,31 +95,31 @@ const BuisnessInformation = ({tierHandler, showBizInfoTiersHandler})=>{
                         </div> 
                         <div className=''>
                             <label className='fs-16 fw-500 tertiary-color'>Phone number</label>
-                            <div className={classes.input}>
+                            <div className={`${updateBizInfo.role !=="owner" && 'bckg2'} ${classes.input}`}>
                                 <input 
                                     value={updateBizInfo.phoneNumber}
-                                    onChange={({target:{value}})=>dispatch(bizActions.setUpdateBizInfo({phoneNumber:value}))}
+                                    onChange={({target:{value}})=>updateBizInfo.role==="owner" && dispatch(bizActions.setUpdateBizInfo({phoneNumber:value}))}
                                     type="text" 
                                     placeholder='+234 -----' />
                             </div>
                         </div> 
                         <div className=''>
                             <label className='fs-16 fw-500 tertiary-color'>Country</label>
-                            <div className={classes.input}>
+                            <div className={`${updateBizInfo.role !=="owner" && 'bckg2'} ${classes.input}`}>
                                 <input 
                                     value={updateBizInfo.country}
-                                    onChange={({target:{value}})=>dispatch(bizActions.setUpdateBizInfo({country:value}))}
+                                    onChange={({target:{value}})=>updateBizInfo.role==="owner" && dispatch(bizActions.setUpdateBizInfo({country:value}))}
                                     type="text" 
                                     placeholder='Select a country' />
                             </div>
                         </div> 
                         <div className=''>
                             <label className='fs-16 fw-500 tertiary-color'>Business Address</label>
-                            <div className={classes.input}>
+                            <div className={`${updateBizInfo.role !=="owner" && 'bckg2'} ${classes.input}`}>
                                 <input 
                                     className="w-100"
                                     value={updateBizInfo.address}
-                                    onChange={({target:{value}})=>dispatch(bizActions.setUpdateBizInfo({address:value}))}
+                                    onChange={({target:{value}})=>updateBizInfo.role==="owner" && dispatch(bizActions.setUpdateBizInfo({address:value}))}
                                     type="text" 
                                     placeholder='Enter a business Address' />
                             </div>
@@ -123,8 +127,9 @@ const BuisnessInformation = ({tierHandler, showBizInfoTiersHandler})=>{
                         <div className="mt-4">
                             <p className="fs-16 fw-500 mb-2 tertiary-color">Business Description</p>
                             <textarea 
+                            className={`${updateBizInfo.role !=="owner" && 'bckg2'}`}
                             value={updateBizInfo.description}
-                            onChange={({target:{value}})=>dispatch(bizActions.setUpdateBizInfo({description:value}))}
+                            onChange={({target:{value}})=> updateBizInfo.role==="owner" && dispatch(bizActions.setUpdateBizInfo({description:value}))}
                             placeholder="Tell us more about your business" 
                             rows="5" 
                             cols="45" />
@@ -135,56 +140,62 @@ const BuisnessInformation = ({tierHandler, showBizInfoTiersHandler})=>{
                         </div>
                         <div className=''>
                             <label className='fs-16 fw-500 tertiary-color'>Instagram</label>
-                            <div className={classes.input}>
+                            <div className={`${updateBizInfo.role !=="owner" && 'bckg2'} ${classes.input}`}>
                                 <input
                                     value={updateBizInfo.instagram}
-                                    onChange={({target:{value}})=>dispatch(bizActions.setUpdateBizInfo({instagram:value}))}
+                                    onChange={({target:{value}})=>updateBizInfo.role==="owner" && dispatch(bizActions.setUpdateBizInfo({instagram:value}))}
                                     type="text" placeholder='@' />
                             </div>
                         </div> 
                         <div className='mt-4 mb-4'>
                             <label className='fs-16 fw-500 tertiary-color'>Facebook</label>
-                            <div className={classes.input}>
+                            <div className={`${updateBizInfo.role !=="owner" && 'bckg2'} ${classes.input}`}>
                                 <input
                                     value={updateBizInfo.facebook}
-                                    onChange={({target:{value}})=>dispatch(bizActions.setUpdateBizInfo({facebook:value}))} 
+                                    onChange={({target:{value}})=>updateBizInfo.role==="owner" && dispatch(bizActions.setUpdateBizInfo({facebook:value}))} 
                                     type="text" placeholder='@' />
                             </div>
                         </div> 
                         <div className=''>
                             <label className='fs-16 fw-500 tertiary-color'>Twitter</label>
-                            <div className={classes.input}>
+                            <div className={`${updateBizInfo.role !=="owner" && 'bckg2'} ${classes.input}`}>
                                 <input 
                                     value={updateBizInfo.twitter}
-                                    onChange={({target:{value}})=>dispatch(bizActions.setUpdateBizInfo({twitter:value}))}
+                                    onChange={({target:{value}})=>updateBizInfo.role==="owner" && dispatch(bizActions.setUpdateBizInfo({twitter:value}))}
                                     type="text" placeholder='@' />
                             </div>
                         </div>
-                        <div className="mt-5 mb-4">
-                            <p className='fs-16 fw-600 tertiary-color'>Other Store Details</p>
-                            <p className="fs-14 fw-600 tertiary-color">Transaction charge: <span className="secondary-color">Chose who pays the transaction charge</span></p>
-                        </div>
-                        <div>
-                            <input 
-                             checked={updateBizInfo.ownerPaysTransactionCharge}
-                             onClick={()=>handleWhoPays('ownerPaysTransactionCharge')}
-                            type="radio" 
-                            name="transaction"
-                            /><span className='fs-14 mx-2 fw-400 secondary-color'>Business Owner</span>
-                        </div>
-                        <div>
-                            <input 
-                                checked={updateBizInfo.customerPaysTransactionCharge}
-                                onClick={()=>handleWhoPays('customerPaysTransactionCharge')}
-                                type="radio"
-                                name="transaction" 
-                                /><span className="fs-14 mx-2 fw-400 secondary-color">Customer</span>
-                        </div>
-                        <div className='mt-3 mb-2'>
-                        <div>
-                            <button disabled={bizRequestState.loading} onClick={handleSubmit}  className='btn-default  w-100'>{bizRequestState.loading ? "Loading":"Save Changes"}</button>
-                        </div>
-                    </div>
+                        {
+                            updateBizInfo.role === 'owner' && 
+                            <>
+                            <div className="mt-5 mb-4">
+                                <p className='fs-16 fw-600 tertiary-color'>Other Store Details</p>
+                                <p className="fs-14 fw-600 tertiary-color">Transaction charge: <span className="secondary-color">Chose who pays the transaction charge</span></p>
+                            </div>
+                            <div>
+                                <input 
+                                checked={updateBizInfo.ownerPaysTransactionCharge}
+                                onClick={()=>handleWhoPays('ownerPaysTransactionCharge')}
+                                type="radio" 
+                                name="transaction"
+                                /><span className='fs-14 mx-2 fw-400 secondary-color'>Business Owner</span>
+                            </div>
+                            <div>
+                                <input 
+                                    checked={updateBizInfo.customerPaysTransactionCharge}
+                                    onClick={()=>handleWhoPays('customerPaysTransactionCharge')}
+                                    type="radio"
+                                    name="transaction" 
+                                    /><span className="fs-14 mx-2 fw-400 secondary-color">Customer</span>
+                            </div>
+                            <div className='mt-3 mb-2'>
+                                <div>
+                                    <button disabled={bizRequestState.loading} onClick={handleSubmit}  className='btn-default  w-100'>{bizRequestState.loading ? "Loading":"Save Changes"}</button>
+                                </div>
+                            </div>
+                        </>
+                        }
+                       
                     </div>
                 </div>
             </div>

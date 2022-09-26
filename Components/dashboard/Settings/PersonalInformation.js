@@ -10,13 +10,13 @@ const PersonalInformation = ()=>{
                         <div className={`w-50 ${classes['form-group']}`}>
                             <label className='fs-16 fw-500 text-color-3'>Fist Name</label>
                             <div className={classes.input}>
-                                <input type="text" placeholder='first name' />
+                                <input className="w-100" type="text" placeholder='first name' />
                             </div>
                         </div>
                         <div className={`w-50 ${classes['form-group']}`}>
                             <label className='fs-16 fw-500 text-color-3'>Last Name</label>
                             <div className={classes.input}>
-                                <input type="text" placeholder='last name' />
+                                <input className="w-100" type="text" placeholder='last name' />
                             </div>
                         </div>
                     </div>
@@ -24,13 +24,13 @@ const PersonalInformation = ()=>{
                         <div className={`w-50 ${classes['form-group']}`}>
                             <label className='fs-16 fw-500 text-color-3'>Email Address</label>
                             <div className={classes.input}>
-                                <input type="text" placeholder='name@example.com' />
+                                <input className="w-100" type="email" placeholder='name@example.com' />
                             </div>
                         </div>
                         <div className={`w-50 ${classes['form-group']}`}>
                             <label className='fs-16 fw-500 text-color-3'>Country</label>
                             <div className={classes.input}>
-                                <input className="fs-16 fw-400 secondary-color" type="text" placeholder='Country' />
+                                <input className="w-100 fs-16 fw-400 secondary-color" type="text" placeholder='Country' />
                             </div>
                         </div>
                     </div>

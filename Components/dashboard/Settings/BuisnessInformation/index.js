@@ -17,7 +17,7 @@ const BizInfoIndex = ({showBizInfoTiersHandler, tier, tierHandler}) =>{
         <div>
             <div className={tier!=="bizInfo"  && 'd-none'}>
                 <BuisnessInformation tierHandler={tierHandler} showBizInfoTiersHandler={showBizInfoTiersHandler} />
-                <BuisnessInformation1 />
+                {/*<BuisnessInformation1 />*/}
             </div>
             <div className={tier!=="tier1"  && 'd-none'}>
                 <Tier1 />
