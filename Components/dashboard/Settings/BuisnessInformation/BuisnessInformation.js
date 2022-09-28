@@ -87,7 +87,7 @@ const BuisnessInformation = ({tierHandler, showBizInfoTiersHandler})=>{
                             <div className={`${updateBizInfo.role !=="owner" && 'bckg2'} ${classes.input}`}>
                                 <input 
                                     value={updateBizInfo.email}
-                                    onChange={({target:{value}})=>updateBizInfo.role==="owner" && dispatch(bizActions.setUpdateBizInfo({email:value}))}
+                                    onChange={({target:{value}})=>updateBizInfo.role==="owner" &&       dispatch(bizActions.setUpdateBizInfo({email:value}))}
                                     type="email" 
                                     placeholder='name@example.com' 
                                 />

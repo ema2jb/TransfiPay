@@ -47,6 +47,10 @@ const Login = ()=>{
                     setItem('userDetails', data)
                     setItem('accessToken', {token:meta.token})
                     dispatch(authActions.changeAuthRequestState({isAuthenticated:true}))
+                    setLoginDetails({
+                        email:"",
+                        password:""
+                    })
                     router.push('/dashboard')
                 }).catch(err=>{
                    dispatch(authActions.changeAuthRequestState({loading:false}))

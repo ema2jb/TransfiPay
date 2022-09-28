@@ -6,6 +6,21 @@ const {getItem} = useLocalStorage()
 const storedActiveBiz = getItem('activeBiz')
 
 
+const initialBizInfo = {
+        name:"",
+        email:"",
+        phoneNumber:"",
+        country:"",
+        address:"",
+        description:"",
+        instagram:"",
+        facebook:"",
+        twitter:"",
+        ownerPaysTransactionCharge:false,
+        customerPaysTransactionCharge:false
+}
+
+
 const initialState = {
     bizRequestState:{
       loading:false
@@ -68,6 +83,9 @@ const bizSlice = createSlice({
           state.updateBizInfo = {
             ...state.updateBizInfo, ...action.payload
           }
+        },
+        reetBizInfo(state, action){
+          state.createBiz = {...state.createBiz, ...initialBizInfo}
         }
         }
     

@@ -7,6 +7,7 @@ import Signup from "../../Components/dashboard/auth/Signup"
 import Login from "../../Components/dashboard/auth/Login"
 import ForgotPassword from "../../Components/dashboard/auth/ForgotPassword"
 import ResetPassword from "../../Components/dashboard/auth/ResetPassword"
+import Otp from '../../Components/dashboard/auth/otp'
 import { authActions } from "../../Store/auth-slice"
 import { confirmOtpRequest } from "../../requests/auth"
 import useLocalStorage from "../../hooks/useLocalStorage"
@@ -18,6 +19,7 @@ const Dashboard =()=>{
         showSignupPage,
         showForgotPasswordPage,
         showResetPasswordPage,
+        showOtpPage
     } = useSelector(state=>state.auth.authAppState)
 
     const router = useRouter()
@@ -29,6 +31,8 @@ const Dashboard =()=>{
 
     const dispatch = useDispatch()
     const {setItem} = useLocalStorage()
+
+    /*
     
     if (Boolean(auth) === true){
         if(action ===   've'){
@@ -45,8 +49,10 @@ const Dashboard =()=>{
             dispatch(authActions.changeAuthRequestState({loading:false}))
             })
         }
-
     }
+
+    */
+  
     console.log(auth)
 
 
@@ -77,6 +83,7 @@ const Dashboard =()=>{
                             {showSignupPage && <Signup />}
                             {showLoginPage && <Login />}
                             {showForgotPasswordPage && <ForgotPassword />}
+                            {showOtpPage && <Otp/>}
                         </div>
                     }
                 </div>

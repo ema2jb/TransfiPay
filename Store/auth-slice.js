@@ -9,6 +9,10 @@ const userDetails = getItem('userDetails')
 const accessToken = getItem('accessToken')
 
 const initialAuthState = {
+    authDetails:{
+      otpId:"",
+      userId:""
+    },
     authRequestState:{
       error:false,
       loading:false,
@@ -34,6 +38,10 @@ const initialAuthState = {
         state.authRequestState = {...state.authRequestState, ...authRequestState }
       },
 
+       storeAuthDetails(state, action){
+          state.authDetails = {...state.authDetails, ...action.payload}
+        },
+
       changeAuthAppState(state, action){
         const page = action.payload
         for (const item in state.authAppState){
@@ -44,10 +52,13 @@ const initialAuthState = {
         state.authAppState = {...state.authAppState, [page]:!state.authAppState[page]}
       },
 
+      
       storeUserDetails(state,action){
         state.userDetials = action.payload
       }
-    },
+
+      
+    }
   });
 
   export const authActions = authSlice.actions

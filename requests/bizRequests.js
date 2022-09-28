@@ -2,7 +2,7 @@ import * as bizEndpoints from './biz'
 import { createBizSchema } from '../FormValidations/biz.validate'
 import cogoToast from 'cogo-toast'
 import useLocalStorage from '../hooks/useLocalStorage'
-import { bizActions } from '../Store/biz-slice'
+import { UIActions } from '../Store/ui-slice'
 
 const {setItem} = useLocalStorage()
 
@@ -181,6 +181,7 @@ export const createBizFunc = (dispatch, bizActions, createBiz)=>{
                     console.log(data)
                     dispatch(bizActions.changeBizRequestState(false))
                     cogoToast.success(meta.message, { position: 'top-center' })
+                    dispatch(bizActions.resetBizInfo())
                     //getAllMyBizFunc(dispatch, bizActions, 1, 5)
                 }).catch(err=>{
                    console.log(err)

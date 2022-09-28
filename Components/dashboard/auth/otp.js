@@ -1,16 +1,14 @@
 import {useState} from 'react'
-
 import { useDispatch, useSelector } from 'react-redux';
 import { authActions } from '../../../Store/auth-slice';
 import { OtpSchema } from '../../../FormValidations/auth.validate';
 import { confirmOtpRequest, resendOtpRequest } from '../../../requests/auth';
 import useLocalStorage from '../../../hooks/useLocalStorage'
+import cogoToast from 'cogo-toast'
 
 
 const Otp = ()=>{
-
     const {setItem} = useLocalStorage()
-
     const [otp, setOtp] = useState({
         otpCode:''
     })
@@ -23,7 +21,6 @@ const Otp = ()=>{
     const resendToken = () =>{
         resendOtpRequest(authDetails).then(({data:{data}})=>{
             dispatch(authActions.changeAuthRequestState({loading:false}))
-
             console.log('token sent')
         }).catch(err=>{
            console.log(err)
@@ -44,8 +41,13 @@ const Otp = ()=>{
                     dispatch(authActions.storeAuthDetails({...data, ...{token}}))
                     setItem('authDetails', {...data, ...{token}})
                     dispatch(authActions.changeAuthAppState('showLoginPage'))
+                    setOtp({otpCode:''})
                 }).catch(err=>{
                    console.log(err)
+                    err.response && 
+                    err.response.data &&
+                    err.response.meta &&
+                    cogoToast.error(err.response.data.meta.message, { position: 'top-center' })
                    dispatch(authActions.changeAuthRequestState({loading:false}))
                 })
             }
