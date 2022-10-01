@@ -205,7 +205,7 @@ const BuisnessInformation = ({tierHandler, showBizInfoTiersHandler})=>{
                     <p className="fs-16 fw-500 secondary-color">Image must be in PNG format with a file size of 5 MB</p>
                 </div>
                 <div>
-                    <div className={`mt-3 ${classes['image-upload']}`}>
+                    <div className={`mt-3 w-50 ${classes['image-upload']}`}>
                         <div className={`p-2 ${classes['image-upload-border']}`}>
                         <label className="cp" htmlFor="upload-button">
                             {

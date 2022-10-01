@@ -424,6 +424,9 @@ input:focus{
   animation: slide-in 300ms ease-out forwards;
 }
 
+.w-30{
+  width:30%
+}
 .w-35{
   width:50%;
 }

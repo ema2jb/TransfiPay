@@ -18,12 +18,16 @@ const Collaborate = ()=>{
     const dispatch = useDispatch()
 
     const [toggleModal, setToggleModal] = useState('')
-    const [userId, setUserId] = useState('')
+    const [userDetails, setUserDetails] = useState({
+        id:"",
+        role:"",
+        email:""
+    })
 
     const {activeBiz, activeBizUsers} = useSelector(state=>state.biz)
 
-    const handleToggleModal =(value, id)=>{
-        setUserId(id)
+    const handleToggleModal =(value, id, role, email)=>{
+        setUserDetails(prev=>({...prev, id, role, email}))
         setToggleModal(value)
     }
 
@@ -96,10 +100,10 @@ const Collaborate = ()=>{
                             <td>{user.profile.email}</td>
                             <td><span className="bckg10 text-is-white p-2 br-4">{user.role}</span></td>
                             <td  className="text-color-1">
-                                <span onClick={()=>handleToggleModal('reassign', user.profile.id)} className={`mr-5 ${classes.tooltip}`}>Reassign
+                                <span onClick={()=>handleToggleModal('reassign', user.profile.id, user.role, user.email)} className={`mr-5 ${classes.tooltip}`}>Reassign
                                     <span className={classes.tooltiptext}>Only members who are owners or administrators can reassign team roles</span>
                                 </span>
-                                <span onClick={()=>handleToggleModal('remove', user.profile.id)} className={classes.tooltip}>Remove
+                                <span onClick={()=>handleToggleModal('remove', user.profile.id, user.role, user.email)} className={classes.tooltip}>Remove
                                     <span className={classes.tooltiptext}>Only members who are owners or administrators can reassign team roles.</span>
                                 </span>
                             </td>
@@ -111,10 +115,10 @@ const Collaborate = ()=>{
         </div>
         </div>
         <div>
-            <ReAssign toggleModal={toggleModal} handleToggleModal={handleToggleModal} />
+            <ReAssign userDetails={userDetails} toggleModal={toggleModal} handleToggleModal={handleToggleModal} />
         </div>
         <div>
-            <Remove userId={userId} toggleModal={toggleModal} handleToggleModal={handleToggleModal} />
+            <Remove userId={userDetails.id} toggleModal={toggleModal} handleToggleModal={handleToggleModal} />
         </div>
     </>
 }

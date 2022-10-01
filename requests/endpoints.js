@@ -44,12 +44,13 @@ export const rejectBizInvitation = (invitationId) => `${BASE_URL}business/user/i
 
 export const uploadDocFront = (bizId, docType) => `${BASE_URL}business/${bizId}/kyc/upload/document/${docType}/front`  //put request
 
-export const uploadDocBack = (bizId, docType) => `${BASE_URL}business/${bizId}/kyc/upload/document/${docType}/front`    //put request
+export const uploadDocBack = (bizId, docType) => `${BASE_URL}business/${bizId}/kyc/upload/document/${docType}/back`    //put request
 
 export const uploadAddressProof = (bizId) => `${BASE_URL}business/${bizId}/kyc/upload/proof-of-address` //put request
 
+export const tier1 = (bizId) =>`${BASE_URL}business/${bizId}/kyc/tier-1/submit`
 
-
+export const tier2 = (bizId) =>`${BASE_URL}business/${bizId}/kyc/tier-2/submit`
 
 
 

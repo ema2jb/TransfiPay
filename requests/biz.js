@@ -14,7 +14,9 @@ import {
     rejectBizInvitation,
     uploadDocFront,
     uploadDocBack,
-    uploadAddressProof
+    uploadAddressProof,
+    tier1,
+    tier2
     } from './endpoints'
 
     import useLocalStorage from '../hooks/useLocalStorage';
@@ -159,9 +161,27 @@ import {
     export const uploadAddressProofRequest = async(bizId, _data) =>{
         const response = await  axios({
               method: "put",
-              url: uploadDocBack(bizId),
+              url: uploadAddressProof(bizId),
               data: _data,
           })
+        return response
+    }
+
+    export const tier1Request = async(bizId, _data)=>{
+        const response = await axios({
+            method:"post",
+            url:tier1(bizId),
+            data:_data
+        })
+        return response
+    }
+
+    export const tier2Request = async(bizId, _data)=>{
+        const response = await axios({
+            method:"post",
+            url:tier2(bizId),
+            data:_data
+        })
         return response
     }
 

@@ -78,7 +78,7 @@ export const getUserPendingInvitesFunc = (dispatch, bizActions, page, limit)=>{
 
 export const inviteUserFunc = (dispatch, bizActions, inviteeDetails, bizId)=>{
     dispatch(bizActions.changeBizRequestState(true))
-    bizEndpoints.inviteUserToBizRequest(bizId, {...inviteeDetails, invitedUserId:inviteeId})
+    bizEndpoints.inviteUserToBizRequest(bizId, inviteeDetails)
         .then(({data:{data, meta}})=>{
             console.log(data)
             dispatch(bizActions.changeBizRequestState(false))
@@ -141,9 +141,6 @@ export const updateBizInfoFunc = (dispatch, bizActions, data) =>{
     }).catch(err=>{
         console.log(err)
         dispatch(bizActions.changeBizRequestState(false))
-        err.response && 
-        err.response.data &&
-        err.response.meta &&
         cogoToast.error(err.response.data.meta.message, { position: 'top-center' })
     })
 }
@@ -161,14 +158,90 @@ export const updateBizLogoFunc = (dispatch, bizActions, bizId, imagePreview)=>{
     .catch(err=>{
         console.log(err)
         dispatch(bizActions.changeBizRequestState(false))
-        err.response && 
-        err.response.data &&
-        err.response.meta &&
         cogoToast.error(err.response.data.meta.message, { position: 'top-center' })
     })    
 }
 
+export const uploadDocFrontFunc = (dispatch, bizActions, bizId, docType, imagePreview)=>{
+    const formData = new FormData()
+    formData.append('document', imagePreview)
+    bizEndpoints.uploadDocFrontRequest(bizId, docType, formData)
+    .then(({data:{data,meta}})=>{
+        console.log(data)
+        dispatch(bizActions.changeBizRequestState(false))
+        cogoToast.success(meta.message, { position: 'top-center' })   
+    })
+    .catch(err=>{
+        console.log(err)
+        dispatch(bizActions.changeBizRequestState(false))
+        cogoToast.error(err.response.data.meta.message, { position: 'top-center'})
+    })    
+}
 
+
+export const uploadDocBackFunc = (dispatch, bizActions, bizId, docType, imagePreview)=>{
+    const formData = new FormData()
+    formData.append('document', imagePreview)
+    bizEndpoints.uploadDocBackRequest(bizId, docType, formData)
+    .then(({data:{data,meta}})=>{
+        console.log(data)
+        dispatch(bizActions.changeBizRequestState(false))
+        cogoToast.success(meta.message, { position: 'top-center' })   
+    })
+    .catch(err=>{
+        console.log(err)
+        dispatch(bizActions.changeBizRequestState(false))
+        cogoToast.error(err.response.data.meta.message, { position: 'top-center' })
+    })    
+}
+
+export const uploadProofOfAddressFunc = (dispatch, bizActions, bizId, docType, imagePreview)=>{
+    const formData = new FormData()
+    formData.append('document', imagePreview)
+    bizEndpoints.uploadAddressProofRequest(bizId, docType, formData)
+    .then(({data:{data,meta}})=>{
+        console.log(data)
+        dispatch(bizActions.changeBizRequestState(false))
+        cogoToast.success(meta.message, { position: 'top-center' })   
+    })
+    .catch(err=>{
+        console.log(err)
+        dispatch(bizActions.changeBizRequestState(false))
+        cogoToast.error(err.response.data.meta.message, { position: 'top-center' })
+    })    
+}
+
+export const tier1Func = (dispatch, bizActions,bizId, data)=>{
+    dispatch(bizActions.changeBizRequestState(true))
+    bizEndpoints.tier1Request(bizId, data).then(({data:{data, meta}})=>{
+        console.log(data)
+        dispatch(bizActions.changeBizRequestState(false))
+        cogoToast.success(meta.message, { position: 'top-center' })
+        dispatch(bizActions.resetBizInfo())
+        //getAllMyBizFunc(dispatch, bizActions, 1, 5)
+    }).catch(err=>{
+        console.log(err)
+        dispatch(bizActions.changeBizRequestState(false))
+        cogoToast.error(err.response.data.meta.message, { position: 'top-center' })
+    })
+                
+}
+
+export const tier2Func = (dispatch, bizActions,bizId, data)=>{
+    dispatch(bizActions.changeBizRequestState(true))
+    bizEndpoints.tier2Request(bizId, data).then(({data:{data, meta}})=>{
+        console.log(data)
+        dispatch(bizActions.changeBizRequestState(false))
+        cogoToast.success(meta.message, { position: 'top-center' })
+        dispatch(bizActions.resetBizInfo())
+        //getAllMyBizFunc(dispatch, bizActions, 1, 5)
+    }).catch(err=>{
+        console.log(err)
+        dispatch(bizActions.changeBizRequestState(false))
+        cogoToast.error(err.response.data.meta.message, { position: 'top-center' })
+    })
+                
+}
 
 
 export const createBizFunc = (dispatch, bizActions, createBiz)=>{

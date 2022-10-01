@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import {HiOutlineChevronDown} from 'react-icons/hi'
 import {useDispatch, useSelector} from 'react-redux'
+import Select from 'react-select';
 
 import Modal from '../../Modals'
 import classes from './Teams.module.scss'
@@ -9,20 +10,18 @@ import { reAssignRoleFunc } from '../../../../requests/bizRequests'
 
 
 
-const ReAssign = ({handleToggleModal, toggleModal}) =>{
+const ReAssign = ({handleToggleModal, toggleModal, userDetails}) =>{
 
     const [successful, setSuccessful] = useState(false)
-    const [teamMemberDetails, setTeamMemberDetails] = useState({
-        email:"",
-        role:""
-    })
+    const [role, setRole] = useState('')
+    const [selectedRole, setSelectedRole] = useState({value:"", label:""})
     
     const dispatch = useDispatch()
     const bizId = useSelector(state=>state.biz.activeBiz.id)
     const loading = useSelector(state=>state.biz.bizRequestState.loading)
 
     const submitHandler = ()=>{
-       reAssignRoleFunc(dispatch, bizActions, bizId, teamMemberDetails)
+       reAssignRoleFunc(dispatch, bizActions, bizId, {email:userDetails.email, role})
        /*
        setSuccessful(true)
         handleToggleModal("")
@@ -32,6 +31,24 @@ const ReAssign = ({handleToggleModal, toggleModal}) =>{
         }, 1000)
         */
     }
+
+    const roleOptions = [
+		{ value: 'Administrator', label: 'Administrator' },
+		{ value: 'Operational role', label: 'Operational role' },
+        { value: 'Customer support', label: 'Customer support' },
+        { value: 'Basic user', label: 'Basic user' },
+	];
+
+    const customStyles = {
+		control: (provided, state) => ({
+			...provided,
+			color: '#6E7191',
+            border: '1px solid #CBD5E1',
+            'border-radius': '4px',
+            'margin-bottom': '1.3rem',
+            width:'50%'
+		}),
+	};
 
     return <>
         <div className={toggleModal !== 'reassign' && 'd-none'}>
@@ -44,23 +61,25 @@ const ReAssign = ({handleToggleModal, toggleModal}) =>{
                 <hr></hr>
                 <div>
                     <label>Team member</label>
-                    <div className={`space-between ${classes.input}`}>
-                        <input onChange={({target:{value}})=>setTeamMemberDetails(prev=>({...prev, email:value}))} type="text" placeholder='David Khalid' />
-                        <i><HiOutlineChevronDown /></i>
+                    <div className={`${classes.input}`}>
+                        <input className="w-100" value={userDetails.email || '@example.com'} type="email" placeholder='David Khalid' />
                     </div>
                 </div>
                 <div className=" mt-4">
-                    <p>Curent role: <span className=" mx-3 p-2 text-is-white bckg11 br-4">Owner</span></p>
+                    <p>Curent role: <span className=" mx-3 p-2 text-is-white bckg11 br-4">{userDetails.role || 'owner'}</span></p>
                 </div>
                 <div className="mt-4">
-                    <p>reassign to:
-                        <select onChange={({target:{value}})=>setTeamMemberDetails(prev=>({...prev, role:value}))} className="mx-3 py-2">
-                            <option className={` py-4 fs-16 fs-400 tertiary-color ${classes.option}`} value="Administrator">administrator</option>
-                            <option className={` fs-16 fs-400 tertiary-color ${classes.option}`} value="Operational role">Operational role</option>
-                            <option className={` fs-16 fs-400 tertiary-color ${classes.option}`} value="Customer support">Customer support</option>
-                            <option className={` fs-16 fs-400 tertiary-color ${classes.option}`} value="Basic User">Basic User</option>
-                        </select>
-                    </p>
+                    <p>reassign to:</p>
+                    <Select
+                        onChange={(selectedOption) =>{
+                            setRole(selectedOption.value)
+                            setSelectedRole(selectedOption)
+                            }
+                        }
+                        value={selectedRole}
+                        options={roleOptions}
+                        styles={customStyles}
+                    />
                 </div>
                 <div className='justify-right mt-5 mb-2'>
                     <div>

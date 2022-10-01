@@ -15,6 +15,7 @@ const Invite = ()=>{
     const dispatch = useDispatch()
     const inviteeDetails = useSelector(state=>state.biz.bizInviteeDetails)
     const bizId = useSelector(state=>state.biz.activeBiz.id)
+    const {activeBiz, activeBizUsers} = useSelector(state=>state.biz)
     const loading = useSelector(state=>state.biz.bizRequestState.loading)
 
     const submitHandler = ()=>{
