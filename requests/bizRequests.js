@@ -195,10 +195,10 @@ export const uploadDocBackFunc = (dispatch, bizActions, bizId, docType, imagePre
     })    
 }
 
-export const uploadProofOfAddressFunc = (dispatch, bizActions, bizId, docType, imagePreview)=>{
+export const uploadProofOfAddressFunc = (dispatch, bizActions, bizId, imagePreview)=>{
     const formData = new FormData()
     formData.append('document', imagePreview)
-    bizEndpoints.uploadAddressProofRequest(bizId, docType, formData)
+    bizEndpoints.uploadAddressProofRequest(bizId, formData)
     .then(({data:{data,meta}})=>{
         console.log(data)
         dispatch(bizActions.changeBizRequestState(false))

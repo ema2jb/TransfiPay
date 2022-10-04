@@ -25,6 +25,7 @@ const Collaborate = ()=>{
     })
 
     const {activeBiz, activeBizUsers} = useSelector(state=>state.biz)
+    console.log(activeBiz.id)
 
     const handleToggleModal =(value, id, role, email)=>{
         setUserDetails(prev=>({...prev, id, role, email}))
@@ -32,7 +33,7 @@ const Collaborate = ()=>{
     }
 
     useEffect(()=>{
-        activeBiz && activeBiz.id && getBizUsersFunc(activeBiz.id)
+        activeBiz && activeBiz.id && getBizUsersFunc(dispatch, bizActions, activeBiz.id)
     }, [])
 
     return <>

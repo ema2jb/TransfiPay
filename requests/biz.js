@@ -74,6 +74,7 @@ import {
     }
 
     export const getBizUsersRequest = async(bizId) =>{
+        console.log(bizId)
         const response = await  axios({
               method: "get",
               url: getBizUsers(bizId)

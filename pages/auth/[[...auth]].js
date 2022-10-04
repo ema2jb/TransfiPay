@@ -59,10 +59,10 @@ const Dashboard =()=>{
     return <>
         <div className="dashboard-auth">
             <div className="row">
-                <div className="col-6 auth-slider">
+                <div className="d-none d-md-block col-6 auth-slider">
                     <AuthSlider />
                 </div>
-                <div className="col-6">
+                <div className="col-12 col-md-6 ">
 
                     {Boolean(auth) && (action === 've') && 
                         <div className="d-flex flex-column mt-20 align-items-center h-100">
@@ -77,9 +77,12 @@ const Dashboard =()=>{
                            <ResetPassword otpCode={otpCode} otpId={otpId} userId={userId} />
                         </div>
                     }
-
+                    
                     {!Boolean(auth) &&
-                        <div>
+                        <div className="auth-form">
+                            <div className="text-center authLogo">
+                                <img src="dashboard/authLogo.png" alt="logo image" />
+                            </div>
                             {showSignupPage && <Signup />}
                             {showLoginPage && <Login />}
                             {showForgotPasswordPage && <ForgotPassword />}
