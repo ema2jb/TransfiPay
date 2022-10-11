@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 
@@ -27,6 +27,13 @@ const BuisnessInformation = ({tierHandler, showBizInfoTiersHandler})=>{
         setShowModal(value)
     }
 
+    useEffect(()=>{
+        setAvatar({
+			preview:updateBizInfo.imageUrl,
+			raw: null,
+		});
+    },
+    [updateBizInfo.imageUrl])
 
 
     const handleChange = (e) => {

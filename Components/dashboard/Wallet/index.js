@@ -1,7 +1,10 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 
+import { getCoinListFunc } from '../../../requests/walletRequests'
 import WalletHome from "./WalletHome"
 import WalletHistory from "./WalletHistory"
+import {walletActions} from '../../../Store/wallet-slice'
 
 
 const WalletIndex = ()=>{
@@ -11,6 +14,12 @@ const WalletIndex = ()=>{
     const showHistoryHandler = (value) =>{
         setShowHistory(value)
     }
+
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        getCoinListFunc(dispatch, walletActions)
+    },[])
 
     return <>
 

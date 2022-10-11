@@ -7,10 +7,13 @@ import {AiOutlineHome, AiOutlinePlus, AiOutlineShopping} from "react-icons/ai"
 import { HiOutlineColorSwatch, HiOutlineRefresh, HiOutlineUserGroup } from "react-icons/hi";
 import { FiLink, FiUsers, FiDatabase } from "react-icons/fi";
 import { BiCube, BiCog, BiLogOut } from "react-icons/bi"
+import { logoutFunc } from "../../requests/userRequests";
+import useLocalStorage from '../../hooks/useLocalStorage'
 
 const SideBar = ()=>{
     const router = useRouter()
     const [showBuisTools, setShowBuisTools] = useState(false)
+    const {clearStorage} = useLocalStorage()
 
     const showBuisToolsHandler = () =>{
         setShowBuisTools(prev=>!prev)
@@ -23,6 +26,11 @@ const SideBar = ()=>{
         return false
     }
 
+    const logout = ()=>{
+        clearStorage()
+        router.push('/auth')
+
+    }
 
     useEffect(()=>{
         if(
@@ -95,7 +103,7 @@ const SideBar = ()=>{
                     </div>
                     <div className="nav-item">
                         <i><BiLogOut/></i>
-                        <Link href="/dashboard"><p>Logout</p></Link>
+                        <p onClick={logout}>Logout</p>
                     </div>
                 </div>
             </div>

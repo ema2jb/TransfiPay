@@ -15,7 +15,7 @@ const Step2 = () => {
 
   const submitHandler = () => {
     console.log(createBiz)
-    createBizFunc(dispatch, bizActions, createBiz)
+    createBizFunc(dispatch, bizActions, createBiz, UIActions)
   }
 
 

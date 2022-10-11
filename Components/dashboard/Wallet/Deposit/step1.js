@@ -21,7 +21,7 @@ const Step1 = ({handleCurrentStep})=>{
                     </div>
                 </div>
                 <div className="mt-3">
-                    <p className="mb-2 fs-16 fw-400 tetiary-color">Enter amount to withdraw</p>
+                    <p className="mb-2 fs-16 fw-400 tetiary-color">Amount to Deposit</p>
                     <div className={`space-between ${classes['amount-coin']}`}>
                         <input className="fs-16 fw-400" type="text" placeholder="Enter amount to withdraw" />
                         <p className="fs-16 fw-400 secondary-color">15%  20%  25%  <span className="tetiary-color">ALL</span></p>

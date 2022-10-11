@@ -52,13 +52,6 @@ const AllBiz = () =>{
                         <td className="py-3 pl-3">GIG logistics</td>
                         <td>TR123578</td>
                         <td>GIGlogistics@gmail.com</td>
-                        <td>Admin</td>
-                        <td><span className='br-32 text-color-12 bckg8 p-2'>Active</span></td> 
-                    </tr>
-                    <tr className="bckg2 secondary-color fs-16 py-3 mb-2 fw-400">
-                        <td className="py-3 pl-3">GIG logistics</td>
-                        <td>TR123578</td>
-                        <td>GIGlogistics@gmail.com</td>
                         <td>Operations</td>
                         <td  className='text-color-1 p-2'>Switch Account</td> 
                     </tr>
@@ -69,7 +62,10 @@ const AllBiz = () =>{
                                 <td>TR123578</td>
                                 <td>{biz.business.email}</td>
                                 <td>{biz.role}</td>
-                                <td onClick={()=>switchAccount(biz.business.id)}><span className={activeBiz.id === biz.business.id ? 'br-32 text-color-12 bckg8 p-2' : 'text-color-1 p-2'} >{activeBiz.id === biz.business.id ? 'Active' : 'Switch Account'}</span></td> 
+                                <td 
+                                    onClick={()=>switchAccount(biz.business.id)}>
+                                    <span 
+                                        className={`cp ${activeBiz.id === biz.business.id ? 'br-32 text-color-12 bckg8 p-2' : 'text-color-1 p-2'}`} >{activeBiz.id === biz.business.id ? 'Active' : 'Switch Account'}</span></td> 
                             </tr>
                         ))
                     }

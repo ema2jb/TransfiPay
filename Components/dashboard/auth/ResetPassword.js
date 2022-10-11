@@ -4,13 +4,13 @@ import {useRouter} from 'next/router'
 import { AiFillEyeInvisible } from "react-icons/ai";
 import {AiFillEye} from "react-icons/ai";
 import cogoToast from 'cogo-toast'
-
-import { resetPasswordRequest } from '../../../requests/auth';
+import { resetPasswordRequest, resendOtpRequest } from '../../../requests/auth';
 import { authActions } from '../../../Store/auth-slice';
 
 
-const ResetPassword = ({otpCode, otpId, userId})=>{
+const ResetPassword = ()=>{
 
+    
     const dispatch=useDispatch()
     const router = useRouter()
 
@@ -28,8 +28,10 @@ const ResetPassword = ({otpCode, otpId, userId})=>{
             value:"",
             visible:false
         },
+        otpCode:""
     })
 
+    const authDetails = useSelector(state=>state.auth.authDetails)
     const {loading} = useSelector(state=>state.auth.authRequestState)
 
     const validatePassword = (value)=>{
@@ -71,11 +73,10 @@ const ResetPassword = ({otpCode, otpId, userId})=>{
         }
         dispatch(authActions.changeAuthRequestState({loading:true}))
         const resetPasswordPayload ={
-            otpCode,
-            otpId,
-            userId,
+            otpCode:resetPasswordDetails.otpCode,
             newPassword:resetPasswordDetails.newPassword.value,
-            confirmPassword:resetPasswordDetails.confirmPassword.value
+            confirmPassword:resetPasswordDetails.confirmPassword.value,
+            ...authDetails
         }
         resetPasswordRequest(resetPasswordPayload).then(({data:{meta}})=>{
             if(meta.error){
@@ -93,12 +94,37 @@ const ResetPassword = ({otpCode, otpId, userId})=>{
         })
     }
 
+    const resendToken = () =>{
+        resendOtpRequest(authDetails).then(({data:{meta}})=>{
+            dispatch(authActions.changeAuthRequestState({loading:false}))
+            cogoToast.success(meta.message, { position: 'top-center' })
+            console.log('token sent')
+        }).catch(err=>{
+           console.log(err)
+           dispatch(authActions.changeAuthRequestState({loading:false}))
+        })
+    }
+
     return<>
         <div 
-        className="login">
+            className="login">
             <h1 className="fs-24 fw-600 primary-color">Reset Password</h1>
             <form onSubmit={submitHandler}>
-            <div className="form-group">
+                <div className="form-group">
+                    <label>OTP *</label>
+                    <div className="password">
+                        <input 
+                            type="text" 
+                            placeholder="Enter OTP"
+                            onChange={({target:{value}})=>setResetPasswordDetails(prev=>({...prev, otpCode:value}))}
+                            value={resetPasswordDetails.otpCode}
+                        />
+                        <span onClick={()=>setResetPasswordDetails(prev=>({...prev, newPassword:{...prev.newPassword, visible:!prev.newPassword.visible}}))} >
+                            {resetPasswordDetails.newPassword.visible ? <AiFillEye /> : <AiFillEyeInvisible />}
+                        </span>
+                    </div>
+                </div>
+                <div className="form-group">
                     <label>Password *</label>
                     <div className="password">
                         <input 
@@ -145,6 +171,7 @@ const ResetPassword = ({otpCode, otpId, userId})=>{
                     </button>
                 </div>
             </form>
+            <p className="mt-2 cp text-color-2" onClick={()=>resendToken()}>resend token</p>
         </div>
     </>
 }

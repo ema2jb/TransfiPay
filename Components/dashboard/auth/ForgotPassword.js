@@ -27,10 +27,14 @@ const ForgotPassword = ()=>{
             console.log(data)
             dispatch(authActions.changeAuthRequestState({loading:false}))
             setRequestSent(true)
+            dispatch(authActions.storeAuthDetails({userId:data.userId, otpId:data.otpId}))
+            dispatch(authActions.changeAuthAppState('showResetPasswordPage'))
+            /*
             setTimeout(()=>{
                 setRequestSent(false)
                 router.push(`/auth/rp/999999/${data.otpId}/${data.userId}`)
             },3000)
+            */
         }).catch(err=>{
             console.log(err)
             dispatch(authActions.changeAuthRequestState({loading:false}))

@@ -31,8 +31,6 @@ import {
         token =  accessToken.token
     }
 
-    console.log(token)
-
     axios.interceptors.request.use((config) => {
         config.headers['Authorization'] = `Bearer ${token}`;
         return config;

@@ -21,6 +21,7 @@ const Otp = ()=>{
     const resendToken = () =>{
         resendOtpRequest(authDetails).then(({data:{data}})=>{
             dispatch(authActions.changeAuthRequestState({loading:false}))
+            cogoToast.success(meta.message, { position: 'top-center' })
             console.log('token sent')
         }).catch(err=>{
            console.log(err)
@@ -73,7 +74,7 @@ const Otp = ()=>{
                     <button disabled={loading} className='w-80 mt-3 btn-default' type="submit">
                         {loading?"Completing Registration...":'Send OTP'}
                     </button>
-                    <p>Change Email? <span onClick={()=>dispatch(authActions.changeAuthAppState('showSignupPage'))}>Login</span></p>
+                    <p className="mt-4 text-color-2" onClick={()=>resendToken()}>resend token</p>
                 </div>
             </form>
         </div>

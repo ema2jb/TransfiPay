@@ -2,16 +2,17 @@ import * as bizEndpoints from './biz'
 import { createBizSchema } from '../FormValidations/biz.validate'
 import cogoToast from 'cogo-toast'
 import useLocalStorage from '../hooks/useLocalStorage'
-import { UIActions } from '../Store/ui-slice'
+
+
 
 const {setItem} = useLocalStorage()
 
 export const getAllMyBizFunc = (dispatch, bizActions, page, limit)=>{
-    dispatch(bizActions.changeBizRequestState(true))
+    //dispatch(bizActions.changeBizRequestState(true))
     bizEndpoints.getAllMyBizRequest(page, limit).then(({data:{data, meta}})=>{
         console.log(data)
         dispatch(bizActions.setAllMyBiz(data.result))
-        dispatch(bizActions.changeBizRequestState(false))
+        //dispatch(bizActions.changeBizRequestState(false))
         //cogoToast.success(meta.message, { position: 'top-center' })
     }).catch(err=>{
         console.log(err)
@@ -25,6 +26,7 @@ export const setActiveBizFunc = (dispatch, bizActions, bizId, role)=>{
     bizEndpoints.getBizInfoRequest(bizId).then(({data:{data, meta}})=>{
         console.log(data)
         dispatch(bizActions.setActiveBiz({...data, role}))
+        dispatch(bizActions.setUpdateBizInfo({...data, role}))
         setItem('activeBiz', {...data, role})
         dispatch(bizActions.changeBizRequestState(false))
         //cogoToast.success(meta.message, { position: 'top-center' })
@@ -244,7 +246,7 @@ export const tier2Func = (dispatch, bizActions,bizId, data)=>{
 }
 
 
-export const createBizFunc = (dispatch, bizActions, createBiz)=>{
+export const createBizFunc = (dispatch, bizActions, createBiz, UIActions)=>{
     dispatch(bizActions.changeBizRequestState(true))
     createBizSchema.validate(createBiz)
         .then((valid)=>{
@@ -255,6 +257,7 @@ export const createBizFunc = (dispatch, bizActions, createBiz)=>{
                     dispatch(bizActions.changeBizRequestState(false))
                     cogoToast.success(meta.message, { position: 'top-center' })
                     dispatch(bizActions.resetBizInfo())
+                    dispatch(UIActions.changeBizUiState('none'))
                     //getAllMyBizFunc(dispatch, bizActions, 1, 5)
                 }).catch(err=>{
                    console.log(err)

@@ -1,4 +1,4 @@
-import {HiOutlineKey, HiOutlineLockClosed, HiOutlineClock, HiOutlineShieldCheck, HiOutlineLogout} from 'react-icons/hi'
+import {HiOutlineKey,HiOutlineMail, HiOutlineLockClosed, HiOutlineClock, HiOutlineShieldCheck, HiOutlineLogout} from 'react-icons/hi'
 
 import classes from '../Settings.module.scss'
 
@@ -12,6 +12,19 @@ const Security = ({securityDetailsHandler, showHandler}) =>{
 
     return <>
         <div className={classes['security-index']}>
+        <div className="space-between">
+                <div className="centralize-top-10 mt-3">
+                    <div className={`centralize ${classes.icons}`}>
+                        <i className="fs-18 fw-500 primary-color"><HiOutlineMail /></i>
+                    </div>
+                    <div>
+                        <p className="fs-18 fw-500 tertiary-color">Login Email</p>
+                        <p className="fs-16 fw-400 secondary-color">Email is used to recieve updates.</p>
+                    </div>
+                </div>
+                <p onClick={()=>showHandler('changeEmail')} className='fs-16 fw-600 text-color-2 cp'>Change</p>
+            </div>
+            <hr></hr>
             <div className="space-between">
                 <div className="centralize-top-10 mt-3">
                     <div className={`centralize ${classes.icons}`}>

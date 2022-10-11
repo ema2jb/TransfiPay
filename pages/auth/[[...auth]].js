@@ -52,9 +52,6 @@ const Dashboard =()=>{
     }
 
     */
-  
-    console.log(auth)
-
 
     return <>
         <div className="dashboard-auth">
@@ -62,31 +59,23 @@ const Dashboard =()=>{
                 <div className="d-none d-md-block col-6 auth-slider">
                     <AuthSlider />
                 </div>
-                <div className="col-12 col-md-6 ">
-
-                    {Boolean(auth) && (action === 've') && 
-                        <div className="d-flex flex-column mt-20 align-items-center h-100">
-                            <div className="loader"></div>
-                            <span className="primary-color fs-20 fw-600 mt-5">Verifying Email...</span>
-                        </div>
-                    }
-
+                <div className="col-12 col-md-6 auth-form">
+                    <div className="d-md-none text-center authLogo">
+                        <img src="dashboard/authLogo.png" alt="logo image" />
+                    </div>
                     {
                         Boolean(auth) && (action === 'rp') && 
                         <div>
-                           <ResetPassword otpCode={otpCode} otpId={otpId} userId={userId} />
+                           
                         </div>
-                    }
-                    
+                    }                    
                     {!Boolean(auth) &&
                         <div className="auth-form">
-                            <div className="text-center authLogo">
-                                <img src="dashboard/authLogo.png" alt="logo image" />
-                            </div>
                             {showSignupPage && <Signup />}
                             {showLoginPage && <Login />}
                             {showForgotPasswordPage && <ForgotPassword />}
                             {showOtpPage && <Otp/>}
+                            {showResetPasswordPage && <ResetPassword />}
                         </div>
                     }
                 </div>
