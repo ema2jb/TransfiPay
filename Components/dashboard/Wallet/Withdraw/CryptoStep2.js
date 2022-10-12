@@ -1,10 +1,51 @@
+import {useState, useEffect} from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import Select from 'react-select';
+
 
 import Modal from '../../Modals/index'
 import classes from './Withdraw.module.scss'
 import {BiChevronDown} from "react-icons/bi"
 import {HiOutlineInformationCircle} from  'react-icons/hi'
+import {walletActions} from '../../../../Store/wallet-slice'
 
 const Step2 = ({handleCurrentStep}) =>{
+
+  const dispatch = useDispatch()
+
+  const [coin, setCoin] = useState('')
+    const [coinNetwork, setCoinNetwork] = useState("")
+    const [networkOptions, setNetworkOptions] = useState({})
+
+    const {walletRequestState, coinList, coinSymbols, coinNetworks} = useSelector(state=>state.wallet)
+    //console.log(coinList, coinSymbols, coinNetworks)
+  
+    let coinOptions = [{value:"select a coin",label:"select a coin"}]
+
+     coinOptions = coinSymbols && coinSymbols.map(coin=>({value:coin.coinSymbol, label:coin.coinSymbol}))
+
+      const selectNetworkOptions = ()=>{
+        if(coin && coinNetworks){
+          const networkOptions = coinNetworks[coin].map(network=>({value:network, label:network}))
+          setNetworkOptions(networkOptions)
+        }
+      }
+
+        const customStyles = {
+    		control: (provided, state) => ({
+    			...provided,
+    			color: '#6E7191',
+                border: '1px solid #CBD5E1',
+                'border-radius': '4px',
+                'margin-bottom': '1.3rem',
+                width:'100%'
+    		}),
+    	};
+
+      useEffect(()=>{
+        selectNetworkOptions()
+      }, [coin])
+  
     return <>
         <Modal hideModal={()=>handleCurrentStep('')}>
             <div className={classes.step2}>

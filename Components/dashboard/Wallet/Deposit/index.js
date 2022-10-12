@@ -12,12 +12,16 @@ const Deposit = ({currentStep, handleCurrentStep})=>{
     <div className={currentStep !== 'deposit-step2' ? 'd-none' : ""}>
         <DepositStep2 handleCurrentStep={handleCurrentStep}/>
     </div>
-    <div className={currentStep !== 'deposit-step3' ? 'd-none' : ""}>
-        <DepositStep3 handleCurrentStep={handleCurrentStep}/>
-    </div>
-    <div className={currentStep !== 'deposit-finalStep' ? 'd-none' : ""}>
-        <DepositFinalStep handleCurrentStep={handleCurrentStep}/>
-    </div>
+      {
+        /*
+         <div className={currentStep !== 'deposit-step3' ? 'd-none' : ""}>
+          <DepositStep3 handleCurrentStep={handleCurrentStep}/>
+        </div>
+        <div className={currentStep !== 'deposit-finalStep' ? 'd-none' : ""}>
+            <DepositFinalStep handleCurrentStep={handleCurrentStep}/>
+        </div>
+        */
+      }
     </>
 } 
 

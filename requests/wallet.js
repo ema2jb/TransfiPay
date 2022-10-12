@@ -1,6 +1,8 @@
 import axios from "axios"
 import {
-    getCoinList
+    getCoinList,
+    getDepositAddress,
+    withdraw
     } from './endpoints'
 import useLocalStorage from '../hooks/useLocalStorage';
 
@@ -24,6 +26,23 @@ export const getCoinListRequest = async() =>{
     const response = await  axios({
           method: "get",
           url: getCoinList,
+      })
+      return response
+  }
+
+export const getDepositAddressRequest = async(coinIdOrSymbol, blockChainNetwork) =>{
+    const response = await  axios({
+          method: "get",
+          url: getDepositAddress(coinIdOrSymbol, blockChainNetwork),
+      })
+      return response
+}
+
+export const withdrawRequest = async(_data) =>{
+    const response = await  axios({
+          method: "post",
+          url: withdraw,
+          data: _data,
       })
       return response
   }

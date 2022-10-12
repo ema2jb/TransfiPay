@@ -14,7 +14,8 @@ const Step1 = ({handleCurrentStep}) =>{
                     </div>
                     <p className={`secondary-color ${classes['step-indicator']}`}><span className="text-color-1">Step 1 </span>of 3</p>
                 </div>
-                <div onClick={()=>handleCurrentStep('withdraw-fiat-step2')} className={`space-between ${classes['withdraw-option']}`}>
+              {/*withdraw-fiat-step2*/}
+                <div onClick={()=>handleCurrentStep('')} className={`space-between ${classes['withdraw-option']}`}>
                     <div className="centralize-top-10">
                         <div>
                             <i className="fs-24 fw-500 tetiary-color"><HiOutlineLibrary /></i>
