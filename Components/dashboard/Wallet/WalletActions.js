@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import {useSelector, useDispatch} from 'react-redux'
 
 import {BiWalletAlt} from 'react-icons/bi'
 import {BsCreditCard2Back} from 'react-icons/bs'
@@ -7,16 +8,20 @@ import classes from './Wallet.module.scss'
 import Deposit from './Deposit'
 import Withdraw from './Withdraw'
 import Transfer from './Transfer'
-
+import LoadingModal from './LoadingModal'
+import SuccessModal from './SuccessModal'
+import {UIActions} from '../../../Store/ui-slice'
+ 
 
 
 const WalletActions = ()=>{
 
-    const [currentStep, setCurrentStep] = useState('')
+    const currentStep = useSelector(state=>state.UI.walletActionsUI.currentStep)
+    
+    const dispatch = useDispatch()
 
     const handleCurrentStep = (value)=>{
-            console.log(value)
-            setCurrentStep(value)
+            dispatch(UIActions.changeWalletActionsUI(value))
     }
 
 
@@ -41,6 +46,8 @@ const WalletActions = ()=>{
     <Deposit currentStep={currentStep} handleCurrentStep={handleCurrentStep} />
     <Withdraw currentStep={currentStep} handleCurrentStep={handleCurrentStep} />
     <Transfer currentStep={currentStep} handleCurrentStep={handleCurrentStep} />
+    {currentStep === "LoadingModal" && <LoadingModal /> }
+    {currentStep === "SuccessModal" && <SuccessModal /> }
     </>
 }
 

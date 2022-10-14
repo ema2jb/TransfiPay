@@ -36,6 +36,14 @@ import {
         return config;
     });
 
+    axios.interceptors.response.use(
+      response => response,
+      error => {
+        if (error.response.data.meta.statusCode === 401) {
+          window.location.href = '/auth';
+        }
+    });
+
     export const createBizRequest = async(_data) =>{
         const response = await  axios({
               method: "post",

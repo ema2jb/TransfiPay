@@ -8,6 +8,22 @@ const initialState = {
     coinSymbols:[],
     coinNetworks:{},
     depositAddress:"",
+    transferDetails:{
+      coinIdOrSymbol:"",
+      amount:"",
+      email:"",
+      note:"",
+      otpId:"",
+      otpCode:""
+    },
+  withdrawalDetails:{
+    coinIdOrSymbol:"",
+    networkName:"",
+    address:"",
+    amount:"",
+    otpId:"",
+    otpCode:""
+  }
 }
 
 const walletSlice = createSlice({
@@ -27,6 +43,12 @@ const walletSlice = createSlice({
         },
         setDepositAddress(state, action){
           state.depositAddress = action.payload
+        },
+        setTransferDetails(state, action){
+          state.transferDetails = {...state.transferDetails, ...action.payload}
+        },
+        setWithdrawalDetails(state,action){
+          state.withdrawalDetails = {...state.withdrawalDetails, ...action.payload}
         }
         }
     

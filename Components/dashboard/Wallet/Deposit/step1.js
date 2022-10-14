@@ -16,7 +16,7 @@ const Step1 = ({handleCurrentStep})=>{
     const [coinNetwork, setCoinNetwork] = useState("")
     const [networkOptions, setNetworkOptions] = useState({})
 
-    const {walletRequestState, coinList, coinSymbols, coinNetworks} = useSelector(state=>state.wallet)
+    const {walletRequestState, coinSymbols, coinNetworks} = useSelector(state=>state.wallet)
     //console.log(coinList, coinSymbols, coinNetworks)
   
     let coinOptions = [{value:"select a coin",label:"select a coin"}]
@@ -80,6 +80,7 @@ const Step1 = ({handleCurrentStep})=>{
                             setCoinNetwork(selectedOption.value)
                             }
                         }
+                        isDisabled={Boolean(coin)?false:true}
                         options={networkOptions}
                         styles={customStyles}
                         placeholder={coin?"select a network":"Select a coin first"}

@@ -2,7 +2,7 @@
 import Modal from '../../Modals/index'
 import classes from '../Wallet.module.scss'
 
-const FinalStep = ({handleCurrentStep})=>{
+const FinalStep = ({handleCurrentStep, successMessage})=>{
         return<>
             <Modal hideModal={()=>handleCurrentStep('')}>
                 <div className={classes.finalStep}>

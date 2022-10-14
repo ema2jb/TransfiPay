@@ -1,27 +1,44 @@
 import {useState} from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
 import Modal from "../../Modals"
 import classes from './Withdraw.module.scss'
 import {HiOutlineDocumentDuplicate} from 'react-icons/hi'
+import {UIActions} from '../../../../Store/ui-slice'
+import {walletActions} from '../../../../Store/wallet-slice'
+import { initiateWithdrawalFunc } from '../../../../requests/walletRequests'
+
 
 
 const Step3 = ({handleCurrentStep}) =>{
 
-    const [isLoading, setIsLoading] = useState(false)
+    const dispatch = useDispatch()
+    const {walletRequestState, withdrawalDetails} = useSelector(state=>state.wallet)
 
-    const handleLoading = ()=>{
-        setIsLoading(true)
-        setTimeout(()=>{
-            setIsLoading(false)
-            handleCurrentStep('withdraw-finalStep')
-        }, 3000)
+    let formattedAddress = ''
+      if(withdrawalDetails.address){
+        const wd =  withdrawalDetails.address
+        const l = wd.length
+         formattedAddress = `${wd[0]}${wd[1]}${wd[2]}${wd[3]}...${wd[l-4]}${wd[l-3]}${wd[l-2]}${wd[l-1]}`
+      }
+
+  const initiateWithdrawal = ()=>{
+      initiateWithdrawalFunc(dispatch, walletActions, UIActions)
     }
+
+    
+    /*
+     const aproveOrder = () =>{
+       withdrawFunc(dispatch, walletActions, withDrawalDetails, handleSuccessfull)
+    }
+    */
+   
 
 
 
     return <>
         <Modal hideModal={()=>handleCurrentStep('')}>
-            { !isLoading && 
+            {
             <div className={classes['crypto-step3']}>
                 <div className={`space-between mt-3 ${classes.header}`}>
                     <div>
@@ -33,24 +50,24 @@ const Step3 = ({handleCurrentStep}) =>{
                 <div className="centralize mt-4">
                     <div className={`${classes.recieve}`}>
                         <p className="fs-16 fw-500 secondary-color">You want to withdraw</p>
-                        <p className="fs-24 fw-600 secondary-color"><span className='text-color-1'>0.000056876</span> BTC</p>
+                        <p className="fs-24 fw-600 secondary-color"><span className='text-color-1'>{withdrawalDetails.amount}</span>{withdrawalDetails.coinIdOrSymbol}</p>
                     </div>
                 </div>
                 <div className="space-between mt-3">
                     <p className="fs-16 fw-400 secondary-color">Recieving address</p>
-                    <p className="fs-16 fw-500 tetiary-color"><span><HiOutlineDocumentDuplicate /></span>  Oxa5...37b7</p>
+                    <p className="fs-16 fw-500 tetiary-color"><span><HiOutlineDocumentDuplicate /></span>{formattedAddress}</p>
                 </div>
                 <div className="space-between mt-3 pb-4 border-bottom">
                     <p className="fs-16 fw-400 secondary-color">Network</p>
-                    <p className="fs-16 fw-500 tetiary-color">TRC20</p>
+                    <p className="fs-16 fw-500 tetiary-color">{withdrawalDetails.networkName}</p>
                 </div>
                 <div className="space-between mt-3">
                     <p className="fs-16 fw-400 secondary-color">Coin</p>
-                    <p className="fs-16 fw-500 tetiary-color">USDT</p>
+                    <p className="fs-16 fw-500 tetiary-color">{withdrawalDetails.cooinIdOrSymbol}</p>
                 </div>
                 <div className="space-between mt-3">
                     <p className="fs-16 fw-400 secondary-color">Amount (USD)</p>
-                    <p className="fs-16 fw-500 tetiary-color">0.0000344</p>
+                    <p className="fs-16 fw-500 tetiary-color">{withdrawalDetails.amount}</p>
                 </div>
                 <div className="space-between mt-3">
                     <p className="fs-16 fw-400 secondary-color">Transaction fee</p>
@@ -61,30 +78,10 @@ const Step3 = ({handleCurrentStep}) =>{
                         <button onClick={()=>handleCurrentStep('')} className="btn-transparent">Cancel</button>
                     </div>
                     <div>
-                        <button onClick={()=>handleLoading()} className='btn-default'>Approve Order</button>
+                        <button disabled={walletRequestState.loading} onClick={()=>initiateWithdrawal()} className='btn-default'>{walletRequestState.loading?"loading":"Initiate Transfer"}</button>
                     </div>
                 </div>
             </div>
-            }
-            { isLoading &&
-            <div className={classes.finalStep}>
-                 <div className={classes['order-approved']}>
-                     <div className={classes.image}>
-                         <img src="/dashboard/loading.png" alt="verification link sent"  />
-                     </div>
-                     <p className='fs-20 fw-700 tetiary-color mt-4 mb-2'>Processing Order....</p>
-                     <p className='fs-16 fw-400 secondary-color'>Kindly wait while we process your order for you </p>
-                     <p className="fs-16 fw-400 secondary-color mt-4">This won’t take long</p>
-                 </div>
-                 <div className='justify-right mt-5 mb-2'>
-                     <div>
-                         <button onClick={()=>handleCurrentStep('')} className="btn-transparent">Cancel</button>
-                     </div>
-                     <div>
-                         <button onClick={()=>handleCurrentStep('withdraw-step1')} className='btn-default'>Try Again</button>
-                     </div>
-                 </div>
-             </div>
             }
         </Modal>
     </>

@@ -1,9 +1,21 @@
 import {useState} from  'react'
+import {useSelector, useDispatch} from 'react-redux'
+
 import classes from './Wallet.module.scss'
 import {AiOutlineSearch} from "react-icons/ai"
+import {UIActions} from '../../../Store/ui-slice'
 
 
 const WalletPortfolio = ()=>{
+
+    const currentStep = useSelector(state=>state.UI.walletActionsUI.currentStep)
+    
+    const dispatch = useDispatch()
+
+    const handleCurrentStep = (value)=>{
+            console.log(value)
+            dispatch(UIActions.changeWalletActionsUI(value))
+    }
 
     const [tokens] = useState([
         {   
@@ -51,9 +63,9 @@ const WalletPortfolio = ()=>{
                                     <td className="fs-16 fw-500 secondary-color" ><span><img src={token.logo} alt=""/></span>{token.tokenName}</td>
                                     <td className="fs-16 fw-500 secondary-color">{token.balance}</td>
                                     <td className="fs-16 fw-500 secondary-color">{token.value}</td>
-                                    <td className={`fs-16 fw-500 primary-color`}><span className={classes.deposit}>Deposit</span></td>
-                                    <td className={`fs-16 fw-500 primary-color`}><span className={classes.withdraw}>Withdraw</span></td>
-                                    <td className={`fs-16 fw-500 primary-color`}><span className={classes.transfer}>Transfer</span></td>
+                                    <td className={`fs-16 fw-500 primary-color`}><span onClick={()=>handleCurrentStep('deposit-step1')} className={classes.deposit}>Deposit</span></td>
+                                    <td className={`fs-16 fw-500 primary-color`}><span onClick={()=>handleCurrentStep('withdraw-step1')} className={classes.withdraw}>Withdraw</span></td>
+                                    <td className={`fs-16 fw-500 primary-color`}><span onClick={()=>handleCurrentStep('Transfer-step1')} className={classes.transfer}>Transfer</span></td>
                             </tr>
                         ))
                     }

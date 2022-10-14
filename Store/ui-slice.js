@@ -11,6 +11,9 @@ const initialState = {
     teamsUI:{
       invite:false,
       collaborate:true,
+    },
+    walletActionsUI:{
+      currentStep:""
     }
 }
 
@@ -36,6 +39,9 @@ const UISlice = createSlice({
             }
             state.teamsUI = {...state.teamsUI, [page]:!state.teamsUI[page]}
           },
+          changeWalletActionsUI(state, action){
+            state.walletActionsUI.currentStep = action.payload
+          }
         }
     
 })

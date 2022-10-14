@@ -1,3 +1,6 @@
+import {useState, useEffect} from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import Select from 'react-select';
 
 import Modal from '../../Modals/index'
 import classes from '../Withdraw/Withdraw.module.scss'
@@ -5,7 +8,43 @@ import {BiChevronDown} from "react-icons/bi"
 
 //please do not mind that css from other components are used here
 
-const TransferStep1 = ({handleCurrentStep}) =>{
+const TransferStep1 = ({handleCurrentStep, handleTransferDetails}) =>{
+
+    const [coin, setCoin] = useState('')
+    const [transferDetails, setTransferDetails] = useState({
+      coinIdOrSymbol:"",
+      amount:"",
+      email:"",
+      note:"",
+      otpId:"",
+      otpCode:""
+    })
+
+    const dispatch = useDispatch()
+    
+    const {walletRequestState, coinSymbols, coinNetworks} = useSelector(state=>state.wallet)
+
+    let coinOptions = [{value:"select a coin",label:"select a coin"}]
+
+    coinOptions = coinSymbols && coinSymbols.map(coin=>({value:coin.coinSymbol, label:coin.coinSymbol}))
+
+    const customStyles = {
+    		control: (provided, state) => ({
+    			...provided,
+    			color: '#6E7191',
+                border: '1px solid #CBD5E1',
+                'border-radius': '4px',
+                'margin-bottom': '1.3rem',
+                width:'100%'
+    		}),
+    	};
+
+    const handleSubmit = ()=>{
+      handleTransferDetails(transferDetails)
+      //Transfer-step2
+      handleCurrentStep('Transfer-step2')
+    }
+  
     return <>
         <Modal hideModal={()=>handleCurrentStep('')}>
             <div className={classes.step2}>
@@ -21,28 +60,50 @@ const TransferStep1 = ({handleCurrentStep}) =>{
                         <p className="mb-2 fs-16 fw-400 tetiary-color">Select a coin to Transfer</p>
                         <p className="fs-16 fw-400 secondary-color">Availabla Balance~ <span className="fs-16 fw-600 text-color-2">0.00</span></p>
                     </div>
-                    <div className={`space-between mb-4 ${classes['deposit-coin']}`}>
-                        <input className="fs-16 fw-400" type="text" placeholder="example  (i.e BTC, ETH)" />
-                        <BiChevronDown />
-                    </div>
+                    <Select
+                        onChange={(selectedOption) =>{
+                            setTransferDetails(prev=>({...prev, coinIdOrSymbol:selectedOption.value}))
+                            }
+                        }
+                        options={coinOptions}
+                        styles={customStyles}
+                        placeholder="Select a coin"
+                    />
                 </div>
                 <div className="mt-3">
                     <p className="mb-2 fs-16 fw-400 tetiary-color">Amount to Transfer</p>
                     <div className={`space-between ${classes['amount-coin']}`}>
-                        <input className="fs-16 fw-400" type="text" placeholder="Enter amount to withdraw" />
+                        <input 
+                            value={transferDetails.amount}
+                            onChange={({target:{value}})=>setTransferDetails(prev=>({...prev, amount:value}))}
+                            className="fs-16 fw-400" 
+                            type="text" 
+                            placeholder="Enter amount to withdraw" 
+                          />
                         <p className="fs-16 fw-400 secondary-color">15%  20%  25%  <span className="tetiary-color">ALL</span></p>
                     </div>
                 </div>
                 <div className="mt-4">
-                    <p className="mb-2 fs-16 fw-400 tetiary-color">Enter receipients username</p>
+                    <p className="mb-2 fs-16 fw-400 tetiary-color">Enter receipients email</p>
                     <div className={`mb-4 ${classes['deposit-coin']}`}>
-                        <input className="fs-16 fw-400" type="text" placeholder="@transfi_username" />
+                        <input 
+                          value={transferDetails.email}
+                          onChange={({target:{value}})=>setTransferDetails(prev=>({...prev, email:value}))}
+                          className="fs-16 fw-400" 
+                          type="text" 
+                          placeholder="Enter Email" />
                     </div>
                 </div>
                 <div className="mt-4">
                     <p className="mb-2 fs-16 fw-400 tetiary-color">Note</p>
                     <div className={`space-between mb-4 ${classes['deposit-coin']}`}>
-                        <input className="fs-16 fw-500 tetiary-color" type="text"  />
+                        <input 
+                          value={transferDetails.note}
+                          onChange={({target:{value}})=>setTransferDetails(prev=>({...prev, note:value}))}
+                          className="fs-16 fw-500 tetiary-color" 
+                          type="text" 
+                          placeholder="transaction summary"
+                        />
                     </div>
                 </div>
                 <div className='justify-right mt-5 mb-2'>
@@ -50,7 +111,7 @@ const TransferStep1 = ({handleCurrentStep}) =>{
                         <button onClick={()=>handleCurrentStep('')} className="btn-transparent">Cancel</button>
                     </div>
                     <div>
-                        <button onClick={()=>handleCurrentStep('Transfer-step2')} className='btn-default'>Transfer</button>
+                        <button onClick={()=>handleSubmit()} className='btn-default'>Transfer</button>
                     </div>
                 </div>
             </div>

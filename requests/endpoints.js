@@ -98,11 +98,15 @@ export const getWithdrawals = (page, limit)=>`${BASE_URL}wallet/withdrawals?page
 
 export const getWithdrawalsById = (id)=>`${BASE_URL}wallet/withdrawal/${id}`
 
+export const initiateWithdrawal = `${BASE_URL}wallet/initiate-withdrawal`
+
 export const withdraw = `${BASE_URL}wallet/withdraw` //POST
 
 export const withdrawNotification = `${BASE_URL}wallet/on-withdrawal-notification` //POST
 
 export const withdrawFailed = `${BASE_URL}wallet/on-withdrawal-failed` //POST
+
+export const initiateTransfer = `${BASE_URL}wallet/initiate-transfer` //POST
 
 export const transfer = `${BASE_URL}wallet/transfer` //POST
 

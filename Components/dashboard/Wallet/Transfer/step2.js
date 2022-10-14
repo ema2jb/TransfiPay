@@ -1,27 +1,26 @@
 import {useState} from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
 import Modal from "../../Modals"
 import classes from '../Withdraw/Withdraw.module.scss'
-import {HiOutlineDocumentDuplicate} from 'react-icons/hi'
+import {walletActions} from '../../../../Store/wallet-slice'
+import {UIActions} from '../../../../Store/ui-slice'
+import { initiateTransferFunc } from '../../../../requests/walletRequests'
 
 
-const TransferStep2 = ({handleCurrentStep}) =>{
+const TransferStep2 = ({handleCurrentStep, transferDetails}) =>{
 
-    const [isLoading, setIsLoading] = useState(false)
+    const dispatch = useDispatch()
+    
+    const {walletRequestState} = useSelector(state=>state.wallet)
 
-    const handleLoading = ()=>{
-        setIsLoading(true)
-        setTimeout(()=>{
-            setIsLoading(false)
-            handleCurrentStep('withdraw-finalStep')
-        }, 3000)
+    const initiateTransfer = ()=>{
+      initiateTransferFunc(dispatch, walletActions, UIActions)
     }
 
 
-
     return <>
-        <Modal hideModal={()=>handleCurrentStep('')}>
-            { !isLoading && 
+        <Modal hideModal={()=>handleCurrentStep('')}> 
             <div className={classes['crypto-step3']}>
                 <div className={`space-between mt-3 ${classes.header}`}>
                     <div>
@@ -33,24 +32,24 @@ const TransferStep2 = ({handleCurrentStep}) =>{
                 <div className="centralize mt-4">
                     <div className={`${classes.recieve}`}>
                         <p className="fs-16 fw-500 secondary-color">You will be sending</p>
-                        <p className="fs-24 fw-600 secondary-color"><span className='text-color-1'>0.000056876</span> BTC</p>
+                        <p className="fs-24 fw-600 secondary-color"><span className='text-color-1'>{transferDetails.amount}</span>{transferDetails.coinIdOrSymbol}</p>
                     </div>
                 </div>
                 <div className="space-between mt-3">
-                    <p className="fs-16 fw-400 secondary-color">You will be sending</p>
-                    <p className="fs-16 fw-500 tetiary-color">@transfi_ David emeka</p>
+                    <p className="fs-16 fw-400 secondary-color">You will be sending to</p>
+                    <p className="fs-16 fw-500 tetiary-color">{transferDetails.email}</p>
                 </div>
                 <div className="space-between mt-3 pb-4 border-bottom">
                     <p className="fs-16 fw-400 secondary-color">Transfer Note</p>
-                    <p className="fs-16 fw-500 tetiary-color">Testing how it works</p>
+                    <p className="fs-16 fw-500 tetiary-color">{transferDetails.note}</p>
                 </div>
                 <div className="space-between mt-3">
                     <p className="fs-16 fw-400 secondary-color">Coin</p>
-                    <p className="fs-16 fw-500 tetiary-color">BITCOIN</p>
+                    <p className="fs-16 fw-500 tetiary-color">{transferDetails.coinIdOrSymbol}</p>
                 </div>
                 <div className="space-between mt-3">
                     <p className="fs-16 fw-400 secondary-color">Amount (USD)</p>
-                    <p className="fs-16 fw-500 tetiary-color">0.0000344</p>
+                    <p className="fs-16 fw-500 tetiary-color">$720</p>
                 </div>
                 <div className="space-between mt-3">
                     <p className="fs-16 fw-400 secondary-color">Transaction fee</p>
@@ -58,34 +57,13 @@ const TransferStep2 = ({handleCurrentStep}) =>{
                 </div>
                 <div className='justify-right mt-5 mb-2'>
                     <div>
-                        <button onClick={()=>handleCurrentStep('')} className="btn-transparent">Cancel</button>
+                        <button onClick={()=>closeModal()} className="btn-transparent">Cancel</button>
                     </div>
                     <div>
-                        <button onClick={()=>handleLoading()} className='btn-default'>Approve Order</button>
+                        <button disabled={walletRequestState.loading} onClick={()=>initiateTransfer()} className='btn-default'>{walletRequestState.loading?"loading":"Initiate Transfer"}</button>
                     </div>
                 </div>
             </div>
-            }
-            { isLoading &&
-            <div className={classes.finalStep}>
-                 <div className={classes['order-approved']}>
-                     <div className={classes.image}>
-                         <img src="/dashboard/loading.png" alt="verification link sent"  />
-                     </div>
-                     <p className='fs-20 fw-700 tetiary-color mt-4 mb-2'>Processing Order....</p>
-                     <p className='fs-16 fw-400 secondary-color'>Kindly wait while we process your order for you </p>
-                     <p className="fs-16 fw-400 secondary-color mt-4">This won’t take long</p>
-                 </div>
-                 <div className='justify-right mt-5 mb-2'>
-                     <div>
-                         <button onClick={()=>handleCurrentStep('')} className="btn-transparent">Cancel</button>
-                     </div>
-                     <div>
-                         <button onClick={()=>handleCurrentStep('withdraw-step1')} className='btn-default'>Try Again</button>
-                     </div>
-                 </div>
-             </div>
-            }
         </Modal>
     </>
 }

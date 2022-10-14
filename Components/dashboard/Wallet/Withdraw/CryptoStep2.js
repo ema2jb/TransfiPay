@@ -5,20 +5,22 @@ import Select from 'react-select';
 
 import Modal from '../../Modals/index'
 import classes from './Withdraw.module.scss'
-import {BiChevronDown} from "react-icons/bi"
 import {HiOutlineInformationCircle} from  'react-icons/hi'
 import {walletActions} from '../../../../Store/wallet-slice'
 
+
 const Step2 = ({handleCurrentStep}) =>{
 
-  const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
-  const [coin, setCoin] = useState('')
+    const [coin, setCoin] = useState('')
     const [coinNetwork, setCoinNetwork] = useState("")
     const [networkOptions, setNetworkOptions] = useState({})
-
-    const {walletRequestState, coinList, coinSymbols, coinNetworks} = useSelector(state=>state.wallet)
-    //console.log(coinList, coinSymbols, coinNetworks)
+    const [walletDetails, setWalletDetails] = useState({
+      address:"",
+      amount:""
+    })
+    const {walletRequestState, coinSymbols, coinNetworks} = useSelector(state=>state.wallet)
   
     let coinOptions = [{value:"select a coin",label:"select a coin"}]
 
@@ -36,6 +38,7 @@ const Step2 = ({handleCurrentStep}) =>{
     			...provided,
     			color: '#6E7191',
                 border: '1px solid #CBD5E1',
+                padding:"5px",
                 'border-radius': '4px',
                 'margin-bottom': '1.3rem',
                 width:'100%'
@@ -45,6 +48,17 @@ const Step2 = ({handleCurrentStep}) =>{
       useEffect(()=>{
         selectNetworkOptions()
       }, [coin])
+
+    const submitHandler = ()=>{
+        const withDrawalDetails = {
+          coinIdOrSymbol:coin,
+          networkName:coinNetwork,
+          address:walletDetails.address,
+          amount:walletDetails.amount,
+        }
+        dispatch(walletActions.setWithdrawalDetails(withDrawalDetails))
+       handleCurrentStep('withdraw-crypto-step3')
+    }
   
     return <>
         <Modal hideModal={()=>handleCurrentStep('')}>
@@ -58,28 +72,51 @@ const Step2 = ({handleCurrentStep}) =>{
                 </div>
                 <div className="mt-4">
                     <p className="mb-2 fs-16 fw-400 tetiary-color">Select a coin to withdraw</p>
-                    <div className={`space-between mb-4 ${classes['deposit-coin']}`}>
-                        <input className="fs-16 fw-400" type="text" placeholder="example  (i.e BTC, ETH)" />
-                        <BiChevronDown />
-                    </div>
+                    <Select
+                        onChange={(selectedOption) =>{
+                            setCoin(selectedOption.value)
+                            }
+                        }
+                        options={coinOptions}
+                        styles={customStyles}
+                        placeholder="Select a coin"
+                    />
                 </div>
                 <div className="mt-4">
                     <p className="mb-2 fs-16 fw-400 tetiary-color">Enter wallet address</p>
                     <div className={`mb-4 ${classes['deposit-coin']}`}>
-                        <input className="fs-16 fw-400" type="text" placeholder="Name of page" />
+                        <input 
+                          onChange={({target:{value}})=>setWalletDetails(prev=>({...prev, address:value}))}
+                          value={walletDetails.address}
+                          className="fs-16 fw-400 w-100" 
+                          type="text" 
+                          placeholder="wallet Address" 
+                        />
                     </div>
                 </div>
                 <div className="mt-4">
                     <p className="mb-2 fs-16 fw-400 tetiary-color">Network  <span> <HiOutlineInformationCircle /></span></p>
-                    <div className={`space-between mb-4 ${classes['deposit-coin']}`}>
-                        <input className="fs-16 fw-400" type="text" placeholder="TRC20" />
-                        <BiChevronDown />
-                    </div>
+                         <Select
+                        onChange={(selectedOption) =>{
+                            setCoinNetwork(selectedOption.value)
+                            }
+                        }
+                        isDisabled={Boolean(coin)?false:true}
+                        options={networkOptions}
+                        styles={customStyles}
+                        placeholder={coin?"select a network":"Select a coin first"}
+                    />
                 </div>
                 <div className="mt-3">
                     <p className="mb-2 fs-16 fw-400 tetiary-color">Enter amount to withdraw</p>
                     <div className={`space-between ${classes['amount-coin']}`}>
-                        <input className="fs-16 fw-400" type="text" placeholder="Enter amount to withdraw" />
+                        <input 
+                            onChange={({target:{value}})=>setWalletDetails(prev=>({...prev, amount:value}))}
+                            value={walletDetails.amount}
+                            className="fs-16 fw-400" 
+                            type="text" 
+                            placeholder="Enter amount to withdraw" 
+                          />
                         <p className="fs-16 fw-400 secondary-color">15%  20%  25%  <span className="tetiary-color">ALL</span></p>
                     </div>
                     <div className=" mt-2 justify-right">
@@ -91,7 +128,7 @@ const Step2 = ({handleCurrentStep}) =>{
                         <button onClick={()=>handleCurrentStep('')} className="btn-transparent">Cancel</button>
                     </div>
                     <div>
-                        <button onClick={()=>handleCurrentStep('withdraw-crypto-step3')} className='btn-default'>Proceed</button>
+                        <button onClick={()=>submitHandler()} className='btn-default'>Proceed</button>
                     </div>
                 </div>
             </div>
