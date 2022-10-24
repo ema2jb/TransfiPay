@@ -7,7 +7,7 @@ import Step1 from './step1'
 import Step2 from './step2'
 
 
-const ProdcutLink =()=>{
+const ProdcutLink =({handlePageDisplay})=>{
     const [currentStep, setCurrentStep] = useState('step1')
 
     const handleCurrentStep = (step)=>{
@@ -16,7 +16,7 @@ const ProdcutLink =()=>{
 
     return<>
         <div className={classes['product-link']}>
-            <SubHeader mainTitle="Sell a Product" subTitle="Product Link" />
+            <SubHeader showIndexPage={()=>handlePageDisplay('sell')} mainTitle="Sell a Product" subTitle="Product Link" />
             <div  className={`${classes['sub-header']} space-between py-4`}>
                 <div>
                     <h1 className="fw-500 fs-24 primary-color">Set-up a Payment Link for your product</h1>

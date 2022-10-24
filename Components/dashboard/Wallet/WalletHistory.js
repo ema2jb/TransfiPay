@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import {useSelector} from 'react-redux'
 
 import SubHeader from "../SubHeader"
 import classes from './Wallet.module.scss'
@@ -10,6 +11,10 @@ import {HiOutlineDocumentDuplicate} from 'react-icons/hi'
 
 
 const   WalletReciept = ({showRecieptHandler}) =>{
+
+  const { depositTransactions, withdrawalTransactions, transferTransactions } = useSelector(state => state.wallet)
+  //console.log(depositTransactions, withdrawalTransactions, transferTransactions)
+  
     return <>
         <Modal hideModal={()=>showRecieptHandler(false)}>
             <div className={classes.step3}>

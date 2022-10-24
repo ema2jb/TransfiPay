@@ -5,12 +5,18 @@ import Select from 'react-select';
 import Modal from '../../Modals/index'
 import classes from '../Withdraw/Withdraw.module.scss'
 import {BiChevronDown} from "react-icons/bi"
+import {walletActions} from '../../../../Store/wallet-slice'
 
 //please do not mind that css from other components are used here
 
-const TransferStep1 = ({handleCurrentStep, handleTransferDetails}) =>{
+const TransferStep1 = ({handleCurrentStep, handleTransferDetails, handleEntries}) =>{
+
+    const dispatch = useDispatch()
+
+    const {walletRequestState, coinSymbols, coinNetworks, activeCoin} = useSelector(state=>state.wallet)
 
     const [coin, setCoin] = useState('')
+    const [selectedCoin, setSelectedCoin] = useState(null)
     const [transferDetails, setTransferDetails] = useState({
       coinIdOrSymbol:"",
       amount:"",
@@ -19,11 +25,7 @@ const TransferStep1 = ({handleCurrentStep, handleTransferDetails}) =>{
       otpId:"",
       otpCode:""
     })
-
-    const dispatch = useDispatch()
     
-    const {walletRequestState, coinSymbols, coinNetworks} = useSelector(state=>state.wallet)
-
     let coinOptions = [{value:"select a coin",label:"select a coin"}]
 
     coinOptions = coinSymbols && coinSymbols.map(coin=>({value:coin.coinSymbol, label:coin.coinSymbol}))
@@ -41,12 +43,40 @@ const TransferStep1 = ({handleCurrentStep, handleTransferDetails}) =>{
 
     const handleSubmit = ()=>{
       handleTransferDetails(transferDetails)
-      //Transfer-step2
       handleCurrentStep('Transfer-step2')
     }
+
+    const resetEntries = ()=>{
+      dispatch(walletActions.setActiveCoin(""))
+      setCoin("")
+      setSelectedCoin(null)
+      setTransferDetails({
+      coinIdOrSymbol:"",
+      amount:"",
+      email:"",
+      note:"",
+      otpId:"",
+      otpCode:""
+    })
+    }
+
+  const closeModal = ()=>{
+        resetEntries()
+        handleCurrentStep('')
+      }
+
+
+    useEffect(()=>{
+          activeCoin.coin && setCoin(activeCoin.coin)
+          activeCoin.selectedCoin.value && setSelectedCoin(activeCoin.selectedCoin)
+      }, [activeCoin])
+
+  useEffect(()=>{
+        handleEntries({closeModal:resetEntries})
+      }, [])
   
     return <>
-        <Modal hideModal={()=>handleCurrentStep('')}>
+        <Modal hideModal={()=>closeModal()}>
             <div className={classes.step2}>
                 <div className={`space-between mt-3 ${classes.header}`}>
                     <div>
@@ -63,8 +93,10 @@ const TransferStep1 = ({handleCurrentStep, handleTransferDetails}) =>{
                     <Select
                         onChange={(selectedOption) =>{
                             setTransferDetails(prev=>({...prev, coinIdOrSymbol:selectedOption.value}))
+                            setSelectedCoin(selectedOption)
                             }
                         }
+                        value={selectedCoin}
                         options={coinOptions}
                         styles={customStyles}
                         placeholder="Select a coin"

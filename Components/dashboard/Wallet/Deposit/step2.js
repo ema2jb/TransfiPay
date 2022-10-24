@@ -7,18 +7,23 @@ import {HiOutlineDocumentDuplicate} from 'react-icons/hi'
 import Modal from '../../Modals/index'
 
 
-const Step2 = ({handleCurrentStep})=>{
+const Step2 = ({handleCurrentStep, clearEntries})=>{
 
-    const {depositAddress} = useSelector(state=>state.wallet)
+    const {bizDepositAddress} = useSelector(state=>state.wallet)
     const [clipboardText, setClipboardText] = useState("Copy")  
 
     const copyToClipBoard = ()=>{
-      navigator.clipboard.writeText(depositAddress)
+      navigator.clipboard.writeText(bizDepositAddress)
       setClipboardText('copied')
+    }
+
+  const closeModal = ()=>{
+      clearEntries.closeModal()
+      handleCurrentStep('')
     }
   
     return <>
-        <Modal hideModal={()=>handleCurrentStep('')}>
+        <Modal hideModal={()=>closeModal('')}>
         <div className={`${classes.step2}`}>
             <div className={`space-between mt-3 mb-3 ${classes.header}`}>
                 <div>
@@ -55,7 +60,7 @@ const Step2 = ({handleCurrentStep})=>{
             <div className={`mb-3 mt-4 ${classes['deposit-address']}`}>
                 <label className="fs-16 fw-500 secondary-color"> Deposit Address </label>
                 <div className={`space-between w-100 bckg4 br-8 p-3 ${classes.input}`}> 
-                    <input className="w-100 tetiary-color fs-20 fw-500" type="text" value={depositAddress} />
+                    <input className="w-100 tetiary-color fs-20 fw-500" type="text" value={bizDepositAddress} />
                     <span onMouseOut={()=>setClipboardText()} className={classes.tooltip} onClick={() => copyToClipBoard()}>
                       <span className={classes.tooltiptext}>{clipboardText?clipboardText:"Copy"}</span>
                       <HiOutlineDocumentDuplicate style={{fontSize:"22px"}} />

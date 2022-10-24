@@ -80,11 +80,15 @@ export const getCoinNetworks = (coinIdorSymbol) => `${BASE_URL}wallet/coin-netwo
 
 export const getSingleCoinById = (coinIdOrSymbol)=> `${BASE_URL}wallet/coin/${coinIdOrSymbol}`
 
-export const getUserCoinBalance=()=>`${BASE_URL}wallet/balances`
+export const getUserWalletBalances=`${BASE_URL}wallet/balances`
+
+export const getBizWalletBalances =(bizId)=> `${BASE_URL}wallet/business/${bizId}/balances`
 
 export const getUserCoinBalanceById = (coinIdOrSymbol)=>`${BASE_URL}wallet/balance/${coinIdOrSymbol}`
 
 export const getDepositAddress =(coinIdOrSymbol, blockChainNetwork)=>`${BASE_URL}wallet/deposit-address/${coinIdOrSymbol}/${blockChainNetwork}`
+
+export const getBizDepositAddress =(coinIdOrSymbol, blockChainNetwork, bizId)=>`${BASE_URL}wallet/business/${bizId}/deposit-address/${coinIdOrSymbol}/${blockChainNetwork}`
 
 export const getDepositAddresses = (coinIdOrSymbol)=>`${BASE_URL}wallet/deposit-address/${coinIdOrSymbol}`
 
@@ -100,30 +104,46 @@ export const getWithdrawalsById = (id)=>`${BASE_URL}wallet/withdrawal/${id}`
 
 export const initiateWithdrawal = `${BASE_URL}wallet/initiate-withdrawal`
 
+export const initiateBizWithdrawal =(bizId)=> `${BASE_URL}wallet/business/${bizId}/initiate-withdrawal`
+
 export const withdraw = `${BASE_URL}wallet/withdraw` //POST
 
-export const withdrawNotification = `${BASE_URL}wallet/on-withdrawal-notification` //POST
+export const bizWithdraw =(bizId)=> `${BASE_URL}wallet/business/${bizId}/withdraw` //POST
 
-export const withdrawFailed = `${BASE_URL}wallet/on-withdrawal-failed` //POST
+export const initiateTransfer = `${BASE_URL}wallet/initiate-transfer` // 
 
-export const initiateTransfer = `${BASE_URL}wallet/initiate-transfer` //POST
+export const initiateBizTransfer = (bizId)=> `${BASE_URL}wallet/business/${bizId}/initiate-transfer`
 
 export const transfer = `${BASE_URL}wallet/transfer` //POST
+
+// https://transfi.herokuapp.com/api/wallet/business/:businessId/transfer
+
+export const bizTransfer =(bizId)=> `${BASE_URL}wallet/business/${bizId}/transfer`
 
 export const getTransfers =(page, size) => `${BASE_URL}wallet/transfer?page=${page}&size=${size}`
 
 export const getTransferById = (id)=>`${BASE_URL}wallet/transfer/${id}`
 
-export const transactionByReference = (reference)=>`${BASE_URL}wallet/transfer/reference`
-
 export const getTransactions = (type, status, limit)=>`${BASE_URL}wallet/transactions?type=${type}&status=${status}&limit=${limit}`
+
+export const getBizTransactions = (type, page, limit, bizId)=>`${BASE_URL}wallet/business/${bizId}/transactions?type=${type}}&page=${page}&limit=${limit}`
 
 export const getTransactionById = (id)=>`${BASE}wallet/transactions/${id}`
 
 export const swap = `${BASE_URL}wallet/swap` //POST
 
+export const bizSwap =(bizId)=> `${BASE_URL}wallet/business/${bizId}/swap`
+
 export const getTradeHistory = `${BASE_URL}wallet/trade-history`
+
+export const getBizTradeHistory =(bizId)=> `${BASE_URL}wallet/business/${bizId}/trade-history`
 
 export const getTradeHistoryById = (id)=> `${BASE_URL}wallet/trade-history/${id}`
 
+export const getBizTradeHistoryById = (bizId, id)=> `${BASE_URL}wallet/business/${bizId}/trade-history/${id}`
+
 export const getSwapRate = `${BASE_URL}wallet/swap-rate` //POST
+
+// http://localhost:7000/api/wallet/business/:businessId/swap-rate
+
+export const getBizSwapRate =(bizId)=> `${BASE_URL}wallet/business/${bizId}/swap-rate` //POST

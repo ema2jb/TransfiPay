@@ -1,21 +1,22 @@
 import React, {useState} from 'react';
+import {useSelector, useDispatch} from 'react-redux'
 
 import { HiOutlineSwitchHorizontal} from "react-icons/hi"
 import {AiOutlineSearch} from "react-icons/ai"
 import {BiChevronDown} from "react-icons/bi"
 
 
-const SwapPair = () =>{
+const SwapPair = ({from, to}) =>{
     return<>
         <div className="swap-pair centralize-10">
             <div className='image'>
-                <img src="/dashboard/bitcoin.png" alt="bitcoin"  />
+                <img src={from} alt="coin logo"  />
             </div>
             <div>
                 <i style={{color:"#000000"}} className='fw-500 fs-18'><HiOutlineSwitchHorizontal /></i>
             </div>
             <div className='image' >
-                <img src="/dashboard/etheruem.png" alt="ethereum" />
+                <img src={to} alt="coin logo" />
             </div>
         </div>
     </>
@@ -23,14 +24,8 @@ const SwapPair = () =>{
 
 
 const SwapHistory = ()=>{
-    const [swaps] = useState(
-        {
-            amountSwapped:'0.0000234 BTC',
-            aomuntRecieved:'0.0000234 ETH',
-            swapPair:  <SwapPair />,
-            swapFee:'1.00 USDT',
-        }
-    )
+   
+  const {tradeHistory} = useSelector(state=>state.wallet)
 
 
     return  <> 
@@ -54,13 +49,13 @@ const SwapHistory = ()=>{
                     </tr>
                 </thead>
                 <tbody>
-                    {
-                        [0, 1, 2, 3, 4, 5].map((link, i)=>( 
+                    { tradeHistory &&
+                        tradeHistory.map((trade, i)=>( 
                             <tr key={i} >
-                                    <td >{swaps.amountSwapped}</td>
-                                    <td >{swaps.aomuntRecieved}</td>
-                                    <td >{swaps.swapPair}</td>
-                                    <td style={{borderRight:"none"}}>{swaps.swapFee}</td> 
+                                    <td >{trade.fromCoinAmount.splice(0, 5)}</td>
+                                    <td >{trade.toCoinAmount.splice(0, 5)}</td>
+                                    <td ><SwapPair from={trade.fromCoin.picUrl} to={trade.toCoin.picUrl} /></td>
+                                    <td style={{borderRight:"none"}}>{trade.fee.splice(0, 5)}</td> 
                             </tr>
                         ))
                     }

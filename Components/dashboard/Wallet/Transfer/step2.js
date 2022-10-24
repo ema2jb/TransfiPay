@@ -5,19 +5,24 @@ import Modal from "../../Modals"
 import classes from '../Withdraw/Withdraw.module.scss'
 import {walletActions} from '../../../../Store/wallet-slice'
 import {UIActions} from '../../../../Store/ui-slice'
-import { initiateTransferFunc } from '../../../../requests/walletRequests'
+import { initiateBizTransferFunc } from '../../../../requests/walletRequests'
 
 
-const TransferStep2 = ({handleCurrentStep, transferDetails}) =>{
+const TransferStep2 = ({handleCurrentStep, bizTransferDetails, clearEntries}) =>{
 
     const dispatch = useDispatch()
     
     const {walletRequestState} = useSelector(state=>state.wallet)
+    const {activeBiz} = useSelector(state=>state.biz)
 
     const initiateTransfer = ()=>{
-      initiateTransferFunc(dispatch, walletActions, UIActions)
+      initiateBizTransferFunc(dispatch, walletActions, UIActions, activeBiz.id)
     }
 
+    const closeModal = ()=>{
+      clearEntries.closeModal()
+      handleCurrentStep('')
+    }
 
     return <>
         <Modal hideModal={()=>handleCurrentStep('')}> 
@@ -32,20 +37,20 @@ const TransferStep2 = ({handleCurrentStep, transferDetails}) =>{
                 <div className="centralize mt-4">
                     <div className={`${classes.recieve}`}>
                         <p className="fs-16 fw-500 secondary-color">You will be sending</p>
-                        <p className="fs-24 fw-600 secondary-color"><span className='text-color-1'>{transferDetails.amount}</span>{transferDetails.coinIdOrSymbol}</p>
+                        <p className="fs-24 fw-600 secondary-color"><span className='text-color-1'>{bizTransferDetails.amount}</span>{bizTransferDetails.coinIdOrSymbol}</p>
                     </div>
                 </div>
                 <div className="space-between mt-3">
                     <p className="fs-16 fw-400 secondary-color">You will be sending to</p>
-                    <p className="fs-16 fw-500 tetiary-color">{transferDetails.email}</p>
+                    <p className="fs-16 fw-500 tetiary-color">{bizTransferDetails.email}</p>
                 </div>
                 <div className="space-between mt-3 pb-4 border-bottom">
                     <p className="fs-16 fw-400 secondary-color">Transfer Note</p>
-                    <p className="fs-16 fw-500 tetiary-color">{transferDetails.note}</p>
+                    <p className="fs-16 fw-500 tetiary-color">{bizTransferDetails.note}</p>
                 </div>
                 <div className="space-between mt-3">
                     <p className="fs-16 fw-400 secondary-color">Coin</p>
-                    <p className="fs-16 fw-500 tetiary-color">{transferDetails.coinIdOrSymbol}</p>
+                    <p className="fs-16 fw-500 tetiary-color">{bizTransferDetails.coinIdOrSymbol}</p>
                 </div>
                 <div className="space-between mt-3">
                     <p className="fs-16 fw-400 secondary-color">Amount (USD)</p>

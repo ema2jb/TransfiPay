@@ -4,20 +4,24 @@ import Select from 'react-select';
 
 import classes from './Deposit.module.scss'
 import Modal from '../../Modals/index'
-import { getDepositAddressFunc } from '../../../../requests/walletRequests'
+import { getBizDepositAddressFunc } from '../../../../requests/walletRequests'
 import {walletActions} from '../../../../Store/wallet-slice'
 
 
-const Step1 = ({handleCurrentStep})=>{
+const Step1 = ({handleCurrentStep, handleEntries})=>{
+
+    const {walletRequestState, coinSymbols, coinNetworks, activeCoin} = useSelector(state=>state.wallet)
+    const {activeBiz} = useSelector(state=>state.biz)
 
     const dispatch = useDispatch()
 
-    const [coin, setCoin] = useState('')
+    const [coin, setCoin] = useState("")
+
+  // these are for the purpose of managing react-select
+    const [selectedCoin, setSelectedCoin] = useState(null)
+    const [selectedNetwork, setSelectedNetwork] = useState(null)
     const [coinNetwork, setCoinNetwork] = useState("")
     const [networkOptions, setNetworkOptions] = useState({})
-
-    const {walletRequestState, coinSymbols, coinNetworks} = useSelector(state=>state.wallet)
-    //console.log(coinList, coinSymbols, coinNetworks)
   
     let coinOptions = [{value:"select a coin",label:"select a coin"}]
 
@@ -41,18 +45,39 @@ const Step1 = ({handleCurrentStep})=>{
     		}),
     	};
 
+      const resetEntries = () =>{
+        dispatch(walletActions.setActiveCoin(""))
+        setCoin("")
+        setSelectedCoin(null)
+        setSelectedNetwork(null)
+      }
+
       useEffect(()=>{
         selectNetworkOptions()
       }, [coin])
 
+      useEffect(()=>{
+          activeCoin.coin && setCoin(activeCoin.coin)
+          activeCoin.selectedCoin.value && setSelectedCoin(activeCoin.selectedCoin)
+      }, [activeCoin])
+
+      useEffect(()=>{
+        handleEntries({closeModal:resetEntries})
+      }, [])
+
+      const closeModal = ()=>{
+        resetEntries()
+        handleCurrentStep('')
+      }
+
 
         const submitHandler = ()=>{
-          getDepositAddressFunc(dispatch, walletActions, coin, coinNetwork, handleCurrentStep)      
+          getBizDepositAddressFunc(dispatch, walletActions, coin, coinNetwork, handleCurrentStep, activeBiz.id)      
         }
 
   
     return <>
-        <Modal hideModal={()=>handleCurrentStep('')}>
+        <Modal hideModal={()=>closeModal()}>
             <div className={classes.step1}>
                 <div className={`space-between mt-3 ${classes.header}`}>
                     <div>
@@ -66,8 +91,10 @@ const Step1 = ({handleCurrentStep})=>{
                          <Select
                         onChange={(selectedOption) =>{
                             setCoin(selectedOption.value)
+                            setSelectedCoin(selectedOption)
                             }
                         }
+                        value={selectedCoin}
                         options={coinOptions}
                         styles={customStyles}
                         placeholder="Select a coin"
@@ -78,9 +105,11 @@ const Step1 = ({handleCurrentStep})=>{
                          <Select
                         onChange={(selectedOption) =>{
                             setCoinNetwork(selectedOption.value)
+                            setSelectedNetwork(selectedOption)
                             }
                         }
                         isDisabled={Boolean(coin)?false:true}
+                        value={selectedNetwork}
                         options={networkOptions}
                         styles={customStyles}
                         placeholder={coin?"select a network":"Select a coin first"}

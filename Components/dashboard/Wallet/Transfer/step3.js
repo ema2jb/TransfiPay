@@ -5,13 +5,14 @@ import Modal from "../../Modals"
 import classes from '../Withdraw/Withdraw.module.scss'
 import {walletActions} from '../../../../Store/wallet-slice'
 import {UIActions} from '../../../../Store/ui-slice'
-import { transferFunc } from '../../../../requests/walletRequests'
+import { bizTransferFunc } from '../../../../requests/walletRequests'
 
 
-const TransferStep3 =({handleCurrentStep})=>{
+const TransferStep3 =({handleCurrentStep, clearEntries})=>{
 
     const dispatch = useDispatch()
-    const {walletRequestState, transferDetails} = useSelector(state=>state.wallet)
+    const {walletRequestState, bizTransferDetails} = useSelector(state=>state.wallet)
+    const {activeBiz} = useSelector(state=>state.biz)
 
     const [pin, setPin] = useState({
         input1:"",
@@ -34,11 +35,12 @@ const TransferStep3 =({handleCurrentStep})=>{
           return
         }
         setPin({...pin, [name]:value})
-        if(name==="input6" && input6Ref.current.value){
-            const otpCode = `${pin.input1}${pin.input2}${pin.input3}${pin.input4}${pin.input5}${value}`
-            const updatedTransferDetails = {...transferDetails, otpCode:otpCode}
-            transferFunc(dispatch, walletActions, updatedTransferDetails, UIActions)
-        }
+    }
+
+    const transfer = ()=>{
+       const otpCode = `${pin.input1}${pin.input2}${pin.input3}${pin.input4}${pin.input5}${pin.input6}`
+      const updatedTransferDetails = {...bizTransferDetails, otpCode:otpCode}
+      bizTransferFunc(dispatch, walletActions, updatedTransferDetails, UIActions, clearEntries.closeModal, activeBiz.id )
     }
 
     useEffect(()=>{
@@ -69,9 +71,13 @@ const TransferStep3 =({handleCurrentStep})=>{
         })
     }, [pin])
 
+    const closeModal = ()=>{
+      clearEntries.closeModal()
+      handleCurrentStep('')
+    }
 
     return <>
-        <Modal hideModal={()=>handleCurrentStep('')}>
+        <Modal hideModal={()=>closeModal()}>
             <div className={classes.step2}>
                 <div className={`space-between mt-3 ${classes.header}`}>
                     <div>
@@ -83,7 +89,7 @@ const TransferStep3 =({handleCurrentStep})=>{
                 <div className={classes['authentication-pin']}>
                     <input 
                         ref={input1Ref} 
-                        type="password" 
+                        type="text" 
                         maxLength={1}
                         name="input1"
                         value={pin.input1}
@@ -91,7 +97,7 @@ const TransferStep3 =({handleCurrentStep})=>{
                     />
                     <input 
                         ref={input2Ref} 
-                        type="password" 
+                        type="text" 
                         maxLength={1}
                         name="input2"
                         value={pin.input2} 
@@ -99,7 +105,7 @@ const TransferStep3 =({handleCurrentStep})=>{
                     />
                     <input 
                         ref={input3Ref} 
-                        type="password" 
+                        type="text" 
                         maxLength={1}
                         name="input3"
                         value={pin.input3}
@@ -107,7 +113,7 @@ const TransferStep3 =({handleCurrentStep})=>{
                     />
                     <input 
                         ref={input4Ref} 
-                        type="password" 
+                        type="text" 
                         maxLength={1}
                         name="input4"
                         value={pin.input4}  
@@ -115,7 +121,7 @@ const TransferStep3 =({handleCurrentStep})=>{
                     />
                   <input 
                         ref={input5Ref} 
-                        type="password" 
+                        type="text" 
                         maxLength={1}
                         name="input5"
                         value={pin.input5}  
@@ -123,7 +129,7 @@ const TransferStep3 =({handleCurrentStep})=>{
                     />
                   <input 
                         ref={input6Ref} 
-                        type="password" 
+                        type="text" 
                         maxLength={1}
                         name="input6"
                         value={pin.input6}  
@@ -132,7 +138,7 @@ const TransferStep3 =({handleCurrentStep})=>{
                 </div>
               <div className='justify-right mt-5 mb-2'>
                     <div>
-                        <button className="btn-default" onClick={()=>initiateTransfer()} className='btn-default'>Send OTP</button>
+                        <button disabled={walletRequestState.loading} className="btn-default" onClick={()=>transfer()} className='btn-default'>{walletRequestState.loading?"loading":"Send OTP"}</button>
                     </div>
                 </div>
             </div>

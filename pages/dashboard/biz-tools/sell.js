@@ -17,7 +17,7 @@ const SellProduct =()=>{
                 <Sell handlePageDisplay={handlePageDisplay} />
             </div>
             <div className={page !== 'product-link' && 'd-none'}>
-                <CreateProductLink />
+                <CreateProductLink handlePageDisplay={handlePageDisplay} />
             </div>
         </Layout>
     </>

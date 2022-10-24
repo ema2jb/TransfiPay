@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import {useSelector} from 'react-redux'
 
 import classes from './Wallet.module.scss'
 
@@ -14,6 +15,15 @@ import WalletPortfolio from './WalletPortfolio'
 const WalletHome = ({showHistoryHandler}) =>{
 
     const [seeBalance, setSeeBalance] = useState(false)
+    const {bizWalletBalances} = useSelector(state=>state.wallet)
+
+    let walletBalance = 0.00
+
+    if(bizWalletBalances){
+      bizWalletBalances.forEach(wallet=>{
+      walletBalance += +wallet.usdValue
+    }) 
+    }
 
     return <>
         <SubHeader  mainTitle="Wallet" />
@@ -22,7 +32,7 @@ const WalletHome = ({showHistoryHandler}) =>{
                     <div className={` ${classes.balance}`}>
                         <div className={classes['wallet-balance']}>
                             <p className="fw-400 fs-16 secondary-color">Total Wallet Balance <span><i>{!seeBalance ? <FiEyeOff /> : <FiEye/> }</i></span></p>
-                            <h1 className="mt-2 fs-36 fw-700 tertiary-color">5000.00 <span className="fs-18 fw-500 secondary-color">USD</span></h1>
+                            <h1 className="mt-2 fs-36 fw-700 tertiary-color">{walletBalance.toFixed(4)}<span className="fs-18 fw-500 secondary-color">USD</span></h1>
                         </div>
                         <div className={`mt-4 ${classes['amount']}`}>
                             <p className="fs-16 fw-400">Account Increase <i><BiChevronsUp /></i> <span>+ 00000.123</span>  USD added to account</p>

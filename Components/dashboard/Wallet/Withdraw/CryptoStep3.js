@@ -6,24 +6,25 @@ import classes from './Withdraw.module.scss'
 import {HiOutlineDocumentDuplicate} from 'react-icons/hi'
 import {UIActions} from '../../../../Store/ui-slice'
 import {walletActions} from '../../../../Store/wallet-slice'
-import { initiateWithdrawalFunc } from '../../../../requests/walletRequests'
+import { initiateBizWithdrawalFunc } from '../../../../requests/walletRequests'
 
 
 
-const Step3 = ({handleCurrentStep}) =>{
+const Step3 = ({handleCurrentStep, clearEntries}) =>{
 
     const dispatch = useDispatch()
-    const {walletRequestState, withdrawalDetails} = useSelector(state=>state.wallet)
+    const {walletRequestState, bizWithdrawalDetails} = useSelector(state=>state.wallet)
+    const {activeBiz} = useSelector(state=>state.biz)
 
     let formattedAddress = ''
-      if(withdrawalDetails.address){
-        const wd =  withdrawalDetails.address
+      if(bizWithdrawalDetails.address){
+        const wd =  bizWithdrawalDetails.address
         const l = wd.length
          formattedAddress = `${wd[0]}${wd[1]}${wd[2]}${wd[3]}...${wd[l-4]}${wd[l-3]}${wd[l-2]}${wd[l-1]}`
       }
 
   const initiateWithdrawal = ()=>{
-      initiateWithdrawalFunc(dispatch, walletActions, UIActions)
+      initiateBizWithdrawalFunc(dispatch, walletActions, UIActions, activeBiz.id)
     }
 
     
@@ -33,11 +34,14 @@ const Step3 = ({handleCurrentStep}) =>{
     }
     */
    
-
+    const closeModal = ()=>{
+      clearEntries.closeModal()
+      handleCurrentStep('')
+    }
 
 
     return <>
-        <Modal hideModal={()=>handleCurrentStep('')}>
+        <Modal hideModal={()=>closeModal()}>
             {
             <div className={classes['crypto-step3']}>
                 <div className={`space-between mt-3 ${classes.header}`}>
@@ -50,7 +54,7 @@ const Step3 = ({handleCurrentStep}) =>{
                 <div className="centralize mt-4">
                     <div className={`${classes.recieve}`}>
                         <p className="fs-16 fw-500 secondary-color">You want to withdraw</p>
-                        <p className="fs-24 fw-600 secondary-color"><span className='text-color-1'>{withdrawalDetails.amount}</span>{withdrawalDetails.coinIdOrSymbol}</p>
+                        <p className="fs-24 fw-600 secondary-color"><span className='text-color-1'>{bizWithdrawalDetails.amount}</span>{bizWithdrawalDetails.coinIdOrSymbol}</p>
                     </div>
                 </div>
                 <div className="space-between mt-3">
@@ -59,15 +63,15 @@ const Step3 = ({handleCurrentStep}) =>{
                 </div>
                 <div className="space-between mt-3 pb-4 border-bottom">
                     <p className="fs-16 fw-400 secondary-color">Network</p>
-                    <p className="fs-16 fw-500 tetiary-color">{withdrawalDetails.networkName}</p>
+                    <p className="fs-16 fw-500 tetiary-color">{bizWithdrawalDetails.networkName}</p>
                 </div>
                 <div className="space-between mt-3">
                     <p className="fs-16 fw-400 secondary-color">Coin</p>
-                    <p className="fs-16 fw-500 tetiary-color">{withdrawalDetails.cooinIdOrSymbol}</p>
+                    <p className="fs-16 fw-500 tetiary-color">{bizWithdrawalDetails.coinIdOrSymbol}</p>
                 </div>
                 <div className="space-between mt-3">
                     <p className="fs-16 fw-400 secondary-color">Amount (USD)</p>
-                    <p className="fs-16 fw-500 tetiary-color">{withdrawalDetails.amount}</p>
+                    <p className="fs-16 fw-500 tetiary-color">{bizWithdrawalDetails.amount}</p>
                 </div>
                 <div className="space-between mt-3">
                     <p className="fs-16 fw-400 secondary-color">Transaction fee</p>

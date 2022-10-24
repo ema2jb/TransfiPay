@@ -9,18 +9,22 @@ import {HiOutlineInformationCircle} from  'react-icons/hi'
 import {walletActions} from '../../../../Store/wallet-slice'
 
 
-const Step2 = ({handleCurrentStep}) =>{
+const Step2 = ({handleCurrentStep, handleEntries}) =>{
 
     const dispatch = useDispatch()
 
+    const {walletRequestState, coinSymbols, coinNetworks, activeCoin, withdrawalDetails} = useSelector(state=>state.wallet)
     const [coin, setCoin] = useState('')
+    
+    const [selectedCoin, setSelectedCoin] = useState(null)
+    const [selectedNetwork, setSelectedNetwork] = useState(withdrawalDetails.networkName)
     const [coinNetwork, setCoinNetwork] = useState("")
     const [networkOptions, setNetworkOptions] = useState({})
     const [walletDetails, setWalletDetails] = useState({
-      address:"",
-      amount:""
+      address:withdrawalDetails.address,
+      amount:withdrawalDetails.amount
     })
-    const {walletRequestState, coinSymbols, coinNetworks} = useSelector(state=>state.wallet)
+    
   
     let coinOptions = [{value:"select a coin",label:"select a coin"}]
 
@@ -49,6 +53,32 @@ const Step2 = ({handleCurrentStep}) =>{
         selectNetworkOptions()
       }, [coin])
 
+      useEffect(()=>{
+          activeCoin.coin && setCoin(activeCoin.coin)
+          activeCoin.selectedCoin.value && setSelectedCoin(activeCoin.selectedCoin)
+      }, [activeCoin])
+
+      const resetEntries = () =>{
+        setCoin("")
+        dispatch(walletActions.setActiveCoin(""))
+        setSelectedCoin(null)
+        setSelectedNetwork(null)
+        setWalletDetails({
+          amount:"",
+          address:""
+        })
+      }
+
+      const closeModal = ()=>{
+        resetEntries()
+        handleCurrentStep('')
+      }
+
+  
+      useEffect(()=>{
+        handleEntries({closeModal:resetEntries})
+      }, [])
+
     const submitHandler = ()=>{
         const withDrawalDetails = {
           coinIdOrSymbol:coin,
@@ -56,12 +86,13 @@ const Step2 = ({handleCurrentStep}) =>{
           address:walletDetails.address,
           amount:walletDetails.amount,
         }
-        dispatch(walletActions.setWithdrawalDetails(withDrawalDetails))
+        console.log(withDrawalDetails)
+        dispatch(walletActions.setBizWithdrawalDetails(withDrawalDetails))
        handleCurrentStep('withdraw-crypto-step3')
     }
   
     return <>
-        <Modal hideModal={()=>handleCurrentStep('')}>
+        <Modal hideModal={()=>closeModal()}>
             <div className={classes.step2}>
                 <div className={`space-between mt-3 ${classes.header}`}>
                     <div>
@@ -75,8 +106,10 @@ const Step2 = ({handleCurrentStep}) =>{
                     <Select
                         onChange={(selectedOption) =>{
                             setCoin(selectedOption.value)
+                            setSelectedCoin(selectedOption)
                             }
                         }
+                        value={selectedCoin}
                         options={coinOptions}
                         styles={customStyles}
                         placeholder="Select a coin"
@@ -99,8 +132,10 @@ const Step2 = ({handleCurrentStep}) =>{
                          <Select
                         onChange={(selectedOption) =>{
                             setCoinNetwork(selectedOption.value)
+                            setSelectedNetwork(selectedOption)
                             }
                         }
+                        value={selectedNetwork}
                         isDisabled={Boolean(coin)?false:true}
                         options={networkOptions}
                         styles={customStyles}
